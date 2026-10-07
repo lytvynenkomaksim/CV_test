@@ -38,7 +38,7 @@ class YoloBuoy:
     def __init__(self, weights=None, conf=0.25, imgsz=1088):
         from ultralytics import YOLO
         if weights is None:  # trained weights are committed in weights/, models/ is the local cache
-            cands = [MODELS / "buoy_yolo11s.pt", MODELS.parent / "weights" / "buoy_yolo11s.pt"]
+            cands = [d / f"buoy_yolo11{z}.pt" for d in (MODELS, MODELS.parent / "weights") for z in "sn"]
             weights = str(next((c for c in cands if c.exists()), cands[0]))
         self.m = YOLO(weights)
         self.conf, self.imgsz = conf, imgsz

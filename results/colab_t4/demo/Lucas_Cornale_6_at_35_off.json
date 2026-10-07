@@ -1,0 +1,329 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Lucas Cornale 6 at 35 off.mp4",
+  "fps": 29.968651213533214,
+  "frames": 760,
+  "width": 1066,
+  "height": 602,
+  "shots": [
+   0,
+   699
+  ],
+  "wall_s": 48.21
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.2,
+   "calls": 1,
+   "ms_per_call": 196.1
+  },
+  "scene_cut": {
+   "total_s": 0.24,
+   "calls": 760,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 2.39,
+   "calls": 760,
+   "ms_per_call": 3.1
+  },
+  "skier_detect_track": {
+   "total_s": 16.68,
+   "calls": 760,
+   "ms_per_call": 22.0
+  },
+  "pose": {
+   "total_s": 9.23,
+   "calls": 648,
+   "ms_per_call": 14.2
+  },
+  "buoy_detect": {
+   "total_s": 18.51,
+   "calls": 760,
+   "ms_per_call": 24.3
+  }
+ },
+ "processing_s": 47.05,
+ "video_s": 25.36,
+ "x_realtime": 1.86,
+ "skier": {
+  "skier_visible_ratio": 0.853,
+  "skier_visible_s": 21.62,
+  "pose_good_ratio": 0.82,
+  "skier_median_height_px": 92.1
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.603,
+  "buoy_tracks": 44,
+  "hidden_ratio_within_tracks": 0.102,
+  "longest_hidden_gap_s": 0.5
+ },
+ "events": [
+  {
+   "frame": 166,
+   "track": 15,
+   "buoy_X": 738.4923577042921,
+   "skier_X": 465.6709698885433,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": 0.28,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 13,
+   "kind": "centre"
+  },
+  {
+   "frame": 166,
+   "track": 14,
+   "buoy_X": 550.9497377192774,
+   "skier_X": 465.6709698885433,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": 0.11,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "centre"
+  },
+  {
+   "frame": 204,
+   "track": 17,
+   "buoy_X": -421.97584211035536,
+   "skier_X": -430.53120012105717,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -0.81,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 7,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 8.6
+  },
+  {
+   "frame": 213,
+   "track": 16,
+   "buoy_X": -644.0568960532918,
+   "skier_X": -393.8045588939299,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -1.02,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -250.3
+  },
+  {
+   "frame": 237,
+   "track": 20,
+   "buoy_X": 159.45722201538638,
+   "skier_X": 173.10559848023013,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -0.26,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 25,
+   "kind": "centre"
+  },
+  {
+   "frame": 288,
+   "track": 23,
+   "buoy_X": 371.43179843208645,
+   "skier_X": 1095.751853440021,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -0.06,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 13,
+   "kind": "centre"
+  },
+  {
+   "frame": 359,
+   "track": 30,
+   "buoy_X": -663.1250509603518,
+   "skier_X": -768.2989785384661,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -1.04,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 105.2
+  },
+  {
+   "frame": 434,
+   "track": 37,
+   "buoy_X": 873.0303173972949,
+   "skier_X": 917.5423032921291,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": 0.41,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 8,
+   "kind": "centre"
+  },
+  {
+   "frame": 509,
+   "track": 47,
+   "buoy_X": -996.0173408231003,
+   "skier_X": -994.1795503911605,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -1.35,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": -1.8
+  },
+  {
+   "frame": 587,
+   "track": 56,
+   "buoy_X": 612.1914587423266,
+   "skier_X": 657.1253820868799,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": 0.16,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 7,
+   "kind": "centre"
+  },
+  {
+   "frame": 589,
+   "track": 54,
+   "buoy_X": 202.3173220681822,
+   "skier_X": 680.1642309773965,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -0.22,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 11,
+   "kind": "centre"
+  },
+  {
+   "frame": 592,
+   "track": 55,
+   "buoy_X": 205.43393762359176,
+   "skier_X": 675.3094182754472,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -0.22,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 22,
+   "kind": "centre"
+  },
+  {
+   "frame": 647,
+   "track": 67,
+   "buoy_X": -61.94501385645868,
+   "skier_X": -168.21401169871456,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -0.47,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 8,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 106.3
+  },
+  {
+   "frame": 649,
+   "track": 66,
+   "buoy_X": -252.1959772317996,
+   "skier_X": -187.1931238382449,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593,
+   "ratio": -0.65,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 11,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -65.0
+  },
+  {
+   "frame": 706,
+   "track": 5,
+   "buoy_X": 148.60051978165973,
+   "skier_X": -273.8274587339653,
+   "centre": -328.53046663171773,
+   "amp": 59.89679723941242,
+   "ratio": 7.97,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 31,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": false,
+   "margin_px": -422.4
+  },
+  {
+   "frame": 749,
+   "track": 8,
+   "buoy_X": 52.609096712105384,
+   "skier_X": -373.81439571953524,
+   "centre": -328.53046663171773,
+   "amp": 59.89679723941242,
+   "ratio": 6.36,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 22,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": false,
+   "margin_px": -426.4
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 8,
+  "turn_buoys_outside": 4,
+  "score": 1
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 699,
+   "centre": 439.49056705096154,
+   "amp": 1060.3110093116593
+  },
+  {
+   "start": 699,
+   "end": 760,
+   "centre": -328.53046663171773,
+   "amp": 59.89679723941242
+  }
+ ],
+ "output_video": "runs/demo_gpu/Lucas_Cornale_6_at_35_off.mp4"
+}

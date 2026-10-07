@@ -1,0 +1,149 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Damir Filaretov 1 at 39.5 off (close call).mp4",
+  "fps": 30.035700328021463,
+  "frames": 456,
+  "width": 1070,
+  "height": 596,
+  "shots": [
+   0,
+   378
+  ],
+  "wall_s": 28.36
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.21,
+   "calls": 1,
+   "ms_per_call": 209.1
+  },
+  "scene_cut": {
+   "total_s": 0.14,
+   "calls": 456,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 1.38,
+   "calls": 456,
+   "ms_per_call": 3.0
+  },
+  "skier_detect_track": {
+   "total_s": 9.9,
+   "calls": 456,
+   "ms_per_call": 21.7
+  },
+  "pose": {
+   "total_s": 5.29,
+   "calls": 382,
+   "ms_per_call": 13.9
+  },
+  "buoy_detect": {
+   "total_s": 10.94,
+   "calls": 456,
+   "ms_per_call": 24.0
+  }
+ },
+ "processing_s": 27.65,
+ "video_s": 15.18,
+ "x_realtime": 1.82,
+ "skier": {
+  "skier_visible_ratio": 0.838,
+  "skier_visible_s": 12.72,
+  "pose_good_ratio": 0.789,
+  "skier_median_height_px": 118.1
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.114,
+  "buoy_tracks": 6,
+  "hidden_ratio_within_tracks": 0.183,
+  "longest_hidden_gap_s": 0.17
+ },
+ "events": [
+  {
+   "frame": 171,
+   "track": 5,
+   "buoy_X": -212.05114812967793,
+   "skier_X": -252.304065890478,
+   "centre": 1202.6892305330844,
+   "amp": 1009.4210491299592,
+   "ratio": -1.4,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 40.3
+  },
+  {
+   "frame": 181,
+   "track": 4,
+   "buoy_X": 383.05410639502134,
+   "skier_X": -207.5248676193753,
+   "centre": 1202.6892305330844,
+   "amp": 1009.4210491299592,
+   "ratio": -0.81,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 17,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 590.6
+  },
+  {
+   "frame": 336,
+   "track": 12,
+   "buoy_X": 1235.945319629638,
+   "skier_X": 1348.4520029792475,
+   "centre": 1202.6892305330844,
+   "amp": 1009.4210491299592,
+   "ratio": 0.03,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 6,
+   "kind": "centre"
+  },
+  {
+   "frame": 336,
+   "track": 13,
+   "buoy_X": 1481.3768381843256,
+   "skier_X": 1348.4520029792475,
+   "centre": 1202.6892305330844,
+   "amp": 1009.4210491299592,
+   "ratio": 0.28,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 12,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 2,
+  "turn_buoys_outside": 2,
+  "score": 2
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 378,
+   "centre": 1202.6892305330844,
+   "amp": 1009.4210491299592
+  },
+  {
+   "start": 378,
+   "end": 456,
+   "centre": 722.9395167899085,
+   "amp": 240.64896844582927
+  }
+ ],
+ "output_video": "runs/demo_gpu/Damir_Filaretov_1_at_39.5_off_(close_call).mp4"
+}

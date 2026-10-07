@@ -1,0 +1,438 @@
+{
+ "machine": {
+  "cpu": "x86_64",
+  "threads": 4,
+  "torch": "2.11.0+cu130",
+  "gpu": "Tesla T4"
+ },
+ "videos": {
+  "data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4": {
+   "resolution": "854x480",
+   "frames": 30,
+   "models": {
+    "person:yolo11n": {
+     "load_s": 0.11,
+     "ms_per_frame": 11.0,
+     "p90_ms": 17.6,
+     "n": 30
+    },
+    "person:yolo11s": {
+     "load_s": 0.07,
+     "ms_per_frame": 19.1,
+     "p90_ms": 19.6,
+     "n": 30
+    },
+    "person:yolo11m": {
+     "load_s": 0.42,
+     "ms_per_frame": 44.0,
+     "p90_ms": 45.5,
+     "n": 30
+    },
+    "person:rtdetr-l": {
+     "load_s": 0.57,
+     "ms_per_frame": 66.3,
+     "p90_ms": 88.6,
+     "n": 30
+    },
+    "buoy:yolo11n-buoy": {
+     "error": "[Errno 2] No such file or directory: '/content/CV_test/models/buoy_yolo11n.pt'"
+    },
+    "buoy:yolo11s-buoy": {
+     "load_s": 0.08,
+     "ms_per_frame": 24.6,
+     "p90_ms": 25.6,
+     "n": 30,
+     "mean_buoys_per_frame": 0.1,
+     "frames_with_buoy": 0.1
+    },
+    "buoy:yolo-world-m": {
+     "load_s": 5.84,
+     "ms_per_frame": 101.7,
+     "p90_ms": 103.7,
+     "n": 30,
+     "mean_buoys_per_frame": 0.0,
+     "frames_with_buoy": 0.0
+    },
+    "buoy:grounding-dino-t": {
+     "load_s": 8.8,
+     "ms_per_frame": 559.7,
+     "p90_ms": 614.7,
+     "n": 30,
+     "mean_buoys_per_frame": 0.07,
+     "frames_with_buoy": 0.07
+    },
+    "buoy:owlv2-b": {
+     "load_s": 6.76,
+     "ms_per_frame": 421.6,
+     "p90_ms": 440.7,
+     "n": 30,
+     "mean_buoys_per_frame": 0.3,
+     "frames_with_buoy": 0.23
+    },
+    "pose:yolo-n": {
+     "load_s": 0.12,
+     "ms_per_frame": 11.7,
+     "p90_ms": 50.4,
+     "n": 30,
+     "mean_kpt_conf": 0.88
+    },
+    "pose:yolo-s": {
+     "load_s": 0.21,
+     "ms_per_frame": 15.6,
+     "p90_ms": 54.5,
+     "n": 30,
+     "mean_kpt_conf": 0.872
+    },
+    "pose:yolo-m": {
+     "load_s": 0.38,
+     "ms_per_frame": 16.3,
+     "p90_ms": 53.0,
+     "n": 30,
+     "mean_kpt_conf": 0.853
+    },
+    "pose:vitpose": {
+     "load_s": 4.56,
+     "ms_per_frame": 37.4,
+     "p90_ms": 43.7,
+     "n": 30,
+     "mean_kpt_conf": 0.775
+    },
+    "pose:rtmpose": {
+     "load_s": 0.34,
+     "ms_per_frame": 46.1,
+     "p90_ms": 50.5,
+     "n": 30,
+     "mean_kpt_conf": 0.531
+    },
+    "pose:mediapipe": {
+     "load_s": 9.38,
+     "ms_per_frame": 84.8,
+     "p90_ms": 92.5,
+     "n": 30,
+     "mean_kpt_conf": 0.627
+    }
+   }
+  },
+  "data/videos/front_view/Vincenzo Marino 6 at 32 off.mp4": {
+   "resolution": "1070x602",
+   "frames": 30,
+   "models": {
+    "person:yolo11n": {
+     "load_s": 0.08,
+     "ms_per_frame": 14.7,
+     "p90_ms": 16.7,
+     "n": 30
+    },
+    "person:yolo11s": {
+     "load_s": 0.09,
+     "ms_per_frame": 20.3,
+     "p90_ms": 20.7,
+     "n": 30
+    },
+    "person:yolo11m": {
+     "load_s": 0.17,
+     "ms_per_frame": 44.0,
+     "p90_ms": 45.4,
+     "n": 30
+    },
+    "person:rtdetr-l": {
+     "load_s": 0.16,
+     "ms_per_frame": 65.7,
+     "p90_ms": 68.7,
+     "n": 30
+    },
+    "buoy:yolo11n-buoy": {
+     "error": "[Errno 2] No such file or directory: '/content/CV_test/models/buoy_yolo11n.pt'"
+    },
+    "buoy:yolo11s-buoy": {
+     "load_s": 0.07,
+     "ms_per_frame": 25.0,
+     "p90_ms": 26.3,
+     "n": 30,
+     "mean_buoys_per_frame": 0.9,
+     "frames_with_buoy": 0.57
+    },
+    "buoy:yolo-world-m": {
+     "load_s": 4.23,
+     "ms_per_frame": 102.7,
+     "p90_ms": 104.3,
+     "n": 30,
+     "mean_buoys_per_frame": 0.23,
+     "frames_with_buoy": 0.2
+    },
+    "buoy:grounding-dino-t": {
+     "load_s": 2.37,
+     "ms_per_frame": 562.5,
+     "p90_ms": 612.8,
+     "n": 30,
+     "mean_buoys_per_frame": 0.73,
+     "frames_with_buoy": 0.37
+    },
+    "buoy:owlv2-b": {
+     "load_s": 0.97,
+     "ms_per_frame": 488.5,
+     "p90_ms": 526.5,
+     "n": 30,
+     "mean_buoys_per_frame": 1.37,
+     "frames_with_buoy": 0.7
+    },
+    "pose:yolo-n": {
+     "load_s": 0.1,
+     "ms_per_frame": 16.3,
+     "p90_ms": 21.8,
+     "n": 29,
+     "mean_kpt_conf": 0.79
+    },
+    "pose:yolo-s": {
+     "load_s": 0.12,
+     "ms_per_frame": 11.8,
+     "p90_ms": 15.4,
+     "n": 29,
+     "mean_kpt_conf": 0.76
+    },
+    "pose:yolo-m": {
+     "load_s": 0.1,
+     "ms_per_frame": 13.5,
+     "p90_ms": 14.7,
+     "n": 29,
+     "mean_kpt_conf": 0.747
+    },
+    "pose:vitpose": {
+     "load_s": 0.65,
+     "ms_per_frame": 36.2,
+     "p90_ms": 43.6,
+     "n": 29,
+     "mean_kpt_conf": 0.618
+    },
+    "pose:rtmpose": {
+     "load_s": 0.1,
+     "ms_per_frame": 47.5,
+     "p90_ms": 55.0,
+     "n": 29,
+     "mean_kpt_conf": 0.395
+    },
+    "pose:mediapipe": {
+     "load_s": 0.16,
+     "ms_per_frame": 24.7,
+     "p90_ms": 88.6,
+     "n": 29,
+     "mean_kpt_conf": 0.321
+    }
+   }
+  },
+  "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4": {
+   "resolution": "1920x1064",
+   "frames": 30,
+   "models": {
+    "person:yolo11n": {
+     "load_s": 0.05,
+     "ms_per_frame": 10.9,
+     "p90_ms": 11.8,
+     "n": 30
+    },
+    "person:yolo11s": {
+     "load_s": 0.07,
+     "ms_per_frame": 19.4,
+     "p90_ms": 20.7,
+     "n": 30
+    },
+    "person:yolo11m": {
+     "load_s": 0.09,
+     "ms_per_frame": 43.8,
+     "p90_ms": 44.9,
+     "n": 30
+    },
+    "person:rtdetr-l": {
+     "load_s": 0.15,
+     "ms_per_frame": 65.7,
+     "p90_ms": 68.5,
+     "n": 30
+    },
+    "buoy:yolo11n-buoy": {
+     "error": "[Errno 2] No such file or directory: '/content/CV_test/models/buoy_yolo11n.pt'"
+    },
+    "buoy:yolo11s-buoy": {
+     "load_s": 0.07,
+     "ms_per_frame": 25.5,
+     "p90_ms": 26.2,
+     "n": 30,
+     "mean_buoys_per_frame": 1.13,
+     "frames_with_buoy": 0.7
+    },
+    "buoy:yolo-world-m": {
+     "load_s": 5.33,
+     "ms_per_frame": 101.4,
+     "p90_ms": 102.4,
+     "n": 30,
+     "mean_buoys_per_frame": 0.1,
+     "frames_with_buoy": 0.1
+    },
+    "buoy:grounding-dino-t": {
+     "load_s": 1.71,
+     "ms_per_frame": 564.5,
+     "p90_ms": 629.5,
+     "n": 30,
+     "mean_buoys_per_frame": 1.07,
+     "frames_with_buoy": 0.67
+    },
+    "buoy:owlv2-b": {
+     "load_s": 1.04,
+     "ms_per_frame": 757.4,
+     "p90_ms": 923.7,
+     "n": 30,
+     "mean_buoys_per_frame": 1.33,
+     "frames_with_buoy": 0.73
+    },
+    "pose:yolo-n": {
+     "load_s": 0.08,
+     "ms_per_frame": 15.2,
+     "p90_ms": 21.0,
+     "n": 27,
+     "mean_kpt_conf": 0.783
+    },
+    "pose:yolo-s": {
+     "load_s": 0.11,
+     "ms_per_frame": 23.2,
+     "p90_ms": 38.3,
+     "n": 27,
+     "mean_kpt_conf": 0.838
+    },
+    "pose:yolo-m": {
+     "load_s": 0.1,
+     "ms_per_frame": 14.5,
+     "p90_ms": 21.6,
+     "n": 27,
+     "mean_kpt_conf": 0.826
+    },
+    "pose:vitpose": {
+     "load_s": 0.64,
+     "ms_per_frame": 42.8,
+     "p90_ms": 49.2,
+     "n": 27,
+     "mean_kpt_conf": 0.702
+    },
+    "pose:rtmpose": {
+     "load_s": 0.1,
+     "ms_per_frame": 46.8,
+     "p90_ms": 49.8,
+     "n": 27,
+     "mean_kpt_conf": 0.441
+    },
+    "pose:mediapipe": {
+     "load_s": 0.15,
+     "ms_per_frame": 16.9,
+     "p90_ms": 83.4,
+     "n": 27,
+     "mean_kpt_conf": 0.157
+    }
+   }
+  },
+  "data/videos/youtube/youtube_regina_jaquess.mp4": {
+   "resolution": "1920x1080",
+   "frames": 30,
+   "models": {
+    "person:yolo11n": {
+     "load_s": 0.05,
+     "ms_per_frame": 11.0,
+     "p90_ms": 12.2,
+     "n": 30
+    },
+    "person:yolo11s": {
+     "load_s": 0.06,
+     "ms_per_frame": 19.4,
+     "p90_ms": 19.8,
+     "n": 30
+    },
+    "person:yolo11m": {
+     "load_s": 0.09,
+     "ms_per_frame": 44.0,
+     "p90_ms": 45.1,
+     "n": 30
+    },
+    "person:rtdetr-l": {
+     "load_s": 0.15,
+     "ms_per_frame": 66.0,
+     "p90_ms": 70.1,
+     "n": 30
+    },
+    "buoy:yolo11n-buoy": {
+     "error": "[Errno 2] No such file or directory: '/content/CV_test/models/buoy_yolo11n.pt'"
+    },
+    "buoy:yolo11s-buoy": {
+     "load_s": 0.07,
+     "ms_per_frame": 25.3,
+     "p90_ms": 25.9,
+     "n": 30,
+     "mean_buoys_per_frame": 0.07,
+     "frames_with_buoy": 0.03
+    },
+    "buoy:yolo-world-m": {
+     "load_s": 4.96,
+     "ms_per_frame": 101.4,
+     "p90_ms": 102.3,
+     "n": 30,
+     "mean_buoys_per_frame": 0.17,
+     "frames_with_buoy": 0.17
+    },
+    "buoy:grounding-dino-t": {
+     "load_s": 1.32,
+     "ms_per_frame": 566.0,
+     "p90_ms": 597.7,
+     "n": 30,
+     "mean_buoys_per_frame": 0.7,
+     "frames_with_buoy": 0.43
+    },
+    "buoy:owlv2-b": {
+     "load_s": 1.12,
+     "ms_per_frame": 802.7,
+     "p90_ms": 1023.4,
+     "n": 30,
+     "mean_buoys_per_frame": 1.87,
+     "frames_with_buoy": 0.7
+    },
+    "pose:yolo-n": {
+     "load_s": 0.08,
+     "ms_per_frame": 15.9,
+     "p90_ms": 21.9,
+     "n": 27,
+     "mean_kpt_conf": 0.864
+    },
+    "pose:yolo-s": {
+     "load_s": 0.11,
+     "ms_per_frame": 11.6,
+     "p90_ms": 20.0,
+     "n": 27,
+     "mean_kpt_conf": 0.853
+    },
+    "pose:yolo-m": {
+     "load_s": 0.11,
+     "ms_per_frame": 13.6,
+     "p90_ms": 14.9,
+     "n": 27,
+     "mean_kpt_conf": 0.861
+    },
+    "pose:vitpose": {
+     "load_s": 0.72,
+     "ms_per_frame": 41.7,
+     "p90_ms": 46.8,
+     "n": 27,
+     "mean_kpt_conf": 0.775
+    },
+    "pose:rtmpose": {
+     "load_s": 0.12,
+     "ms_per_frame": 45.7,
+     "p90_ms": 49.2,
+     "n": 27,
+     "mean_kpt_conf": 0.57
+    },
+    "pose:mediapipe": {
+     "load_s": 0.17,
+     "ms_per_frame": 85.7,
+     "p90_ms": 94.3,
+     "n": 27,
+     "mean_kpt_conf": 0.731
+    }
+   }
+  }
+ }
+}

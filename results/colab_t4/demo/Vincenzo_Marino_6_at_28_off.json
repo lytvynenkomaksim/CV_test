@@ -1,0 +1,224 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+  "fps": 29.987781276869878,
+  "frames": 751,
+  "width": 1072,
+  "height": 598,
+  "shots": [
+   0
+  ],
+  "wall_s": 47.02
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.34,
+   "calls": 1,
+   "ms_per_call": 340.6
+  },
+  "scene_cut": {
+   "total_s": 0.23,
+   "calls": 751,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 2.25,
+   "calls": 751,
+   "ms_per_call": 3.0
+  },
+  "skier_detect_track": {
+   "total_s": 16.2,
+   "calls": 751,
+   "ms_per_call": 21.6
+  },
+  "pose": {
+   "total_s": 9.0,
+   "calls": 646,
+   "ms_per_call": 13.9
+  },
+  "buoy_detect": {
+   "total_s": 18.21,
+   "calls": 751,
+   "ms_per_call": 24.2
+  }
+ },
+ "processing_s": 45.89,
+ "video_s": 25.04,
+ "x_realtime": 1.83,
+ "skier": {
+  "skier_visible_ratio": 0.86,
+  "skier_visible_s": 21.54,
+  "pose_good_ratio": 0.832,
+  "skier_median_height_px": 86.2
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.225,
+  "buoy_tracks": 15,
+  "hidden_ratio_within_tracks": 0.169,
+  "longest_hidden_gap_s": 0.17
+ },
+ "events": [
+  {
+   "frame": 67,
+   "track": 4,
+   "buoy_X": 278.45167207962135,
+   "skier_X": 578.6565136933909,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": -1.34,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 12,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -300.2
+  },
+  {
+   "frame": 243,
+   "track": 9,
+   "buoy_X": 989.7154733216902,
+   "skier_X": 955.2211571069486,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": -0.21,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 8,
+   "kind": "centre"
+  },
+  {
+   "frame": 243,
+   "track": 10,
+   "buoy_X": 1147.472395583705,
+   "skier_X": 955.2211571069486,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": 0.04,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 7,
+   "kind": "centre"
+  },
+  {
+   "frame": 284,
+   "track": 13,
+   "buoy_X": 269.0722984031686,
+   "skier_X": 276.681342303245,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": -1.36,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": -7.6
+  },
+  {
+   "frame": 359,
+   "track": 18,
+   "buoy_X": 1763.6995637136083,
+   "skier_X": 1729.3870715939909,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": 1.01,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": false,
+   "margin_px": -34.3
+  },
+  {
+   "frame": 366,
+   "track": 19,
+   "buoy_X": 1074.7686701961227,
+   "skier_X": 1745.6328018925137,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": -0.08,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 6,
+   "kind": "centre"
+  },
+  {
+   "frame": 519,
+   "track": 29,
+   "buoy_X": 1132.5345709043706,
+   "skier_X": 1742.1839942688127,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": 0.01,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 12,
+   "kind": "centre"
+  },
+  {
+   "frame": 670,
+   "track": 39,
+   "buoy_X": 1183.3428518322107,
+   "skier_X": 1824.3182414152302,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": 0.09,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 16,
+   "kind": "centre"
+  },
+  {
+   "frame": 726,
+   "track": 40,
+   "buoy_X": 1087.687768332734,
+   "skier_X": 1183.0145810768747,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": -0.06,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 18,
+   "kind": "centre"
+  },
+  {
+   "frame": 726,
+   "track": 41,
+   "buoy_X": 1252.3395322487497,
+   "skier_X": 1183.0145810768747,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173,
+   "ratio": 0.2,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 11,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 3,
+  "turn_buoys_outside": 1,
+  "score": 0
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 751,
+   "centre": 1124.2662825910404,
+   "amp": 630.1000449130173
+  }
+ ],
+ "output_video": "runs/demo_gpu/Vincenzo_Marino_6_at_28_off.mp4"
+}

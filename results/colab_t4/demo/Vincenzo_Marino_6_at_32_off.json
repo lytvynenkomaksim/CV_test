@@ -1,0 +1,263 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 6 at 32 off.mp4",
+  "fps": 29.98805073840309,
+  "frames": 783,
+  "width": 1070,
+  "height": 602,
+  "shots": [
+   0,
+   6,
+   768
+  ],
+  "wall_s": 48.59
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.2,
+   "calls": 1,
+   "ms_per_call": 198.4
+  },
+  "scene_cut": {
+   "total_s": 0.24,
+   "calls": 783,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 2.34,
+   "calls": 783,
+   "ms_per_call": 3.0
+  },
+  "skier_detect_track": {
+   "total_s": 16.92,
+   "calls": 783,
+   "ms_per_call": 21.6
+  },
+  "buoy_detect": {
+   "total_s": 18.94,
+   "calls": 783,
+   "ms_per_call": 24.2
+  },
+  "pose": {
+   "total_s": 9.0,
+   "calls": 649,
+   "ms_per_call": 13.9
+  }
+ },
+ "processing_s": 47.44,
+ "video_s": 26.11,
+ "x_realtime": 1.82,
+ "skier": {
+  "skier_visible_ratio": 0.829,
+  "skier_visible_s": 21.64,
+  "pose_good_ratio": 0.807,
+  "skier_median_height_px": 82.7
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.549,
+  "buoy_tracks": 52,
+  "hidden_ratio_within_tracks": 0.146,
+  "longest_hidden_gap_s": 0.6
+ },
+ "events": [
+  {
+   "frame": 250,
+   "track": 9,
+   "buoy_X": 566.2960185010395,
+   "skier_X": 513.8232802044369,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": 0.0,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 8,
+   "kind": "centre"
+  },
+  {
+   "frame": 250,
+   "track": 10,
+   "buoy_X": 738.1674269329525,
+   "skier_X": 513.8232802044369,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": 0.18,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 11,
+   "kind": "centre"
+  },
+  {
+   "frame": 289,
+   "track": 12,
+   "buoy_X": -333.90814763497474,
+   "skier_X": -379.8456797716731,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": -0.93,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 22,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 45.9
+  },
+  {
+   "frame": 365,
+   "track": 17,
+   "buoy_X": 1123.2196243490978,
+   "skier_X": 1118.435497295176,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": 0.58,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "margin_px": -4.8
+  },
+  {
+   "frame": 442,
+   "track": 27,
+   "buoy_X": -606.8376602811046,
+   "skier_X": -591.4644802001662,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": -1.21,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 6,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -15.4
+  },
+  {
+   "frame": 595,
+   "track": 40,
+   "buoy_X": -827.0212456562047,
+   "skier_X": -871.3645180888668,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": -1.44,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 44.3
+  },
+  {
+   "frame": 672,
+   "track": 48,
+   "buoy_X": 322.56787304226805,
+   "skier_X": 763.1061964567824,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": -0.25,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 9,
+   "kind": "centre"
+  },
+  {
+   "frame": 675,
+   "track": 47,
+   "buoy_X": 311.49854689258035,
+   "skier_X": 758.7145808900336,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": -0.26,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 15,
+   "kind": "centre"
+  },
+  {
+   "frame": 697,
+   "track": 55,
+   "buoy_X": 377.6625076600816,
+   "skier_X": 388.7394087403121,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": -0.19,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "centre"
+  },
+  {
+   "frame": 733,
+   "track": 59,
+   "buoy_X": -118.81162753273429,
+   "skier_X": -9.234997894062417,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132,
+   "ratio": -0.71,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 13,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -109.6
+  },
+  {
+   "frame": 777,
+   "track": 11,
+   "buoy_X": 190.0432080851058,
+   "skier_X": -180.67828849692546,
+   "centre": -95.59371502845681,
+   "amp": 77.8340842041994,
+   "ratio": 3.67,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 7,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": false,
+   "margin_px": -370.7
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 6,
+  "turn_buoys_outside": 3,
+  "score": 2
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 6,
+   "centre": null,
+   "amp": null
+  },
+  {
+   "start": 6,
+   "end": 768,
+   "centre": 564.5969114703453,
+   "amp": 965.6952117546132
+  },
+  {
+   "start": 768,
+   "end": 783,
+   "centre": -95.59371502845681,
+   "amp": 77.8340842041994
+  }
+ ],
+ "output_video": "runs/demo_gpu/Vincenzo_Marino_6_at_32_off.mp4"
+}

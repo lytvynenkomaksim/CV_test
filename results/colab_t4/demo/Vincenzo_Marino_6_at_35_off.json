@@ -1,0 +1,145 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 6 at 35 off.mp4",
+  "fps": 30.00631926560621,
+  "frames": 736,
+  "width": 1066,
+  "height": 598,
+  "shots": [
+   0,
+   706
+  ],
+  "wall_s": 45.16
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.2,
+   "calls": 1,
+   "ms_per_call": 197.7
+  },
+  "scene_cut": {
+   "total_s": 0.22,
+   "calls": 736,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 2.24,
+   "calls": 736,
+   "ms_per_call": 3.0
+  },
+  "skier_detect_track": {
+   "total_s": 16.07,
+   "calls": 736,
+   "ms_per_call": 21.8
+  },
+  "pose": {
+   "total_s": 7.94,
+   "calls": 576,
+   "ms_per_call": 13.8
+  },
+  "buoy_detect": {
+   "total_s": 17.62,
+   "calls": 736,
+   "ms_per_call": 23.9
+  }
+ },
+ "processing_s": 44.09,
+ "video_s": 24.53,
+ "x_realtime": 1.8,
+ "skier": {
+  "skier_visible_ratio": 0.783,
+  "skier_visible_s": 19.2,
+  "pose_good_ratio": 0.723,
+  "skier_median_height_px": 95.8
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.126,
+  "buoy_tracks": 12,
+  "hidden_ratio_within_tracks": 0.186,
+  "longest_hidden_gap_s": 0.17
+ },
+ "events": [
+  {
+   "frame": 211,
+   "track": 4,
+   "buoy_X": 1080.0697954076152,
+   "skier_X": 1085.9686570669971,
+   "centre": 1217.0506949857806,
+   "amp": 682.1038511693789,
+   "ratio": -0.2,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 6,
+   "kind": "centre"
+  },
+  {
+   "frame": 402,
+   "track": 12,
+   "buoy_X": 217.25037241941436,
+   "skier_X": 276.5505643540859,
+   "centre": 1217.0506949857806,
+   "amp": 682.1038511693789,
+   "ratio": -1.47,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -59.3
+  },
+  {
+   "frame": 695,
+   "track": 29,
+   "buoy_X": 1274.3362651985199,
+   "skier_X": 1355.3585650978007,
+   "centre": 1217.0506949857806,
+   "amp": 682.1038511693789,
+   "ratio": 0.08,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 7,
+   "kind": "centre"
+  },
+  {
+   "frame": 695,
+   "track": 30,
+   "buoy_X": 1472.1843792121917,
+   "skier_X": 1355.3585650978007,
+   "centre": 1217.0506949857806,
+   "amp": 682.1038511693789,
+   "ratio": 0.37,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 8,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 1,
+  "turn_buoys_outside": 0,
+  "score": 0
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 706,
+   "centre": 1217.0506949857806,
+   "amp": 682.1038511693789
+  },
+  {
+   "start": 706,
+   "end": 736,
+   "centre": 1494.4607915727017,
+   "amp": 10.0
+  }
+ ],
+ "output_video": "runs/demo_gpu/Vincenzo_Marino_6_at_35_off.mp4"
+}

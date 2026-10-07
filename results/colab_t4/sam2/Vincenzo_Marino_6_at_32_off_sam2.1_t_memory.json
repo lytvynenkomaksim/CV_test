@@ -1,0 +1,17 @@
+{
+ "video": "data/videos/front_view/Vincenzo Marino 6 at 32 off.mp4",
+ "start": 9.0,
+ "dur": 5.0,
+ "mode": "memory",
+ "model": "sam2.1_t.pt",
+ "imgsz": 1024,
+ "frames": 150,
+ "buoy_boxes": 0,
+ "buoy_masks_accepted": 0,
+ "buoy_hidden": 0,
+ "skier_masks": 0,
+ "ms_per_frame_detect_track": null,
+ "ms_per_frame_sam": 443.2,
+ "total_s": 70.9,
+ "x_realtime": 14.2
+}

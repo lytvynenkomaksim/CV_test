@@ -1,0 +1,163 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+  "fps": 30.008636365292745,
+  "frames": 549,
+  "width": 1074,
+  "height": 600,
+  "shots": [
+   0,
+   472,
+   484,
+   527
+  ],
+  "wall_s": 32.27
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.5,
+   "calls": 1,
+   "ms_per_call": 502.9
+  },
+  "scene_cut": {
+   "total_s": 0.17,
+   "calls": 549,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 1.58,
+   "calls": 549,
+   "ms_per_call": 2.9
+  },
+  "skier_detect_track": {
+   "total_s": 11.84,
+   "calls": 549,
+   "ms_per_call": 21.6
+  },
+  "pose": {
+   "total_s": 4.5,
+   "calls": 324,
+   "ms_per_call": 13.9
+  },
+  "buoy_detect": {
+   "total_s": 13.38,
+   "calls": 549,
+   "ms_per_call": 24.4
+  }
+ },
+ "processing_s": 31.47,
+ "video_s": 18.29,
+ "x_realtime": 1.72,
+ "skier": {
+  "skier_visible_ratio": 0.59,
+  "skier_visible_s": 10.8,
+  "pose_good_ratio": 0.521,
+  "skier_median_height_px": 101.9
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.138,
+  "buoy_tracks": 6,
+  "hidden_ratio_within_tracks": 0.101,
+  "longest_hidden_gap_s": 0.07
+ },
+ "events": [
+  {
+   "frame": 243,
+   "track": 5,
+   "buoy_X": -323.6141731045865,
+   "skier_X": -296.0911709597159,
+   "centre": 834.709995771737,
+   "amp": 709.7083611852282,
+   "ratio": -1.63,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -27.5
+  },
+  {
+   "frame": 251,
+   "track": 4,
+   "buoy_X": 209.5293525287102,
+   "skier_X": -321.81621326718823,
+   "centre": 834.709995771737,
+   "amp": 709.7083611852282,
+   "ratio": -0.88,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 18,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 531.3
+  },
+  {
+   "frame": 411,
+   "track": 9,
+   "buoy_X": 950.5928868550184,
+   "skier_X": 1202.1489728578213,
+   "centre": 834.709995771737,
+   "amp": 709.7083611852282,
+   "ratio": 0.16,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 12,
+   "kind": "centre"
+  },
+  {
+   "frame": 412,
+   "track": 8,
+   "buoy_X": 744.0001969121508,
+   "skier_X": 1196.1616922724986,
+   "centre": 834.709995771737,
+   "amp": 709.7083611852282,
+   "ratio": -0.13,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 10,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 2,
+  "turn_buoys_outside": 1,
+  "score": 0
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 472,
+   "centre": 834.709995771737,
+   "amp": 709.7083611852282
+  },
+  {
+   "start": 472,
+   "end": 484,
+   "centre": null,
+   "amp": null
+  },
+  {
+   "start": 484,
+   "end": 527,
+   "centre": 838.351679261212,
+   "amp": 23.293747688438714
+  },
+  {
+   "start": 527,
+   "end": 549,
+   "centre": null,
+   "amp": null
+  }
+ ],
+ "output_video": "runs/demo_gpu/Lucas_Cornale_1_at_38_off_(good_crash).mp4"
+}

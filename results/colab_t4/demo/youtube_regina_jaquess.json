@@ -1,0 +1,229 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/youtube/youtube_regina_jaquess.mp4",
+  "fps": 29.97002997002997,
+  "frames": 3934,
+  "width": 1920,
+  "height": 1080,
+  "shots": [
+   0,
+   3476,
+   3933
+  ],
+  "wall_s": 276.27
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.2,
+   "calls": 1,
+   "ms_per_call": 200.6
+  },
+  "scene_cut": {
+   "total_s": 1.28,
+   "calls": 3934,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 37.37,
+   "calls": 3934,
+   "ms_per_call": 9.5
+  },
+  "skier_detect_track": {
+   "total_s": 81.66,
+   "calls": 3934,
+   "ms_per_call": 20.8
+  },
+  "pose": {
+   "total_s": 46.78,
+   "calls": 3354,
+   "ms_per_call": 13.9
+  },
+  "buoy_detect": {
+   "total_s": 93.43,
+   "calls": 3934,
+   "ms_per_call": 23.7
+  }
+ },
+ "processing_s": 260.52,
+ "video_s": 131.26,
+ "x_realtime": 1.98,
+ "skier": {
+  "skier_visible_ratio": 0.853,
+  "skier_visible_s": 111.91,
+  "pose_good_ratio": 0.836,
+  "skier_median_height_px": 232.4
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.091,
+  "buoy_tracks": 61,
+  "hidden_ratio_within_tracks": 0.413,
+  "longest_hidden_gap_s": 1.94
+ },
+ "events": [
+  {
+   "frame": 311,
+   "track": 4,
+   "buoy_X": 322.97068927722506,
+   "skier_X": 128.6009810699892,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": -1.15,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 194.4
+  },
+  {
+   "frame": 451,
+   "track": 14,
+   "buoy_X": -1026.6559209942166,
+   "skier_X": -1074.3846878412164,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": -1.58,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 47.7
+  },
+  {
+   "frame": 534,
+   "track": 19,
+   "buoy_X": 3338.6159217570803,
+   "skier_X": 3538.093381954849,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": -0.2,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "centre"
+  },
+  {
+   "frame": 757,
+   "track": 29,
+   "buoy_X": 1476.8681417318976,
+   "skier_X": 1768.5702596518195,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": -0.79,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -291.7
+  },
+  {
+   "frame": 1060,
+   "track": 36,
+   "buoy_X": 4941.422588586533,
+   "skier_X": 5066.938831538846,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": 0.31,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "centre"
+  },
+  {
+   "frame": 2151,
+   "track": 89,
+   "buoy_X": 4359.925361242472,
+   "skier_X": 4152.446235265909,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": 0.12,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 8,
+   "kind": "centre"
+  },
+  {
+   "frame": 2153,
+   "track": 90,
+   "buoy_X": 3966.131780582202,
+   "skier_X": 4142.493703516845,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": -0.0,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "centre"
+  },
+  {
+   "frame": 2790,
+   "track": 111,
+   "buoy_X": 7322.173063373058,
+   "skier_X": 7500.801328753917,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": 1.06,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "margin_px": 178.6
+  },
+  {
+   "frame": 3124,
+   "track": 119,
+   "buoy_X": 3153.258098624008,
+   "skier_X": 2457.216329266978,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669,
+   "ratio": -0.26,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 4,
+  "turn_buoys_outside": 3,
+  "score": 2
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 3476,
+   "centre": 3972.46025849689,
+   "amp": 3160.493301515669
+  },
+  {
+   "start": 3476,
+   "end": 3933,
+   "centre": 3257.79832081654,
+   "amp": 374.7345717995886
+  },
+  {
+   "start": 3933,
+   "end": 3934,
+   "centre": null,
+   "amp": null
+  }
+ ],
+ "output_video": "runs/demo_gpu/youtube_regina_jaquess.mp4"
+}

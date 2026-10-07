@@ -1,0 +1,129 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 2 at 39.5 off.mp4",
+  "fps": 30.00472436195984,
+  "frames": 597,
+  "width": 1072,
+  "height": 602,
+  "shots": [
+   0
+  ],
+  "wall_s": 36.65
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.33,
+   "calls": 1,
+   "ms_per_call": 331.3
+  },
+  "scene_cut": {
+   "total_s": 0.18,
+   "calls": 597,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 1.78,
+   "calls": 597,
+   "ms_per_call": 3.0
+  },
+  "skier_detect_track": {
+   "total_s": 13.04,
+   "calls": 597,
+   "ms_per_call": 21.8
+  },
+  "pose": {
+   "total_s": 6.52,
+   "calls": 460,
+   "ms_per_call": 14.2
+  },
+  "buoy_detect": {
+   "total_s": 14.25,
+   "calls": 597,
+   "ms_per_call": 23.9
+  }
+ },
+ "processing_s": 35.77,
+ "video_s": 19.9,
+ "x_realtime": 1.8,
+ "skier": {
+  "skier_visible_ratio": 0.771,
+  "skier_visible_s": 15.33,
+  "pose_good_ratio": 0.667,
+  "skier_median_height_px": 147.0
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.124,
+  "buoy_tracks": 9,
+  "hidden_ratio_within_tracks": 0.155,
+  "longest_hidden_gap_s": 0.2
+ },
+ "events": [
+  {
+   "frame": 181,
+   "track": 4,
+   "buoy_X": 1105.5862960514366,
+   "skier_X": 1044.2016884881332,
+   "centre": 1065.1297402193118,
+   "amp": 927.2123953894529,
+   "ratio": 0.04,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "centre"
+  },
+  {
+   "frame": 218,
+   "track": 7,
+   "buoy_X": 51.47708317958424,
+   "skier_X": 45.361203611622045,
+   "centre": 1065.1297402193118,
+   "amp": 927.2123953894529,
+   "ratio": -1.09,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 6.1
+  },
+  {
+   "frame": 228,
+   "track": 8,
+   "buoy_X": 605.3596144217097,
+   "skier_X": 36.11687760530344,
+   "centre": 1065.1297402193118,
+   "amp": 927.2123953894529,
+   "ratio": -0.5,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 17,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 569.2
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 2,
+  "turn_buoys_outside": 2,
+  "score": 2
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 597,
+   "centre": 1065.1297402193118,
+   "amp": 927.2123953894529
+  }
+ ],
+ "output_video": "runs/demo_gpu/Vincenzo_Marino_2_at_39.5_off.mp4"
+}

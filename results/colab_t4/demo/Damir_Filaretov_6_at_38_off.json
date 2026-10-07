@@ -1,0 +1,308 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/front_view/Damir Filaretov 6 at 38 off.mp4",
+  "fps": 30.005909677255367,
+  "frames": 787,
+  "width": 1074,
+  "height": 598,
+  "shots": [
+   0,
+   660
+  ],
+  "wall_s": 49.65
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.2,
+   "calls": 1,
+   "ms_per_call": 195.1
+  },
+  "scene_cut": {
+   "total_s": 0.24,
+   "calls": 787,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 2.37,
+   "calls": 787,
+   "ms_per_call": 3.0
+  },
+  "skier_detect_track": {
+   "total_s": 17.07,
+   "calls": 787,
+   "ms_per_call": 21.7
+  },
+  "pose": {
+   "total_s": 9.49,
+   "calls": 680,
+   "ms_per_call": 14.0
+  },
+  "buoy_detect": {
+   "total_s": 19.28,
+   "calls": 787,
+   "ms_per_call": 24.5
+  }
+ },
+ "processing_s": 48.45,
+ "video_s": 26.23,
+ "x_realtime": 1.85,
+ "skier": {
+  "skier_visible_ratio": 0.864,
+  "skier_visible_s": 22.66,
+  "pose_good_ratio": 0.813,
+  "skier_median_height_px": 92.7
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.607,
+  "buoy_tracks": 53,
+  "hidden_ratio_within_tracks": 0.147,
+  "longest_hidden_gap_s": 0.9
+ },
+ "events": [
+  {
+   "frame": 235,
+   "track": 10,
+   "buoy_X": 891.1223655744798,
+   "skier_X": 699.2106987043626,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": 0.31,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 13,
+   "kind": "centre"
+  },
+  {
+   "frame": 237,
+   "track": 9,
+   "buoy_X": 660.639791216724,
+   "skier_X": 617.2412552974354,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": 0.11,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "centre"
+  },
+  {
+   "frame": 275,
+   "track": 13,
+   "buoy_X": -377.91440562958365,
+   "skier_X": -434.4306553763715,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": -0.78,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 56.5
+  },
+  {
+   "frame": 427,
+   "track": 27,
+   "buoy_X": -654.7318335684802,
+   "skier_X": -706.4314124244967,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": -1.02,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 51.7
+  },
+  {
+   "frame": 434,
+   "track": 26,
+   "buoy_X": -975.4549540833034,
+   "skier_X": -795.9798283499156,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": -1.3,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -179.5
+  },
+  {
+   "frame": 504,
+   "track": 35,
+   "buoy_X": 1030.3314152359935,
+   "skier_X": 1071.7825806911778,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": 0.43,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 21,
+   "kind": "centre"
+  },
+  {
+   "frame": 564,
+   "track": 40,
+   "buoy_X": -746.522786650361,
+   "skier_X": -687.6487202558715,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": -1.1,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "margin_px": -58.9
+  },
+  {
+   "frame": 580,
+   "track": 41,
+   "buoy_X": -975.5386290418983,
+   "skier_X": -1057.9351346490475,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": -1.3,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 82.4
+  },
+  {
+   "frame": 656,
+   "track": 49,
+   "buoy_X": 796.1187998594019,
+   "skier_X": 866.26384990823,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523,
+   "ratio": 0.23,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 6,
+   "kind": "centre"
+  },
+  {
+   "frame": 677,
+   "track": 2,
+   "buoy_X": 361.81355056590866,
+   "skier_X": 417.61281510607364,
+   "centre": -7.910671207514781,
+   "amp": 477.5401412976678,
+   "ratio": 0.77,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 53,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "margin_px": 55.8
+  },
+  {
+   "frame": 695,
+   "track": 12,
+   "buoy_X": 54.40473409608229,
+   "skier_X": 71.3859245136822,
+   "centre": -7.910671207514781,
+   "amp": 477.5401412976678,
+   "ratio": 0.13,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 49,
+   "kind": "centre"
+  },
+  {
+   "frame": 702,
+   "track": 6,
+   "buoy_X": -7.046064467061273,
+   "skier_X": -15.618950862429301,
+   "centre": -7.910671207514781,
+   "amp": 477.5401412976678,
+   "ratio": 0.0,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 72,
+   "kind": "centre"
+  },
+  {
+   "frame": 731,
+   "track": 7,
+   "buoy_X": -41.502701886833165,
+   "skier_X": -298.4221507393722,
+   "centre": -7.910671207514781,
+   "amp": 477.5401412976678,
+   "ratio": -0.07,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 90,
+   "kind": "centre"
+  },
+  {
+   "frame": 770,
+   "track": 19,
+   "buoy_X": 99.2949037186343,
+   "skier_X": -471.6914722300687,
+   "centre": -7.910671207514781,
+   "amp": 477.5401412976678,
+   "ratio": 0.22,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 20,
+   "kind": "centre"
+  },
+  {
+   "frame": 773,
+   "track": 20,
+   "buoy_X": -65.94245709038773,
+   "skier_X": -479.49892986870805,
+   "centre": -7.910671207514781,
+   "amp": 477.5401412976678,
+   "ratio": -0.12,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 32,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 6,
+  "turn_buoys_outside": 4,
+  "score": 2
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 660,
+   "centre": 532.626422129852,
+   "amp": 1162.6387669358523
+  },
+  {
+   "start": 660,
+   "end": 787,
+   "centre": -7.910671207514781,
+   "amp": 477.5401412976678
+  }
+ ],
+ "output_video": "runs/demo_gpu/Damir_Filaretov_6_at_38_off.mp4"
+}

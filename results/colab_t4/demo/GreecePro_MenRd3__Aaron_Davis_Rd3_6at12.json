@@ -1,0 +1,191 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4",
+  "fps": 30.00001672241735,
+  "frames": 598,
+  "width": 854,
+  "height": 480,
+  "shots": [
+   0,
+   549
+  ],
+  "wall_s": 39.71
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.4,
+   "calls": 1,
+   "ms_per_call": 403.7
+  },
+  "scene_cut": {
+   "total_s": 0.18,
+   "calls": 598,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 1.12,
+   "calls": 598,
+   "ms_per_call": 1.9
+  },
+  "skier_detect_track": {
+   "total_s": 15.27,
+   "calls": 598,
+   "ms_per_call": 25.5
+  },
+  "pose": {
+   "total_s": 8.35,
+   "calls": 564,
+   "ms_per_call": 14.8
+  },
+  "buoy_detect": {
+   "total_s": 14.14,
+   "calls": 598,
+   "ms_per_call": 23.7
+  }
+ },
+ "processing_s": 39.06,
+ "video_s": 19.93,
+ "x_realtime": 1.96,
+ "skier": {
+  "skier_visible_ratio": 0.943,
+  "skier_visible_s": 18.8,
+  "pose_good_ratio": 0.895,
+  "skier_median_height_px": 128.7
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.125,
+  "buoy_tracks": 12,
+  "hidden_ratio_within_tracks": 0.233,
+  "longest_hidden_gap_s": 0.53
+ },
+ "events": [
+  {
+   "frame": 121,
+   "track": 5,
+   "buoy_X": -1954.4742441031933,
+   "skier_X": -2178.245801205806,
+   "centre": -856.0137892520446,
+   "amp": 1357.4258742600373,
+   "ratio": -0.81,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 3,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 223.8
+  },
+  {
+   "frame": 191,
+   "track": 9,
+   "buoy_X": 429.2507687457077,
+   "skier_X": 449.5101986222169,
+   "centre": -856.0137892520446,
+   "amp": 1357.4258742600373,
+   "ratio": 0.95,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "margin_px": 20.3
+  },
+  {
+   "frame": 275,
+   "track": 12,
+   "buoy_X": -2040.833777016166,
+   "skier_X": -2291.5349791089484,
+   "centre": -856.0137892520446,
+   "amp": 1357.4258742600373,
+   "ratio": -0.87,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 250.7
+  },
+  {
+   "frame": 343,
+   "track": 14,
+   "buoy_X": 305.42817933763723,
+   "skier_X": 306.5496489539492,
+   "centre": -856.0137892520446,
+   "amp": 1357.4258742600373,
+   "ratio": 0.86,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "margin_px": 1.1
+  },
+  {
+   "frame": 431,
+   "track": 19,
+   "buoy_X": -2101.4143476667296,
+   "skier_X": -2489.1455333126546,
+   "centre": -856.0137892520446,
+   "amp": 1357.4258742600373,
+   "ratio": -0.92,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 6,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 387.7
+  },
+  {
+   "frame": 498,
+   "track": 21,
+   "buoy_X": 10.596069631715551,
+   "skier_X": 112.53484043619352,
+   "centre": -856.0137892520446,
+   "amp": 1357.4258742600373,
+   "ratio": 0.64,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 9,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "margin_px": 101.9
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 6,
+  "turn_buoys_outside": 6,
+  "score": 6
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 549,
+   "centre": -856.0137892520446,
+   "amp": 1357.4258742600373
+  },
+  {
+   "start": 549,
+   "end": 598,
+   "centre": -881.1417699753774,
+   "amp": 84.0285182204758
+  }
+ ],
+ "output_video": "runs/demo_gpu/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4"
+}

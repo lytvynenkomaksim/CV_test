@@ -1,0 +1,213 @@
+{
+ "meta": {
+  "video": "/content/CV_test/data/videos/drive_extra/GreecePro_WomenRd3__Allie_Nicholson_Rd3_6at12m.mp4",
+  "fps": 60.0,
+  "frames": 1236,
+  "width": 1280,
+  "height": 720,
+  "shots": [
+   0,
+   1166
+  ],
+  "wall_s": 78.21
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.32,
+   "calls": 1,
+   "ms_per_call": 316.1
+  },
+  "scene_cut": {
+   "total_s": 0.37,
+   "calls": 1236,
+   "ms_per_call": 0.3
+  },
+  "camera_pan": {
+   "total_s": 4.83,
+   "calls": 1236,
+   "ms_per_call": 3.9
+  },
+  "skier_detect_track": {
+   "total_s": 26.09,
+   "calls": 1236,
+   "ms_per_call": 21.1
+  },
+  "pose": {
+   "total_s": 15.02,
+   "calls": 1083,
+   "ms_per_call": 13.9
+  },
+  "buoy_detect": {
+   "total_s": 29.46,
+   "calls": 1236,
+   "ms_per_call": 23.8
+  }
+ },
+ "processing_s": 75.77,
+ "video_s": 20.6,
+ "x_realtime": 3.68,
+ "skier": {
+  "skier_visible_ratio": 0.876,
+  "skier_visible_s": 18.05,
+  "pose_good_ratio": 0.858,
+  "skier_median_height_px": 200.8
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.173,
+  "buoy_tracks": 23,
+  "hidden_ratio_within_tracks": 0.224,
+  "longest_hidden_gap_s": 0.2
+ },
+ "events": [
+  {
+   "frame": 115,
+   "track": 2,
+   "buoy_X": -415.74291259951997,
+   "skier_X": -470.82738525576997,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": 0.53,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 20,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": false,
+   "margin_px": -55.1
+  },
+  {
+   "frame": 135,
+   "track": 3,
+   "buoy_X": -1028.8125382287747,
+   "skier_X": -1217.9276619808882,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": 0.26,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 12,
+   "kind": "centre"
+  },
+  {
+   "frame": 223,
+   "track": 8,
+   "buoy_X": -3552.0167318876797,
+   "skier_X": -3878.6558710127447,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": -0.85,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 12,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 326.6
+  },
+  {
+   "frame": 550,
+   "track": 17,
+   "buoy_X": -3848.1667549869153,
+   "skier_X": -4051.0542599457604,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": -0.98,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 4,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 202.9
+  },
+  {
+   "frame": 858,
+   "track": 28,
+   "buoy_X": -4292.529844488293,
+   "skier_X": -4403.105039800793,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": -1.18,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 11,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "margin_px": 110.6
+  },
+  {
+   "frame": 1031,
+   "track": 37,
+   "buoy_X": 17.26236608484453,
+   "skier_X": 514.8352211666772,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": 0.72,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 8,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "margin_px": 497.6
+  },
+  {
+   "frame": 1149,
+   "track": 44,
+   "buoy_X": -1099.5268492030486,
+   "skier_X": -1370.602593831955,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": 0.23,
+   "predicted": false,
+   "hue": -1,
+   "n_obs": 31,
+   "kind": "centre"
+  },
+  {
+   "frame": 1157,
+   "track": 45,
+   "buoy_X": -1501.028196106451,
+   "skier_X": -1425.384840116712,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506,
+   "ratio": 0.05,
+   "predicted": true,
+   "hue": -1,
+   "n_obs": 18,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "turn_buoys_seen": 5,
+  "turn_buoys_outside": 4,
+  "score": 0
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 1166,
+   "centre": -1614.9295234863225,
+   "amp": 2276.564911794506
+  },
+  {
+   "start": 1166,
+   "end": 1236,
+   "centre": -2088.383218522553,
+   "amp": 750.4905467706265
+  }
+ ],
+ "output_video": "runs/demo_gpu/GreecePro_WomenRd3__Allie_Nicholson_Rd3_6at12m.mp4"
+}

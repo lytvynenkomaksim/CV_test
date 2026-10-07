@@ -1,0 +1,14 @@
+# CPU install (tested on Python 3.13, Linux). For GPU use the CUDA build of torch.
+torch==2.14.1
+torchvision==0.29.1
+ultralytics==8.4.174
+clip @ git+https://github.com/ultralytics/CLIP.git
+transformers==5.19.0
+opencv-python-headless==5.0.0.93
+numpy
+lap
+rtmlib==0.0.16
+onnxruntime==1.29.0
+mediapipe==1.1.0   # needs libegl1 + libgles2 system packages
+gdown==6.4.1
+yt-dlp

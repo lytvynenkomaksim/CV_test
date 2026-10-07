@@ -1,0 +1,6 @@
+models/
+__pycache__/
+*.pyc
+runs/train/
+data/buoy_dataset/
+*.tmp.mp4

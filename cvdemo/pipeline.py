@@ -21,6 +21,7 @@ import cv2
 import numpy as np
 
 from . import buoys as B
+from . import course as C
 from . import geometry as G
 from . import pose as P
 
@@ -52,10 +53,12 @@ class Timer:
 class SkierTracker:
     """YOLO11 person detector + ByteTrack; picks the skier (most persistent, confident track)."""
 
-    def __init__(self, size="s", conf=0.2, imgsz=960):
+    def __init__(self, size="s", conf=0.2, imgsz=960, tracker="bytetrack"):
         from ultralytics import YOLO
         self.m = YOLO(str(MODELS / f"yolo11{size}.pt"))
-        self.name = f"yolo11{size} + ByteTrack"
+        self.tracker = f"{tracker}.yaml"  # "bytetrack" or "botsort" (BoT-SORT adds camera-motion compensation)
+        self.name = f"yolo11{size} + {'ByteTrack' if tracker == 'bytetrack' else 'BoT-SORT'}"
+        self.boats = []
         self.conf, self.imgsz = conf, imgsz
         self.score = defaultdict(float)
         self.last = None
@@ -68,11 +71,16 @@ class SkierTracker:
         self.last = None
 
     def __call__(self, frame):
-        r = self.m.track(frame, persist=True, classes=[0], conf=self.conf, imgsz=self.imgsz,
-                         tracker="bytetrack.yaml", verbose=False)[0]
-        boxes = r.boxes.xyxy.tolist()
-        confs = r.boxes.conf.tolist()
-        ids = r.boxes.id.int().tolist() if r.boxes.id is not None else [-1] * len(boxes)
+        # person (0) + boat (8): boats are only recorded, to recognise shots from another camera
+        r = self.m.track(frame, persist=True, classes=[0, 8], conf=self.conf, imgsz=self.imgsz,
+                         tracker=self.tracker, verbose=False)[0]
+        cls = r.boxes.cls.int().tolist()
+        allb = r.boxes.xyxy.tolist()
+        self.boats = [b for b, c in zip(allb, cls) if c == 8]
+        keep = [i for i, c in enumerate(cls) if c == 0]
+        boxes = [allb[i] for i in keep]
+        confs = [r.boxes.conf.tolist()[i] for i in keep]
+        ids = [r.boxes.id.int().tolist()[i] for i in keep] if r.boxes.id is not None else [-1] * len(boxes)
         H, W = frame.shape[:2]
         best, bs = None, -1
         for b, c, i in zip(boxes, confs, ids):
@@ -94,16 +102,18 @@ class SkierTracker:
         return best, persons
 
 
-def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, timer=None, log_every=50):
+def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, timer=None, progress=True):
     cap = cv2.VideoCapture(str(video))
     fps = cap.get(cv2.CAP_PROP_FPS) or 30
     n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     W, H = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    pan_est, cuts = G.PanEstimator(), G.CutDetector()
+    pan_est, cuts = G.FlowPanEstimator(), G.CutDetector()
     frames, shots = [], [0]
     timer = timer or Timer()
     f = 0
     t_start = time.perf_counter()
+    from tqdm import tqdm
+    bar = tqdm(total=min(n, max_frames or n), desc=Path(str(video)).stem[:40], unit="frame", disable=not progress)
     while True:
         ok, frame = cap.read()
         if not ok or (max_frames and f >= max_frames):
@@ -113,11 +123,12 @@ def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, tim
                 shots.append(f)
                 pan_est.reset()
                 skier.reset()
-        with timer("camera_pan"):
-            pan = pan_est.update(frame)
         with timer("skier_detect_track"):
             best, persons = skier(frame)
-        rec = dict(pan=pan, skier=None, kpts=None, buoys=None, skier_X=None, foot_y=None)
+        with timer("camera_pan"):
+            pan = pan_est.update(frame, [best[0]] if best else [])
+        rec = dict(pan=pan, skier=None, kpts=None, buoys=None, skier_X=None, foot_y=None,
+                   boats=[[round(v, 1) for v in b] for b in skier.boats])
         if best:
             b, c, tid = best
             rec.update(skier=[*map(float, b), float(c), int(tid)], skier_X=(b[0] + b[2]) / 2 + pan, foot_y=b[3])
@@ -131,9 +142,8 @@ def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, tim
                 rec["buoys"] = [list(map(float, d)) for d in buoy_det(frame, persons)]
         frames.append(rec)
         f += 1
-        if log_every and f % log_every == 0:
-            el = time.perf_counter() - t_start
-            print(f"  frame {f}/{n}  {f / el:.2f} fps", flush=True)
+        bar.update(1)
+    bar.close()
     cap.release()
     meta = dict(video=str(video), fps=fps, frames=len(frames), width=W, height=H, shots=shots,
                 wall_s=round(time.perf_counter() - t_start, 2))
@@ -203,8 +213,11 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
             tag = f"b{tid}"
             if ev:
                 if ev["kind"] == "turn":
-                    col = (0, 200, 0) if ev["outside"] else (0, 0, 255)
-                    tag = f"TURN {ev['side'][0].upper()} #{tid}"
+                    col = {"ok": (0, 200, 0), "miss": (0, 0, 255), "uncertain": (0, 200, 255)}[
+                        ev.get("verdict", "ok" if ev["outside"] else "miss")]
+                    tag = f"TURN {ev['side'][0].upper()}" + (f" buoy {ev['slot']}" if ev.get("slot") else f" #{tid}")
+                elif ev["kind"] == "gate":
+                    col, tag = (255, 200, 0), "GATE"
                 else:
                     col, tag = (0, 255, 255), f"centre #{tid}"
             x0, y0, x1, y1 = int(x - w / 2) - 3, int(y - hh) - 3, int(x + w / 2) + 3, int(y) + 3
@@ -238,13 +251,20 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
                 bx, sx = int(e["buoy_X"] - pan), int(e["skier_X"] - pan)
                 y = int(r["foot_y"]) if r["foot_y"] else H // 2
                 if e["kind"] == "turn":
-                    ok_ = e["outside"]
-                    col = (0, 200, 0) if ok_ else (0, 0, 255)
-                    msg = f"{e['side'].upper()} buoy: skier {'OUTSIDE - OK' if ok_ else 'INSIDE - MISS'}"
+                    verdict = e.get("verdict", "ok" if e["outside"] else "miss")
+                    col = {"ok": (0, 200, 0), "miss": (0, 0, 255), "uncertain": (0, 200, 255)}[verdict]
+                    slot = f"buoy {e['slot']} " if e.get("slot") else ""
+                    msg = {"ok": f"{slot}{e['side'].upper()}: skier OUTSIDE - OK",
+                           "miss": f"{slot}{e['side'].upper()}: skier INSIDE - MISS",
+                           "uncertain": f"{slot}{e['side'].upper()}: too close to call"}[verdict]
                     if e["predicted"]:
-                        msg += " (buoy position predicted)"
+                        msg += " (buoy hidden, position estimated)"
+                elif e["kind"] == "gate":
+                    ok_ = e.get("through_gate", True)
+                    col = (0, 200, 0) if ok_ else (0, 0, 255)
+                    msg = "GATE: skier passed between the gate buoys" if ok_ else "GATE: skier missed the gate"
                 else:
-                    col, msg = (0, 255, 255), "centre buoy (gate/guide) passed"
+                    col, msg = (0, 255, 255), "centre buoy (boat guide) passed"
                 if f - e["frame"] < 3:
                     cv2.line(img, (bx, y), (sx, y), col, 2, cv2.LINE_AA)
                 (tw, th), _ = cv2.getTextSize(msg, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
@@ -252,9 +272,10 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
                 cv2.putText(img, msg, (W // 2 - tw // 2, 84), cv2.FONT_HERSHEY_SIMPLEX, 0.7, col, 2, cv2.LINE_AA)
         # HUD (bottom-left)
         done = [e for e in turn_events if e["frame"] <= f]
+        sym = {"ok": "OK", "miss": "X", "uncertain": "?"}
         lines = [f"models: skier={labels['skier']} | pose={labels['pose']} | buoy={labels['buoy']}",
-                 "turn buoys: " + " ".join(("OK" if e["outside"] else "X") + e["side"][0].upper() for e in done)
-                 + f"   score {G.score_pass(done)['score']}"]
+                 "turn buoys: " + " ".join(sym[e.get("verdict", "ok" if e["outside"] else "miss")] + e["side"][0].upper()
+                                           for e in done)]
         if timings:
             lines.append(timings)
         y = H - 12 - 18 * (len(lines) - 1)
@@ -309,31 +330,38 @@ def buoy_stats(frames, tracks, meta):
 
 
 def run(video, out_dir, buoy="yolo-buoy", pose="yolo-s", skier_size="s", buoy_every=1, max_frames=None,
-        tag=None, buoy_kw=None):
+        tag=None, buoy_kw=None, tracker="bytetrack"):
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     tag = tag or Path(video).stem.replace(" ", "_")
     timer = Timer()
     with timer("load_models"):
-        skier = SkierTracker(skier_size)
+        skier = SkierTracker(skier_size, tracker=tracker)
         pose_est = P.build(pose) if pose and pose != "none" else None
         buoy_det = B.build(buoy, **(buoy_kw or {})) if buoy and buoy != "none" else None
     labels = dict(skier=skier.name, pose=pose_est.name if pose_est else "-", buoy=buoy_det.name if buoy_det else "-")
     print(f"[{tag}] analysing with {labels}", flush=True)
     frames, meta = analyse(video, buoy_det, pose_est, skier, buoy_every, max_frames, timer)
-    events, segs, tracks = reason(frames, meta, buoy_every)
-    score = G.score_pass(events)
+    with timer("course_logic"):
+        crs = C.analyse_course(frames, meta)
+    events, tracks = crs["events"], crs["tracks"]
+    segs = [dict(start=s0, end=s1, centre=None, amp=None)
+            for s0, s1 in zip(meta["shots"], meta["shots"][1:] + [meta["frames"]])]
+    score = dict(crs["main_score"], slots=C.slots_str(crs["courses"][crs["main"]]) if crs["main"] is not None else "")
     tsum = timer.summary()
     proc_s = sum(v["total_s"] for k, v in tsum.items() if k != "load_models")
     video_s = meta["frames"] / meta["fps"]
-    timing_line = (f"CPU processing {proc_s / meta['frames'] * 1000:.0f} ms/frame "
+    import torch
+    dev = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU"
+    timing_line = (f"{dev}: {proc_s / meta['frames'] * 1000:.0f} ms/frame "
                    f"({proc_s / video_s:.1f}x real-time), buoy detector every {buoy_every} frame(s)")
     out_mp4 = out_dir / f"{tag}.mp4"
-    render(video, out_mp4, frames, meta, events, segs, tracks, labels, timing_line)
+    render(video, out_mp4, frames, meta, crs["shown_events"], segs, tracks, labels, timing_line)
     result = dict(meta=meta, models=labels, buoy_every=buoy_every, timings=tsum,
                   processing_s=round(proc_s, 2), video_s=round(video_s, 2),
                   x_realtime=round(proc_s / video_s, 2), skier=skier_stats(frames, meta),
                   buoys=buoy_stats(frames, tracks, meta), events=events, score=score, segments=segs,
+                  courses=crs["courses"], course_scores=crs["scores"], boat_view_shots=crs["boat_view"],
                   output_video=str(out_mp4))
     (out_dir / f"{tag}.json").write_text(json.dumps(result, indent=1, default=float))
     (out_dir / f"{tag}.frames.json").write_text(json.dumps(frames, default=float))
@@ -352,10 +380,11 @@ def main():
     ap.add_argument("--max-frames", type=int)
     ap.add_argument("--tag")
     ap.add_argument("--threads", type=int, default=4)
+    ap.add_argument("--tracker", default="bytetrack", choices=["bytetrack", "botsort"])
     a = ap.parse_args()
     import torch
     torch.set_num_threads(a.threads)
-    run(a.video, a.out, a.buoy, a.pose, a.skier, a.buoy_every, a.max_frames, a.tag)
+    run(a.video, a.out, a.buoy, a.pose, a.skier, a.buoy_every, a.max_frames, a.tag, tracker=a.tracker)
 
 
 if __name__ == "__main__":

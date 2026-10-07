@@ -1,0 +1,195 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+ "official": "1",
+ "main_pass": 0,
+ "scores": [
+  {
+   "estimate": 2,
+   "confirmed": 0,
+   "seen": 1
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.8,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 8.1,
+     "side": "left",
+     "status": "uncertain",
+     "event": {
+      "frame": 243,
+      "t": 8.1,
+      "track": 5,
+      "buoy_x": 463.1,
+      "skier_x": 491.2,
+      "buoy_X": 20.74269603105808,
+      "skier_X": 48.868424502114294,
+      "centre": 970.3051060368052,
+      "amp": 927.4345853510652,
+      "ratio": -1.02,
+      "predicted": true,
+      "n_obs": 5,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "uncertain",
+      "margin_px": -28.1,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 10.9,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 13.7,
+     "side": "left",
+     "status": "miss",
+     "event": {
+      "frame": 411,
+      "t": 13.7,
+      "track": 9,
+      "buoy_x": 641.5,
+      "skier_x": 892.3,
+      "buoy_X": 1334.7072414052604,
+      "skier_X": 1585.4753777406802,
+      "centre": 1489.1592054872704,
+      "amp": 223.88407299954952,
+      "ratio": -0.69,
+      "predicted": false,
+      "n_obs": 12,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "miss",
+      "margin_px": -250.8,
+      "alternation_ok": false,
+      "slot": 3
+     },
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 16.5,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 19.29,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 22.09,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "frame": 243,
+   "t": 8.1,
+   "track": 5,
+   "buoy_x": 463.1,
+   "skier_x": 491.2,
+   "buoy_X": 20.74269603105808,
+   "skier_X": 48.868424502114294,
+   "centre": 970.3051060368052,
+   "amp": 927.4345853510652,
+   "ratio": -1.02,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "uncertain",
+   "margin_px": -28.1,
+   "slot": 1
+  },
+  {
+   "frame": 251,
+   "t": 8.36,
+   "track": 4,
+   "buoy_x": 1041.9,
+   "skier_x": 510.6,
+   "buoy_X": 548.4577509431554,
+   "skier_X": 17.11218514725698,
+   "centre": 951.1470741233001,
+   "amp": 915.474038017209,
+   "ratio": -0.44,
+   "predicted": false,
+   "n_obs": 18,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 411,
+   "t": 13.7,
+   "track": 9,
+   "buoy_x": 641.5,
+   "skier_x": 892.3,
+   "buoy_X": 1334.7072414052604,
+   "skier_X": 1585.4753777406802,
+   "centre": 1489.1592054872704,
+   "amp": 223.88407299954952,
+   "ratio": -0.69,
+   "predicted": false,
+   "n_obs": 12,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_px": -250.8,
+   "alternation_ok": false,
+   "slot": 3
+  },
+  {
+   "frame": 412,
+   "t": 13.73,
+   "track": 8,
+   "buoy_x": 423.1,
+   "skier_x": 874.2,
+   "buoy_X": 1128.8208340713818,
+   "skier_X": 1579.865397381564,
+   "centre": 1489.1592054872704,
+   "amp": 223.88407299954952,
+   "ratio": -1.61,
+   "predicted": false,
+   "n_obs": 10,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_px": -451.0,
+   "alternation_ok": false
+  }
+ ]
+}

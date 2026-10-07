@@ -24,6 +24,7 @@ ap.add_argument("--buoy-every", type=int, default=1)
 ap.add_argument("--threads", type=int, default=4)
 ap.add_argument("--out", default=str(ROOT / "runs/demo"))
 ap.add_argument("--skip-done", action="store_true")
+ap.add_argument("--tracker", default="bytetrack", choices=["bytetrack", "botsort"])
 a = ap.parse_args()
 
 import torch  # noqa: E402
@@ -40,10 +41,11 @@ for v in videos:
     if a.skip_done and js.exists():
         res = json.loads(js.read_text())
     else:
-        res = run(v, out, a.buoy, a.pose, a.skier, a.buoy_every, tag=tag)
+        res = run(v, out, a.buoy, a.pose, a.skier, a.buoy_every, tag=tag, tracker=a.tracker)
     m = re.search(r"(\d(?:\.\d+)?)\s*(?:at|@)", Path(v).stem)
     rows.append(dict(video=str(Path(v).relative_to(ROOT)) if Path(v).is_absolute() else v,
-                     official=m.group(1) if m else "?", **res["score"],
+                     official=m.group(1) if m else "?", estimate=res["score"]["estimate"],
+                     confirmed=res["score"]["confirmed"], seen=res["score"]["seen"], slots=res["score"]["slots"],
                      skier_visible=res["skier"]["skier_visible_ratio"], pose_good=res["skier"]["pose_good_ratio"],
                      buoy_frames=res["buoys"]["frames_with_buoy_ratio"],
                      buoy_hidden=res["buoys"]["hidden_ratio_within_tracks"],
@@ -51,7 +53,7 @@ for v in videos:
                      ms_per_frame=round(1000 * res["processing_s"] / res["meta"]["frames"]),
                      x_realtime=res["x_realtime"], output=Path(res["output_video"]).name))
 
-hdr = ["video", "official", "score", "turn_buoys_seen", "turn_buoys_outside", "skier_visible", "pose_good",
+hdr = ["video", "official", "estimate", "confirmed", "seen", "slots", "skier_visible", "pose_good",
        "buoy_frames", "buoy_hidden", "hidden_gap_s", "ms_per_frame", "x_realtime", "output"]
 md = [f"# Demo run: buoy={a.buoy}, pose={a.pose}, skier=yolo11{a.skier}, buoy detector every {a.buoy_every} frame(s)",
       "", "| " + " | ".join(hdr) + " |", "|" + "---|" * len(hdr)]

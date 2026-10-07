@@ -1,0 +1,448 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+ "official": "6",
+ "main_pass": 2,
+ "scores": [
+  {
+   "estimate": 0,
+   "confirmed": 0,
+   "seen": 1
+  },
+  {
+   "estimate": 6,
+   "confirmed": 0,
+   "seen": 0
+  },
+  {
+   "estimate": 0,
+   "confirmed": 0,
+   "seen": 1
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 2.23,
+     "side": "left",
+     "status": "miss",
+     "event": {
+      "frame": 67,
+      "t": 2.23,
+      "track": 4,
+      "buoy_x": 259.1,
+      "skier_x": 559.3,
+      "buoy_X": 320.0833159794322,
+      "skier_X": 620.2881575932017,
+      "centre": 1043.3013365984223,
+      "amp": 479.4409487349619,
+      "ratio": -1.51,
+      "predicted": false,
+      "n_obs": 12,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "miss",
+      "margin_px": -300.2,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 4.73,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 7.23,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 9.73,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 12.23,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 14.73,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 9.47,
+     "side": "left",
+     "status": "uncertain",
+     "event": {
+      "frame": 284,
+      "t": 9.47,
+      "track": 13,
+      "buoy_x": 590.9,
+      "skier_x": 599.4,
+      "buoy_X": 425.06470662758255,
+      "skier_X": 433.5489006082986,
+      "centre": 1155.5191539675827,
+      "amp": 674.4271714060684,
+      "ratio": -1.08,
+      "predicted": true,
+      "n_obs": 3,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "uncertain",
+      "margin_px": -8.5,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 11.97,
+     "side": "right",
+     "status": "uncertain",
+     "event": {
+      "frame": 359,
+      "t": 11.97,
+      "track": 18,
+      "buoy_x": 739.5,
+      "skier_x": 706.8,
+      "buoy_X": 1928.796802980798,
+      "skier_X": 1896.1531680571488,
+      "centre": 1192.6783174410223,
+      "amp": 662.0400887399646,
+      "ratio": 1.11,
+      "predicted": true,
+      "n_obs": 4,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": false,
+      "verdict": "uncertain",
+      "margin_px": -32.6,
+      "slot": 2
+     },
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 14.47,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 16.97,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 19.47,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 21.98,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 24.21,
+     "side": "left",
+     "status": "miss",
+     "event": {
+      "frame": 726,
+      "t": 24.21,
+      "track": 40,
+      "buoy_x": 383.6,
+      "skier_x": 478.9,
+      "buoy_X": 1359.5162697116864,
+      "skier_X": 1454.843082455827,
+      "centre": 1708.818991482349,
+      "amp": 296.4125035476095,
+      "ratio": -1.18,
+      "predicted": false,
+      "n_obs": 18,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "miss",
+      "margin_px": -95.3,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 26.71,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 29.21,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 31.71,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 34.21,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 36.71,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "frame": 67,
+   "t": 2.23,
+   "track": 4,
+   "buoy_x": 259.1,
+   "skier_x": 559.3,
+   "buoy_X": 320.0833159794322,
+   "skier_X": 620.2881575932017,
+   "centre": 1043.3013365984223,
+   "amp": 479.4409487349619,
+   "ratio": -1.51,
+   "predicted": false,
+   "n_obs": 12,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_px": -300.2,
+   "slot": 1
+  },
+  {
+   "frame": 243,
+   "t": 8.1,
+   "track": 9,
+   "buoy_x": 414.1,
+   "skier_x": 379.4,
+   "buoy_X": 1175.0669484628156,
+   "skier_X": 1140.3309745104561,
+   "centre": 1221.2157354438586,
+   "amp": 735.2905158508615,
+   "ratio": -0.06,
+   "predicted": true,
+   "n_obs": 8,
+   "hue": -1,
+   "kind": "gate",
+   "gate_with": 10,
+   "through_gate": true,
+   "merged": [
+    10
+   ]
+  },
+  {
+   "frame": 284,
+   "t": 9.47,
+   "track": 13,
+   "buoy_x": 590.9,
+   "skier_x": 599.4,
+   "buoy_X": 425.06470662758255,
+   "skier_X": 433.5489006082986,
+   "centre": 1155.5191539675827,
+   "amp": 674.4271714060684,
+   "ratio": -1.08,
+   "predicted": true,
+   "n_obs": 3,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "uncertain",
+   "margin_px": -8.5,
+   "slot": 1
+  },
+  {
+   "frame": 359,
+   "t": 11.97,
+   "track": 18,
+   "buoy_x": 739.5,
+   "skier_x": 706.8,
+   "buoy_X": 1928.796802980798,
+   "skier_X": 1896.1531680571488,
+   "centre": 1192.6783174410223,
+   "amp": 662.0400887399646,
+   "ratio": 1.11,
+   "predicted": true,
+   "n_obs": 4,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": false,
+   "verdict": "uncertain",
+   "margin_px": -32.6,
+   "slot": 2
+  },
+  {
+   "frame": 366,
+   "t": 12.2,
+   "track": 19,
+   "buoy_x": -29.2,
+   "skier_x": 640.8,
+   "buoy_X": 1250.2934170344163,
+   "skier_X": 1920.3237744809219,
+   "centre": 1192.6783174410223,
+   "amp": 662.0400887399646,
+   "ratio": 0.09,
+   "predicted": true,
+   "n_obs": 6,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 519,
+   "t": 17.31,
+   "track": 29,
+   "buoy_x": 113.4,
+   "skier_x": 726.4,
+   "buoy_X": 1334.5137509994233,
+   "skier_X": 1947.528691040906,
+   "centre": 1255.5111582763516,
+   "amp": 658.8486123289234,
+   "ratio": 0.12,
+   "predicted": true,
+   "n_obs": 12,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 670,
+   "t": 22.34,
+   "track": 39,
+   "buoy_x": 127.8,
+   "skier_x": 768.0,
+   "buoy_X": 1396.3447779126207,
+   "skier_X": 2036.5380459890143,
+   "centre": 1345.6841525398984,
+   "amp": 644.6037453414831,
+   "ratio": 0.08,
+   "predicted": false,
+   "n_obs": 16,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 726,
+   "t": 24.21,
+   "track": 40,
+   "buoy_x": 383.6,
+   "skier_x": 478.9,
+   "buoy_X": 1359.5162697116864,
+   "skier_X": 1454.843082455827,
+   "centre": 1708.818991482349,
+   "amp": 296.4125035476095,
+   "ratio": -1.18,
+   "predicted": false,
+   "n_obs": 18,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_px": -95.3,
+   "slot": 1
+  },
+  {
+   "frame": 726,
+   "t": 24.21,
+   "track": 41,
+   "buoy_x": 548.2,
+   "skier_x": 478.9,
+   "buoy_X": 1524.168033627702,
+   "skier_X": 1454.843082455827,
+   "centre": 1708.818991482349,
+   "amp": 296.4125035476095,
+   "ratio": -0.62,
+   "predicted": false,
+   "n_obs": 11,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 69.3,
+   "alternation_ok": false
+  }
+ ]
+}

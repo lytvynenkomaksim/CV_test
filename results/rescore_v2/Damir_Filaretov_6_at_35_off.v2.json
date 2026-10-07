@@ -1,0 +1,272 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Damir Filaretov 6 at 35 off.mp4",
+ "official": "6",
+ "main_pass": 1,
+ "scores": [
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 1
+  },
+  {
+   "estimate": 0,
+   "confirmed": 0,
+   "seen": 1
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 11.04,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 331,
+      "t": 11.04,
+      "track": 15,
+      "buoy_x": 728.2,
+      "skier_x": 765.6,
+      "buoy_X": 2162.657597754659,
+      "skier_X": 2200.094991398286,
+      "centre": 1399.483487832862,
+      "amp": 789.9489111135343,
+      "ratio": 0.97,
+      "predicted": true,
+      "n_obs": 4,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 37.4,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 13.54,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 16.04,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 18.54,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 21.04,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 23.54,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 23.31,
+     "side": "left",
+     "status": "miss",
+     "event": {
+      "frame": 699,
+      "t": 23.31,
+      "track": 33,
+      "buoy_x": 380.2,
+      "skier_x": 440.1,
+      "buoy_X": 1478.66633079077,
+      "skier_X": 1538.5126290085434,
+      "centre": 1888.5612498702048,
+      "amp": 435.05178440371685,
+      "ratio": -0.94,
+      "predicted": false,
+      "n_obs": 8,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "miss",
+      "margin_px": -59.8,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 25.81,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 28.31,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 30.81,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 33.31,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 35.81,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "frame": 216,
+   "t": 7.2,
+   "track": 6,
+   "buoy_x": 378.0,
+   "skier_x": 372.7,
+   "buoy_X": 1263.7848460779712,
+   "skier_X": 1258.419544220782,
+   "centre": 1275.2986204297085,
+   "amp": 804.628909570039,
+   "ratio": -0.01,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "gate",
+   "gate_with": 7,
+   "through_gate": true,
+   "merged": [
+    7
+   ]
+  },
+  {
+   "frame": 331,
+   "t": 11.04,
+   "track": 15,
+   "buoy_x": 728.2,
+   "skier_x": 765.6,
+   "buoy_X": 2162.657597754659,
+   "skier_X": 2200.094991398286,
+   "centre": 1399.483487832862,
+   "amp": 789.9489111135343,
+   "ratio": 0.97,
+   "predicted": true,
+   "n_obs": 4,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 37.4,
+   "slot": 1
+  },
+  {
+   "frame": 644,
+   "t": 21.48,
+   "track": 31,
+   "buoy_x": 6.3,
+   "skier_x": 773.1,
+   "buoy_X": 1552.0460327653873,
+   "skier_X": 2318.876802550136,
+   "centre": 1530.6057907017803,
+   "amp": 747.374049849785,
+   "ratio": 0.03,
+   "predicted": false,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 699,
+   "t": 23.31,
+   "track": 33,
+   "buoy_x": 380.2,
+   "skier_x": 440.1,
+   "buoy_X": 1478.66633079077,
+   "skier_X": 1538.5126290085434,
+   "centre": 1888.5612498702048,
+   "amp": 435.05178440371685,
+   "ratio": -0.94,
+   "predicted": false,
+   "n_obs": 8,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_px": -59.8,
+   "slot": 1
+  },
+  {
+   "frame": 699,
+   "t": 23.31,
+   "track": 34,
+   "buoy_x": 576.4,
+   "skier_x": 440.1,
+   "buoy_X": 1674.8573776109433,
+   "skier_X": 1538.5126290085434,
+   "centre": 1888.5612498702048,
+   "amp": 435.05178440371685,
+   "ratio": -0.49,
+   "predicted": true,
+   "n_obs": 11,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 136.3,
+   "alternation_ok": false
+  }
+ ]
+}

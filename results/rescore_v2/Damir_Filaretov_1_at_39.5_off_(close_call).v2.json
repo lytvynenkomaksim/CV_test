@@ -1,0 +1,149 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Damir Filaretov 1 at 39.5 off (close call).mp4",
+ "official": "1",
+ "main_pass": 0,
+ "scores": [
+  {
+   "estimate": 4,
+   "confirmed": 1,
+   "seen": 1
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 5.69,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 171,
+      "t": 5.69,
+      "track": 5,
+      "buoy_x": 456.8,
+      "skier_x": 416.6,
+      "buoy_X": -113.88290063851059,
+      "skier_X": -154.0761091027517,
+      "centre": 888.4850006652756,
+      "amp": 887.5726580473814,
+      "ratio": -1.13,
+      "predicted": true,
+      "n_obs": 4,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 40.2,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 8.19,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 10.69,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 13.19,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 15.69,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 18.19,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ],
+ "events": [
+  {
+   "frame": 171,
+   "t": 5.69,
+   "track": 5,
+   "buoy_x": 456.8,
+   "skier_x": 416.6,
+   "buoy_X": -113.88290063851059,
+   "skier_X": -154.0761091027517,
+   "centre": 888.4850006652756,
+   "amp": 887.5726580473814,
+   "ratio": -1.13,
+   "predicted": true,
+   "n_obs": 4,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 40.2,
+   "slot": 1
+  },
+  {
+   "frame": 181,
+   "t": 6.03,
+   "track": 4,
+   "buoy_x": 1117.6,
+   "skier_x": 526.8,
+   "buoy_X": 475.47639212763613,
+   "skier_X": -115.30866411746536,
+   "centre": 865.9466164975435,
+   "amp": 871.181183434351,
+   "ratio": -0.45,
+   "predicted": true,
+   "n_obs": 17,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 336,
+   "t": 11.19,
+   "track": 13,
+   "buoy_x": 531.4,
+   "skier_x": 398.5,
+   "buoy_X": 1644.3963616948754,
+   "skier_X": 1511.4715264897973,
+   "centre": 1671.2644046018913,
+   "amp": 863.958471534811,
+   "ratio": -0.03,
+   "predicted": false,
+   "n_obs": 12,
+   "hue": -1,
+   "kind": "gate",
+   "gate_with": 12,
+   "through_gate": true,
+   "merged": [
+    12
+   ]
+  }
+ ]
+}

@@ -144,7 +144,8 @@ def reason(frames, meta, buoy_every=1):
     shots = meta["shots"] + [len(frames)]
     all_events, seg_info, tracks_all = [], [], []
     for s0, s1 in zip(shots[:-1], shots[1:]):
-        tr = B.BuoyTracker(max_miss=max(15, 3 * buoy_every))
+        tr = B.BuoyTracker(max_miss=int(2 * meta["fps"]),  # project a hidden buoy for up to 2 s
+                           frame_size=(meta["width"], meta["height"]))
         for f in range(s0, s1):
             r = frames[f]
             if r["buoys"] is None:
@@ -174,6 +175,7 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
     seg_of = lambda f: next((s for s in segs if s["start"] <= f < s["end"]), None)
     turn_events = [e for e in events if e["kind"] == "turn"]
     trail = []
+    hid_run = {}
     f = 0
     while True:
         ok, img = cap.read()
@@ -208,8 +210,14 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
             x0, y0, x1, y1 = int(x - w / 2) - 3, int(y - hh) - 3, int(x + w / 2) + 3, int(y) + 3
             if obs:
                 cv2.rectangle(img, (x0, y0), (x1, y1), col, 2)
-            else:  # predicted (hidden by spray / missed detection)
-                cv2.circle(img, (int(x), int(y - hh / 2)), int(max(w, hh)) + 4, col, 1, cv2.LINE_AA)
+                hid_run[tid] = 0
+            else:  # hidden (spray / wave / missed): projected position + growing uncertainty
+                hid_run[tid] = hid_run.get(tid, 0) + 1
+                rad = int(max(w, hh) / 2 + 4 + 0.6 * hid_run[tid])
+                _dashed_circle(img, (int(x), int(y - hh / 2)), rad, col)
+                cv2.drawMarker(img, (int(x), int(y - hh / 2)), col, cv2.MARKER_CROSS, 8, 1)
+                tag += " hidden (est.)"
+                y0 = int(y - hh / 2) - rad
             cv2.putText(img, tag, (x0, y0 - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.42, col, 1, cv2.LINE_AA)
         # skier + skeleton + trail
         if r["skier"]:
@@ -262,6 +270,12 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-c:v", "libx264", "-preset", "veryfast", "-crf", "26",
                     "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(out_path)], check=True)
     Path(tmp).unlink()
+
+
+def _dashed_circle(img, c, r, col, n=16):
+    for i in range(n):
+        if i % 2 == 0:
+            cv2.ellipse(img, c, (r, r), 0, i * 360 / n, (i + 1) * 360 / n, col, 1, cv2.LINE_AA)
 
 
 def skier_stats(frames, meta):

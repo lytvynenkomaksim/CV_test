@@ -147,23 +147,31 @@ class BuoyTrack:
     def n_obs(self):
         return sum(1 for h in self.hist if h[6])
 
-    def predict(self, f):
-        """Constant-velocity prediction (pan-compensated coords) from the last observations."""
-        obs = [h for h in self.hist if h[6]][-8:]
+    def predict(self, f, tau=30.0):
+        """Where the buoy should be at frame f (pan-compensated coords).
+
+        Fits a line to the last observations and extrapolates with a velocity that decays
+        with time constant `tau` frames: a buoy receding toward the horizon slows down in the
+        image, so plain constant velocity would overshoot during long occlusions."""
+        obs = [h for h in self.hist if h[6]][-10:]
         if len(obs) < 2:
             return obs[-1][1], obs[-1][2]
         fr = np.array([o[0] for o in obs], float)
         X = np.array([o[1] for o in obs])
         Y = np.array([o[2] for o in obs])
-        px, py = np.polyfit(fr, X, 1), np.polyfit(fr, Y, 1)
-        return float(np.polyval(px, f)), float(np.polyval(py, f))
+        (vx, bx), (vy, by) = np.polyfit(fr, X, 1), np.polyfit(fr, Y, 1)
+        f_last = fr[-1]
+        dt = max(0.0, f - f_last)
+        k = tau * (1 - np.exp(-dt / tau))  # integral of the decaying velocity
+        return float(vx * f_last + bx + vx * k), float(vy * f_last + by + vy * k)
 
 
 class BuoyTracker:
     """Greedy nearest-neighbour tracker. Positions are stored as (X = x + pan, y) so that
     camera panning does not break association; tracks coast through short occlusions (spray)."""
 
-    def __init__(self, max_miss=45, gate=40):
+    def __init__(self, max_miss=60, gate=40, frame_size=None):
+        self.frame_size = frame_size  # (W, H): drop a hidden buoy once its projection leaves the image
         self.tracks: list[BuoyTrack] = []
         self.dead: list[BuoyTrack] = []
         self.next_id = 1
@@ -215,6 +223,10 @@ class BuoyTracker:
         alive = []
         for t in self.tracks:
             lost = t.misses > self.max_miss or (t.misses > 6 and t.n_obs() < 3)
+            if self.frame_size and t.misses:
+                x, y = t.last[1] - pan, t.last[2]
+                W, H = self.frame_size
+                lost = lost or not (-20 <= x <= W + 20 and 0 <= y <= H + 20)
             (self.dead if lost else alive).append(t)
         self.tracks = alive
 

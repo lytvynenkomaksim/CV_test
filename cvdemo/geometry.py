@@ -90,7 +90,7 @@ def _interp(hist_f, vals, f):
     return float(np.interp(f, hist_f, vals))
 
 
-def buoy_events(tracks, frames, seg_start, seg_end, turn_ratio=0.45, max_extrap=20):
+def buoy_events(tracks, frames, seg_start, seg_end, turn_ratio=0.45):
     """Find skier/buoy crossings inside one shot.
 
     frames: list indexed by frame number of dicts with keys 'skier_X', 'foot_y', 'pan'.
@@ -108,18 +108,13 @@ def buoy_events(tracks, frames, seg_start, seg_end, turn_ratio=0.45, max_extrap=
         obs = [h for h in t.hist if h[6] and seg_start <= h[0] < seg_end]
         if len(obs) < 3:
             continue
-        # extend observed trajectory by a short constant-velocity extrapolation (buoy hidden by spray)
-        hf = [h[0] for h in obs]
-        hX = [h[1] for h in obs]
-        hY = [h[2] for h in obs]
-        if len(obs) >= 4:
-            k = min(10, len(obs))
-            vx = np.polyfit(hf[-k:], hX[-k:], 1)
-            vy = np.polyfit(hf[-k:], hY[-k:], 1)
-            for f in range(hf[-1] + 1, min(seg_end, hf[-1] + max_extrap)):
-                hf.append(f)
-                hX.append(float(np.polyval(vx, f)))
-                hY.append(float(np.polyval(vy, f)))
+        # trajectory = observations + the tracker's projections while the buoy was hidden
+        # (spray / wave), so a crossing can be judged even if the buoy is covered at that moment
+        traj = [h for h in t.hist if seg_start <= h[0] < seg_end and h[0] >= obs[0][0]]
+        hf = [h[0] for h in traj]
+        hX = [h[1] for h in traj]
+        hY = [h[2] for h in traj]
+        hidden = {h[0] for h in traj if not h[6]}
         prev = None
         cross = None
         for f in range(hf[0], hf[-1] + 1):
@@ -137,7 +132,7 @@ def buoy_events(tracks, frames, seg_start, seg_end, turn_ratio=0.45, max_extrap=
         bX, sXc = _interp(hf, hX, cross), _interp(sf, sX, cross)
         off = bX - C
         r = off / A
-        predicted = cross > obs[-1][0]
+        predicted = cross in hidden or cross > obs[-1][0]
         w = np.median([h[3] for h in obs])
         hue = float(np.median(t.hue)) if t.hue else -1
         ev = dict(frame=cross, track=t.tid, buoy_X=bX, skier_X=sXc, centre=C, amp=A, ratio=round(r, 2),

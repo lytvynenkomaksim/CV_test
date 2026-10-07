@@ -71,8 +71,9 @@ def main():
                 w, h = b[2] - b[0], b[3] - b[1]
                 if w > 0.06 * W or h > 0.08 * H or w * h < 9:  # buoys are small
                     continue
-                if any(iou_contained(b, p) > 0.5 for p in persons):
-                    continue
+                cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2
+                if any(p[0] <= cx <= p[2] and p[1] <= cy <= p[1] + 0.65 * (p[3] - p[1]) for p in persons):
+                    continue  # on the skier's upper body; feet/ski area is kept (skier passes over buoys)
                 buoys.append((s, b))
             name = f"{stem}_f{fi:05d}"
             cv2.imwrite(str(out / "images" / split / f"{name}.jpg"), frame, [cv2.IMWRITE_JPEG_QUALITY, 92])

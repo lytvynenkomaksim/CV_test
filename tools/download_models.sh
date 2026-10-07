@@ -17,5 +17,7 @@ G=https://storage.googleapis.com/mediapipe-models/pose_landmarker
 mkdir -p rtm && cd rtm
 Z=rtmpose-m_simcc-body7_pt-body7_420e-256x192-e48f03d0_20230504.zip
 [ -f "$Z" ] || { curl -sSLO https://download.openmmlab.com/mmpose/v1/projects/rtmposev1/onnx_sdk/$Z && unzip -oq $Z; }
+U4=https://github.com/ultralytics/assets/releases/download/v8.4.0
+for w in yolo26n.pt yolo26s.pt yolo26m.pt; do [ -f "$w" ] || curl -sSL -o "$w" "$U4/$w"; done
 echo "done. The distilled buoy detector (buoy_yolo11s.pt) is in weights/ in the repo; copy it here:"
-echo "  cp ../weights/buoy_yolo11*.pt ."
+echo "  cp ../weights/buoy_*.pt ."

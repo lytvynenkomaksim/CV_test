@@ -27,12 +27,13 @@ def _small(b, W, H):
     return w <= 0.06 * W and h <= 0.08 * H and w * h >= 6
 
 
-def _not_in(b, boxes, thr=0.5):
+def _not_in(b, boxes, body_frac=0.65):
+    """False if the box centre lies on a skier's upper body (head/torso/arms = upper 65 % of the person box).
+    The feet / ski area is deliberately kept: the skier passes right over or next to buoys and
+    that is exactly the moment the pass is judged."""
+    cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2
     for p in boxes:
-        x0, y0 = max(b[0], p[0]), max(b[1], p[1])
-        x1, y1 = min(b[2], p[2]), min(b[3], p[3])
-        inter = max(0, x1 - x0) * max(0, y1 - y0)
-        if inter / max(1e-6, (b[2] - b[0]) * (b[3] - b[1])) > thr:
+        if p[0] <= cx <= p[2] and p[1] <= cy <= p[1] + body_frac * (p[3] - p[1]):
             return False
     return True
 
@@ -40,7 +41,7 @@ def _not_in(b, boxes, thr=0.5):
 class YoloBuoy:
     name = "yolo11-buoy (distilled)"
 
-    def __init__(self, weights=None, conf=0.25, imgsz=1088):
+    def __init__(self, weights=None, conf=0.25, imgsz=1280):  # trained at 1280 px
         from ultralytics import YOLO
         if weights is None:  # trained weights are committed in weights/, models/ is the local cache
             cands = [d / f"buoy_yolo11{z}.pt" for d in (MODELS, MODELS.parent / "weights") for z in "sn"]
@@ -133,8 +134,41 @@ class Owlv2Buoy:
                 if l == 0 and _small(b, W, H) and _not_in(b, persons)]
 
 
+class RfDetrBuoy:
+    """RF-DETR (DINOv2 backbone + DETR decoder, Apache-2.0) fine-tuned on the buoy dataset.
+    NMS-free transformer detector; see colab/train_v2.ipynb."""
+    name = "rf-detr (fine-tuned)"
+
+    def __init__(self, weights=None, variant=None, resolution=None, conf=0.3):
+        import json
+
+        import rfdetr
+        weights = weights or str(MODELS / "buoy_rfdetr.pth")
+        cfg = Path(weights).with_suffix(".json")
+        cfg = json.loads(cfg.read_text()) if cfg.exists() else {}  # written by tools/train_rfdetr.py
+        variant = variant or cfg.get("variant", "RFDETRSmall")
+        resolution = resolution or cfg.get("resolution")
+        kw = dict(pretrain_weights=weights)
+        if resolution:
+            kw["resolution"] = resolution
+        self.m = getattr(rfdetr, variant)(**kw)
+        try:
+            self.m.optimize_for_inference()
+        except Exception:  # optional speed-up, not available on every backend
+            pass
+        self.conf = conf
+        self.name = f"rf-detr {variant[6:].lower()} (fine-tuned)"
+
+    def __call__(self, frame, persons=()):
+        H, W = frame.shape[:2]
+        det = self.m.predict(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB), threshold=self.conf)
+        return [(*b, float(s)) for b, s in zip(det.xyxy.tolist(), det.confidence.tolist())
+                if _small(b, W, H) and _not_in(b, persons)]
+
+
 def build(name: str, **kw):
-    return {"yolo-buoy": YoloBuoy, "gdino": GDinoBuoy, "yoloworld": YoloWorldBuoy, "owlv2": Owlv2Buoy}[name](**kw)
+    return {"yolo-buoy": YoloBuoy, "gdino": GDinoBuoy, "yoloworld": YoloWorldBuoy, "owlv2": Owlv2Buoy,
+            "rfdetr": RfDetrBuoy}[name](**kw)
 
 
 # ----------------------------------------------------------------------------------------------

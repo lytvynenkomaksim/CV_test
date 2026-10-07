@@ -1,0 +1,12 @@
+{
+ "buoy_yolo11s@1280": {
+  "AP50": 0.798,
+  "P": 0.715,
+  "R": 0.819,
+  "best_conf": 0.375,
+  "R_centre": 0.862,
+  "ms_per_img": 315.2,
+  "n_images": 350,
+  "n_labels": 138
+ }
+}

@@ -373,7 +373,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
     ap.add_argument("--out", default="runs/demo")
-    ap.add_argument("--buoy", default="yolo-buoy", choices=["yolo-buoy", "gdino", "yoloworld", "owlv2", "none"])
+    ap.add_argument("--buoy", default="yolo-buoy", choices=["yolo-buoy", "rfdetr", "gdino", "yoloworld", "owlv2", "none"])
     ap.add_argument("--pose", default="yolo-s", help="yolo-n|yolo-s|yolo-m|vitpose|rtmpose|mediapipe|none")
     ap.add_argument("--skier", default="s", help="YOLO11 size for the person detector (n/s/m)")
     ap.add_argument("--buoy-every", type=int, default=1, help="run the buoy detector every N frames")

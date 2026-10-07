@@ -1,0 +1,23 @@
+{
+ "images": 1608,
+ "boxes_v1": {
+  "train": 955,
+  "val": 163
+ },
+ "boxes_v2": {
+  "train": 945,
+  "val": 138
+ },
+ "removed": {
+  "skier_legs_ski": 134,
+  "shape": 221,
+  "body": 51,
+  "own_boat": 4,
+  "temporal": 208
+ },
+ "recovered_near_skier": 5,
+ "params": {
+  "min_score": 0.25,
+  "strong": 0.42
+ }
+}

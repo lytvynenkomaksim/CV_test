@@ -18,10 +18,12 @@ See `data/audit/drive_folder_survey.md` for how each folder was classified.
 | GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4 | Greece Pro/Men Rd3/Aaron Davis-Rd3-6@12.mp4 | men; lowest quality found (854x480, 1.7 Mbps), zoomed boat camera |
 
 ## youtube/
-Not downloaded (2026-10-07): from this sandbox YouTube answers "Sign in to confirm
-you're not a bot" for all player clients; with `player_client=web_embedded` + node JS
-runtime the format list is returned, but every media request to googlevideo.com
-returns HTTP 403 (no PO token / IP-bound URLs). Needs cookies or a PO-token provider.
+`youtube_regina_jaquess.mp4` - https://www.youtube.com/watch?v=riNiHLDZzlU (channel: John Horton,
+"Regina Jaquess pending Women's slalom world record of 4 buoys at 41 - Raw Video & boat path").
+1920x1080, 29.97 fps, 131 s, ~4.2 Mbps. Raw boat camera (pylon + rope in frame), several passes
+(32/35/38/39/41 off); last ~15 s are a filmed boat-path monitor (not relevant).
+Downloaded by the user with yt-dlp on their machine (YouTube blocks this sandbox with a bot check)
+and shared via Google Drive; unchanged file.
 
 Candidates checked by metadata + thumbnail (boat-mounted camera looking back at skier),
 to fetch from a normal machine:

@@ -35,7 +35,8 @@ def main():
     a = ap.parse_args()
     torch.set_num_threads(a.threads)
     proc = AutoProcessor.from_pretrained(MODEL_ID)
-    model = AutoModelForZeroShotObjectDetection.from_pretrained(MODEL_ID).eval()
+    dev = "cuda" if torch.cuda.is_available() else "cpu"
+    model = AutoModelForZeroShotObjectDetection.from_pretrained(MODEL_ID).eval().to(dev)
     out = Path(a.out)
     meta = []
     for vp in a.videos:
@@ -55,7 +56,7 @@ def main():
             H, W = frame.shape[:2]
             im = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
             t = time.time()
-            inp = proc(images=im, text="buoy. person. boat.", return_tensors="pt")
+            inp = proc(images=im, text="buoy. person. boat.", return_tensors="pt").to(dev)
             with torch.no_grad():
                 o = model(**inp)
             r = proc.post_process_grounded_object_detection(
@@ -83,7 +84,7 @@ def main():
                          "buoys": [[round(s, 3)] + [round(v, 1) for v in b] for s, b in buoys],
                          "all": [[l, round(s, 3)] + [round(v, 1) for v in b] for l, s, b in dets]})
             print(f"{name} {split} buoys={len(buoys)} {time.time()-t:.1f}s", flush=True)
-    (out / "data.yaml").write_text(f"path: {out.resolve()}\ntrain: images/train\nval: images/val\nnames:\n  0: buoy\n")
+    (out / "data.yaml").write_text(f"path: .\ntrain: images/train\nval: images/val\nnames:\n  0: buoy\n")
     with open(out / "autolabel_meta.jsonl", "a") as f:
         for m in meta:
             f.write(json.dumps(m) + "\n")

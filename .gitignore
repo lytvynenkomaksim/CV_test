@@ -2,5 +2,5 @@ models/
 __pycache__/
 *.pyc
 runs/train/
-data/buoy_dataset/
+data/buoy_dataset/data_resolved.yaml
 *.tmp.mp4

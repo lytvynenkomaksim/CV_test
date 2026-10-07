@@ -17,6 +17,11 @@ import numpy as np
 MODELS = Path(__file__).resolve().parent.parent / "models"
 
 
+def device():
+    import torch
+    return "cuda" if torch.cuda.is_available() else "cpu"
+
+
 def _small(b, W, H):
     w, h = b[2] - b[0], b[3] - b[1]
     return w <= 0.06 * W and h <= 0.08 * H and w * h >= 6
@@ -62,14 +67,15 @@ class GDinoBuoy:
         mid = "IDEA-Research/grounding-dino-tiny"
         self.torch = torch
         self.proc = AutoProcessor.from_pretrained(mid)
-        self.m = AutoModelForZeroShotObjectDetection.from_pretrained(mid).eval()
+        self.dev = device()
+        self.m = AutoModelForZeroShotObjectDetection.from_pretrained(mid).eval().to(self.dev)
         self.thr = thr
 
     def __call__(self, frame, persons=()):
         from PIL import Image
         H, W = frame.shape[:2]
         im = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-        inp = self.proc(images=im, text="buoy. person. boat.", return_tensors="pt")
+        inp = self.proc(images=im, text="buoy. person. boat.", return_tensors="pt").to(self.dev)
         with self.torch.no_grad():
             o = self.m(**inp)
         r = self.proc.post_process_grounded_object_detection(
@@ -109,20 +115,21 @@ class Owlv2Buoy:
         mid = "google/owlv2-base-patch16-ensemble"
         self.torch = torch
         self.proc = Owlv2Processor.from_pretrained(mid)
-        self.m = Owlv2ForObjectDetection.from_pretrained(mid).eval()
+        self.dev = device()
+        self.m = Owlv2ForObjectDetection.from_pretrained(mid).eval().to(self.dev)
         self.thr = thr
 
     def __call__(self, frame, persons=()):
         from PIL import Image
         H, W = frame.shape[:2]
         im = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-        inp = self.proc(text=[["a buoy", "a person"]], images=im, return_tensors="pt")
+        inp = self.proc(text=[["a buoy", "a person"]], images=im, return_tensors="pt").to(self.dev)
         with self.torch.no_grad():
             o = self.m(**inp)
         s = max(W, H)  # OWLv2 pads to a square
         pp = getattr(self.proc, "post_process_grounded_object_detection", None) or self.proc.post_process_object_detection
-        r = pp(o, threshold=self.thr, target_sizes=self.torch.tensor([[s, s]]))[0]
-        return [(*b, float(sc)) for b, sc, l in zip(r["boxes"].tolist(), r["scores"], r["labels"].tolist())
+        r = pp(o, threshold=self.thr, target_sizes=self.torch.tensor([[s, s]], device=self.dev))[0]
+        return [(*b, float(sc)) for b, sc, l in zip(r["boxes"].tolist(), r["scores"].tolist(), r["labels"].tolist())
                 if l == 0 and _small(b, W, H) and _not_in(b, persons)]
 
 

@@ -68,8 +68,9 @@ DET = {
 }
 POSE = {f"pose:{k}": (lambda k=k: P.build(k)) for k in ["yolo-n", "yolo-s", "yolo-m", "vitpose", "rtmpose", "mediapipe"]}
 
+gpu = torch.cuda.get_device_name(0) if torch.cuda.is_available() else None
 results = dict(machine=dict(cpu=platform.processor() or platform.machine(), threads=a.threads,
-                            torch=torch.__version__, gpu=False), videos={})
+                            torch=torch.__version__, gpu=gpu), videos={})
 skier = YOLO(str(M / "yolo11s.pt"))
 for v in a.videos:
     frames = sample(v, a.frames)
@@ -95,8 +96,12 @@ for v in a.videos:
         call(*items[0])  # warm-up
         ts, outs = [], []
         for f, b in items:
+            if gpu:
+                torch.cuda.synchronize()
             t = time.perf_counter()
             o = call(f, b)
+            if gpu:
+                torch.cuda.synchronize()
             ts.append(time.perf_counter() - t)
             outs.append(o)
         extra = {}

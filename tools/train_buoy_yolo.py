@@ -19,10 +19,21 @@ ap.add_argument("--epochs", type=int, default=40)
 ap.add_argument("--imgsz", type=int, default=1088)
 ap.add_argument("--batch", type=int, default=8)
 ap.add_argument("--workers", type=int, default=2)
+ap.add_argument("--device", default=None, help="cpu, 0 (first GPU), ... default: GPU if available")
 a = ap.parse_args()
 
+# data.yaml keeps a relative path; resolve it so the dataset works wherever the repo is cloned
+data = Path(a.data).resolve()
+cfg = data.read_text().splitlines()
+cfg = [f"path: {data.parent}" if l.startswith("path:") else l for l in cfg]
+run_yaml = data.parent / "data_resolved.yaml"
+run_yaml.write_text("\n".join(cfg) + "\n")
+if a.device is None:
+    import torch
+    a.device = 0 if torch.cuda.is_available() else "cpu"
+
 m = YOLO(str(ROOT / "models" / a.model))
-m.train(data=a.data, epochs=a.epochs, imgsz=a.imgsz, batch=a.batch, workers=a.workers, device="cpu",
+m.train(data=str(run_yaml), epochs=a.epochs, imgsz=a.imgsz, batch=a.batch, workers=a.workers, device=a.device,
         project=str(ROOT / "runs/train"), name="buoy", exist_ok=True, patience=15,
         # small objects: keep scale aug mild, no vertical flips (water plane), keep mosaic
         scale=0.3, fliplr=0.5, flipud=0.0, mosaic=1.0, close_mosaic=5, hsv_h=0.02, plots=True)

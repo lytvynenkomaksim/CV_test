@@ -71,19 +71,20 @@ class VitPose:
         from transformers import AutoProcessor, VitPoseForPoseEstimation
         self.torch = torch
         self.proc = AutoProcessor.from_pretrained(model_id)
-        self.m = VitPoseForPoseEstimation.from_pretrained(model_id).eval()
+        self.dev = "cuda" if torch.cuda.is_available() else "cpu"
+        self.m = VitPoseForPoseEstimation.from_pretrained(model_id).eval().to(self.dev)
 
     def __call__(self, frame, box):
         from PIL import Image
         im = Image.fromarray(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
         x0, y0, x1, y1 = box
         coco_box = [[[x0, y0, x1 - x0, y1 - y0]]]
-        inp = self.proc(im, boxes=coco_box, return_tensors="pt")
+        inp = self.proc(im, boxes=coco_box, return_tensors="pt").to(self.dev)
         with self.torch.no_grad():
             out = self.m(**inp)
         res = self.proc.post_process_pose_estimation(out, boxes=coco_box)[0][0]
-        k = res["keypoints"].numpy()
-        s = res["scores"].numpy()
+        k = res["keypoints"].cpu().numpy()
+        s = res["scores"].cpu().numpy()
         return np.concatenate([k, s[:, None]], 1)
 
 
@@ -93,7 +94,9 @@ class RtmPose:
     def __init__(self):
         from rtmlib import RTMPose
         onnx = next(MODELS.glob("rtm/**/rtmpose-m*/end2end.onnx"))
-        self.m = RTMPose(str(onnx), model_input_size=(192, 256), backend="onnxruntime", device="cpu")
+        import onnxruntime as ort
+        dev = "cuda" if "CUDAExecutionProvider" in ort.get_available_providers() else "cpu"
+        self.m = RTMPose(str(onnx), model_input_size=(192, 256), backend="onnxruntime", device=dev)
 
     def __call__(self, frame, box):
         kpts, scores = self.m(frame, bboxes=[list(box)])

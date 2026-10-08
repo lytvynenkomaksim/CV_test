@@ -28,6 +28,7 @@ ap.add_argument("--frames-dir")
 ap.add_argument("--out", default=str(ROOT / "results/metric_v3"))
 ap.add_argument("--only", nargs="*")
 ap.add_argument("--render", action="store_true")
+ap.add_argument("--rig", help="rig calibration json from tools/calibrate_rig.py (shared lens + camera height)")
 a = ap.parse_args()
 out = Path(a.out)
 out.mkdir(parents=True, exist_ok=True)
@@ -36,6 +37,10 @@ fdir = Path(a.frames_dir or a.run)
 from ultralytics import YOLO  # noqa: E402
 
 BOAT = YOLO(str(ROOT / "models/yolo11s.pt"))
+rig, rig_videos = None, set()
+if a.rig:
+    rj = json.loads(Path(a.rig).read_text())
+    rig, rig_videos = (rj["f_rel"], rj["cam_height_m"]), set(rj["videos"])
 SYM = dict(ok="+", miss="x", uncertain="~", unseen="?", not_reached="-", conflict="!")
 rows = []
 jsons = sorted(p for p in Path(a.run).glob("*.json") if not p.name.endswith(".frames.json") and p.stem != "summary")
@@ -47,35 +52,9 @@ for js in tqdm(jsons, desc="videos"):
     frames = json.loads((fdir / f"{js.stem}.frames.json").read_text())
     video = ROOT / meta["video"].split("CV_test/")[-1]
     shots = meta["shots"]
-    cap = cv2.VideoCapture(str(video))
-    pe, cm, inc = G.FlowPanEstimator(), CAM.CameraMotion(), []
-    for f in tqdm(range(len(frames)), desc=f"camera motion {js.stem[:28]}", leave=False):
-        ok, img = cap.read()
-        if not ok:
-            break
-        if f in shots:
-            pe.reset()
-            cm.reset()
-        ex = [frames[f]["skier"]] if frames[f]["skier"] else []
-        frames[f]["pan"] = pe.update(img, ex)
-        inc.append(cm.update(img, ex))
-        if frames[f]["skier"]:
-            frames[f]["skier_X"] = (frames[f]["skier"][0] + frames[f]["skier"][2]) / 2 + frames[f]["pan"]
-    inc += [(0.0, 0.0, 0.0)] * (len(frames) - len(inc))
-    # boat-camera shots (shore / replay cameras show the towing boat)
-    boat_view = {}
-    for s0, s1 in zip(shots, shots[1:] + [len(frames)]):
-        votes = []
-        for f in np.linspace(s0, s1 - 1, min(5, s1 - s0)).astype(int):
-            cap.set(cv2.CAP_PROP_POS_FRAMES, int(f))
-            ok, img = cap.read()
-            if ok:
-                bx = BOAT.predict(img, classes=[8], conf=0.35, verbose=False)[0].boxes.xyxy.tolist()
-                votes.append(any((b[2] - b[0]) * (b[3] - b[1]) > 0.01 * meta["width"] * meta["height"]
-                                 and b[3] < 0.97 * meta["height"] for b in bx))
-        boat_view[s0] = not (votes and np.mean(votes) >= 0.5)
-    cap.release()
-    ana = C3.analyse_course_metric(frames, meta, inc, js.stem, boat_view)
+    inc, boat_view = C3.prepare_video(video, frames, meta, BOAT)
+    ana = C3.analyse_course_metric(frames, meta, inc, js.stem, boat_view, rig=rig if (
+        rig and js.stem in rig_videos) else None)
     m = re.search(r"(\d(?:\.\d+)?)\s*(?:at|@)", js.stem.replace("_", " "))
     official = m.group(1) if m else "?"
     main = max((sh for sh in ana["shots"] if sh.get("course")), key=lambda sh: sum(

@@ -154,8 +154,10 @@ class ShotCalibration:
         rho = np.zeros(len(self.inc))
         return theta, psi, rho
 
-    def fit(self, skier_obs, buoy_tracks, rope_m, v_prior=15.6, anchor_s=2.0):
-        """skier_obs: list of (frame, u, v); buoy_tracks: list of [(frame, u, v), ...] (observed points)."""
+    def fit(self, skier_obs, buoy_tracks, rope_m, v_prior=15.6, anchor_s=2.0, fixed=None, quick=False):
+        """skier_obs: list of (frame, u, v); buoy_tracks: list of [(frame, u, v), ...] (observed points).
+        fixed=(f_rel, h): lens (focal length / image width) and camera height known, e.g. from a joint
+        calibration of several videos filmed with the same boat camera (tools/calibrate_rig.py)."""
         from scipy.optimize import least_squares
         sk = np.array([o for o in skier_obs if self.s0 <= o[0] < self.s1], float)
         if len(sk) < 30:
@@ -200,19 +202,26 @@ class ShotCalibration:
             for w in wins_big:
                 xs = np.abs(X[win == w])
                 r.append(np.array([(np.percentile(xs, 92) - 10.5) / 2.5]))
-            r.append(np.array([(h - 2.2) / 0.6, (v - v_prior) / 0.25, ps1 / 0.02,  # boat speed is set by the rules
-                               (lf - np.log(0.95 * self.W)) / 0.6]))  # weak prior: ~60 deg field of view
+            r.append(np.array([(v - v_prior) / 0.25, ps1 / 0.02]))  # boat speed is set by the rules
+            if fixed is None:
+                r.append(np.array([(h - 2.2) / 0.6, (lf - np.log(0.95 * self.W)) / 0.6]))  # weak priors
             return np.concatenate(r)
 
         best = None
-        for f0 in (0.7, 1.0, 1.4, 1.9):
-            for th0 in (0.08, 0.16, 0.25):
-                for ps0 in (-0.5, 0.0, 0.5):
-                    p0 = [np.log(f0 * self.W), 2.0, th0, ps0, 0.0, v_prior]
+        lo = [np.log(self.f_range[0] * self.W), 1.5, -0.1, -1.6, -0.1, 12.0]
+        hi = [np.log(self.f_range[1] * self.W), 3.2, 0.7, 1.6, 0.1, 18.5]
+        f_starts = (0.7, 1.0, 1.4, 1.9)
+        if fixed is not None:
+            lf_fix = np.log(fixed[0] * self.W)
+            lo[0], hi[0], lo[1], hi[1] = lf_fix - 1e-6, lf_fix + 1e-6, fixed[1] - 1e-6, fixed[1] + 1e-6
+            f_starts = (fixed[0],)
+        th_starts, ps_starts = ((0.06, 0.15), (-0.4, 0.0, 0.4)) if quick else ((0.08, 0.16, 0.25), (-0.5, 0.0, 0.5))
+        for f0 in f_starts:
+            for th0 in th_starts:
+                for ps0 in ps_starts:
+                    p0 = [np.log(f0 * self.W), fixed[1] if fixed is not None else 2.0, th0, ps0, 0.0, v_prior]
                     try:
-                        res = least_squares(resid, p0, loss="soft_l1", f_scale=1.0, max_nfev=200,
-                                            bounds=([np.log(self.f_range[0] * self.W), 1.5, -0.1, -1.6, -0.1, 12.0],
-                                                    [np.log(self.f_range[1] * self.W), 3.2, 0.7, 1.6, 0.1, 18.5]))
+                        res = least_squares(resid, p0, loss="soft_l1", f_scale=1.0, max_nfev=200, bounds=(lo, hi))
                     except Exception as e:  # noqa: BLE001
                         self.last_error = repr(e)
                         continue
@@ -227,8 +236,9 @@ class ShotCalibration:
         self.theta, self.psi, self.rho = theta, psi, rho
         X, Z = self.to_water(sk[:, 0].astype(int), sk[:, 1], sk[:, 2])
         dist = np.hypot(X, Z)
-        at_bound = (abs(lf - np.log(self.f_range[0] * self.W)) < 0.02 or abs(lf - np.log(self.f_range[1] * self.W)) < 0.02
-                    or abs(h - 1.5) < 0.02 or abs(h - 3.2) < 0.02)
+        at_bound = fixed is None and (abs(lf - np.log(self.f_range[0] * self.W)) < 0.02
+                                      or abs(lf - np.log(self.f_range[1] * self.W)) < 0.02
+                                      or abs(h - 1.5) < 0.02 or abs(h - 3.2) < 0.02)
         self.ok = bool(np.nanmedian(np.abs(dist - L)) < 2.5 and not at_bound)
         self.report = dict(status="ok" if self.ok else ("at parameter bound (zoom camera?)" if at_bound else "poor fit"), f_px=round(float(np.exp(lf)), 1),
                            hfov_deg=round(float(np.degrees(2 * np.arctan(self.W / 2 / np.exp(lf)))), 1),
@@ -236,7 +246,8 @@ class ShotCalibration:
                            boat_speed_kmh=round(float(v * 3.6), 1), rope_m=rope_m,
                            skier_dist_median_m=round(float(np.nanmedian(dist)), 2),
                            skier_dist_mad_m=round(float(np.nanmedian(np.abs(dist - np.nanmedian(dist)))), 2),
-                           n_buoy_tracks=len(tracks), cost=round(float(best.cost), 1))
+                           n_buoy_tracks=len(tracks), cost=round(float(best.cost), 1),
+                           n_residuals=int(len(best.fun)), calibration="rig (shared)" if fixed is not None else "per shot")
         return self.ok
 
     @property

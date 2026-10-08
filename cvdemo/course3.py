@@ -123,28 +123,77 @@ def metric_tracks(frames, cal, s0, s1, fps):
     return [t for t in tracks if len(t.obs) >= 3], hist
 
 
-def analyse_course_metric(frames, meta, inc, name, boat_view=None):
+def prepare_video(video, frames, meta, boat_model=None, progress=True):
+    """One pass over the video: camera pan (for pixel tracking) + rotation increments (for the camera model),
+    and which shots are the boat camera. Mutates frames[f]['pan'] / ['skier_X']."""
+    import cv2
+    from tqdm import tqdm
+    shots = meta["shots"]
+    cap = cv2.VideoCapture(str(video))
+    pe, cm, inc = G.FlowPanEstimator(), CAM.CameraMotion(), []
+    for f in tqdm(range(len(frames)), desc="camera motion", leave=False, disable=not progress):
+        ok, img = cap.read()
+        if not ok:
+            break
+        if f in shots:
+            pe.reset()
+            cm.reset()
+        ex = [frames[f]["skier"]] if frames[f]["skier"] else []
+        frames[f]["pan"] = pe.update(img, ex)
+        inc.append(cm.update(img, ex))
+        if frames[f]["skier"]:
+            frames[f]["skier_X"] = (frames[f]["skier"][0] + frames[f]["skier"][2]) / 2 + frames[f]["pan"]
+    inc += [(0.0, 0.0, 0.0)] * (len(frames) - len(inc))
+    boat_view = {}
+    for s0, s1 in zip(shots, shots[1:] + [len(frames)]):
+        if boat_model is None:
+            boat_view[s0] = C.shot_is_boat_view(frames, s0, s1, meta["width"], meta["height"])
+            continue
+        votes = []
+        for f in np.linspace(s0, s1 - 1, min(5, s1 - s0)).astype(int):
+            cap.set(cv2.CAP_PROP_POS_FRAMES, int(f))
+            ok, img = cap.read()
+            if ok:
+                bx = boat_model.predict(img, classes=[8], conf=0.35, verbose=False)[0].boxes.xyxy.tolist()
+                votes.append(any((b[2] - b[0]) * (b[3] - b[1]) > 0.01 * meta["width"] * meta["height"]
+                                 and b[3] < 0.97 * meta["height"] for b in bx))
+        boat_view[s0] = not (votes and np.mean(votes) >= 0.5)
+    cap.release()
+    return inc, boat_view
+
+
+def calibration_inputs(frames, meta, s0, s1):
+    """Skier foot points and pixel buoy tracks of one shot (inputs of ShotCalibration.fit)."""
+    fps, W, H = meta["fps"], meta["width"], meta["height"]
+    tr = B.BuoyTracker(max_miss=int(2 * fps), frame_size=(W, H))
+    for f in range(s0, s1):
+        if frames[f]["buoys"] is not None:
+            tr.update(f, frames[f]["buoys"], frames[f]["pan"])
+    ptracks = [[(h[0], h[1] - frames[h[0]]["pan"], h[2]) for h in t.hist if h[6]]
+               for t in tr.all_tracks() if t.n_obs() >= 4]
+    skier_obs = [(f, *skier_foot(frames[f])) for f in range(s0, s1) if frames[f]["skier"]]
+    return skier_obs, ptracks
+
+
+def is_women(name):
+    return any(k in name.lower() for k in ("women", "girls", "julie", "alexandra", "allie", "regina"))
+
+
+def analyse_course_metric(frames, meta, inc, name, boat_view=None, rig=None):
     fps, shots = meta["fps"], meta["shots"]
     W, H = meta["width"], meta["height"]
     bounds = list(zip(shots, shots[1:] + [len(frames)]))
     if boat_view is None:
         boat_view = {s0: C.shot_is_boat_view(frames, s0, s1, W, H) for s0, s1 in bounds}
     rope = CAM.rope_length_from_name(name)
-    women = any(k in name.lower() for k in ("women", "girls", "julie", "alexandra", "allie", "regina"))
+    women = is_women(name)
     out = dict(shots=[], events=[], courses=[], fallback_shots=[])
     for s0, s1 in bounds:
         if not boat_view[s0] or s1 - s0 < 3 * fps:
             continue
-        # pixel tracks only to calibrate
-        tr = B.BuoyTracker(max_miss=int(2 * fps), frame_size=(W, H))
-        for f in range(s0, s1):
-            if frames[f]["buoys"] is not None:
-                tr.update(f, frames[f]["buoys"], frames[f]["pan"])
-        ptracks = [[(h[0], h[1] - frames[h[0]]["pan"], h[2]) for h in t.hist if h[6]]
-                   for t in tr.all_tracks() if t.n_obs() >= 4]
-        skier_obs = [(f, *skier_foot(frames[f])) for f in range(s0, s1) if frames[f]["skier"]]
+        skier_obs, ptracks = calibration_inputs(frames, meta, s0, s1)
         cal = CAM.ShotCalibration(s0, s1, W, H, fps, inc)
-        cal.fit(skier_obs, ptracks, rope, v_prior=15.3 if women else 16.1)
+        cal.fit(skier_obs, ptracks, rope, v_prior=15.3 if women else 16.1, fixed=rig)
         shot = dict(start=s0, end=s1, calibration=cal.report, metric=cal.ok)
         out["shots"].append(shot)
         if not cal.ok:
@@ -218,9 +267,10 @@ def analyse_course_metric(frames, meta, inc, name, boat_view=None):
         # gates: centre pairs before the first / after the last turn buoy
         turns = [e for e in events if e["kind"] == "turn"]
         cents = [e for e in events if e["kind"] == "centre"]
+        paired = {a["track"] for a in info if "pair" in a}
         if turns:
-            for e in cents:
-                if e["s"] < turns[0]["s"] - 10 or e["s"] > turns[-1]["s"] + 10:
+            for e in cents:  # a gate is a centred PAIR before the first / after the last turn buoy
+                if e["track"] in paired and (e["s"] < turns[0]["s"] - 10 or e["s"] > turns[-1]["s"] + 10):
                     e["kind"] = "gate"
         course = fit_metric_course(turns, cal, fps)
         out["events"] += events
@@ -359,6 +409,8 @@ def render_metric(video, out_path, frames, meta, ana, labels, note=""):
         # event banners
         for e in evs:
             if 0 <= f - e["frame"] < int(1.2 * fps):
+                if e["kind"] == "turn" and not e.get("slot"):
+                    continue  # not part of the fitted course (duplicate / far buoy): no banner
                 if e["kind"] == "turn":
                     col = {"ok": (0, 200, 0), "miss": (0, 0, 255), "uncertain": (0, 200, 255)}[e["verdict"]]
                     slot = f"buoy {e['slot']} " if e.get("slot") else ""

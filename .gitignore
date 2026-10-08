@@ -5,3 +5,4 @@ runs/train/
 data/buoy_dataset/data_resolved.yaml
 *.tmp.mp4
 data/buoy_dataset_v2/images/
+runs/

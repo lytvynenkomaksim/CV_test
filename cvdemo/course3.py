@@ -253,36 +253,48 @@ def analyse_course_metric(frames, meta, inc, name, boat_view=None, rig=None):
             s_course = np.median([cal.v * o[0] / fps - o[2] for o in t.obs])  # position along the lake
             info.append(dict(track=t.tid, X=t.X, s=float(s_course), first=int(fs[0]), last=int(fs[-1]),
                              n_obs=len(t.obs), closed=t.closed))
-        for a in info:  # pairs: two buoys at the same course position on opposite sides, close to centre
-            a["kind"] = "turn" if abs(a["X"]) >= 4.5 else ("centre" if abs(a["X"]) < 3.0 else "unknown")
-        for i, a in enumerate(info):
-            for b in info[i + 1:]:
-                if a["kind"] == b["kind"] == "centre" and abs(a["s"] - b["s"]) < 4 and a["X"] * b["X"] < 0:
-                    a["pair"], b["pair"] = b["track"], a["track"]
+        # every buoy is judged against the skier's own swing around the moment the skier reaches it
+        # (+-2.5 s window, in metres): robust to a residual yaw bias or scale error of the camera model
+        W2 = int(2.5 * fps)
         events = []
         for a in info:
-            if a["kind"] == "unknown":
-                continue
-            # crossing: the buoy (Z = v t - s) reaches the skier's Z
             zb = cal.v * sf / fps - a["s"]
             d = zb - sZ
             idx = np.where((d[:-1] < 0) & (d[1:] >= 0) & (np.diff(sf) <= fps // 2))[0]
             if not len(idx):
                 continue
-            i = idx[0]
-            fcross = int(sf[i + 1])
+            fcross = int(sf[idx[0] + 1])
+            win = (sf >= fcross - W2) & (sf <= fcross + W2)
+            if win.sum() < 10:
+                continue
+            lo_, hi_ = np.percentile(sX[win], 5), np.percentile(sX[win], 95)
+            Cl, Al = (lo_ + hi_) / 2, max(1.0, (hi_ - lo_) / 2)
+            off = a["X"] - Cl
+            a["rel"] = off / Al
+            a["kind"] = "turn" if abs(off) >= 0.5 * Al else ("centre" if abs(off) < 0.3 * Al else "unknown")
+            a["cross"], a["C"], a["A"] = fcross, Cl, Al
+        for i, a in enumerate(info):  # centred PAIR: same course position, either side of the centre
+            for b in info[i + 1:]:
+                if (a.get("kind") == b.get("kind") == "centre" and abs(a["s"] - b["s"]) < 4
+                        and (a["X"] - a["C"]) * (b["X"] - b["C"]) < 0):
+                    a["pair"], b["pair"] = b["track"], a["track"]
+        for a in info:
+            if a.get("kind") in (None, "unknown"):
+                continue
+            fcross = a["cross"]
             xs = float(np.interp(fcross, sf, sX))
             seen = a["first"] <= fcross <= a["last"] + 3
             ev = dict(frame=fcross, t=round(fcross / fps, 2), track=a["track"], kind=a["kind"], buoy_X=a["X"],
-                      skier_X=xs, s=a["s"], predicted=not seen, n_obs=a["n_obs"])
+                      skier_X=xs, s=a["s"], predicted=not seen, n_obs=a["n_obs"], rel=round(a["rel"], 2),
+                      centre_X=round(a["C"], 2))
             if a["kind"] == "turn":
-                side = 1 if a["X"] > 0 else -1
-                margin = xs * side - abs(a["X"])
+                side = 1 if a["X"] > a["C"] else -1
+                margin = (xs - a["X"]) * side  # metres beyond the buoy line (same instant -> no yaw dependence)
                 verdict = "ok" if margin > -0.3 else ("miss" if (seen and margin < -1.0) else "uncertain")
                 ev.update(side="right" if side > 0 else "left", margin_m=round(margin, 2),
                           outside=margin > -0.3, verdict=verdict)
             else:
-                ev.update(between=abs(xs) < max(abs(a["X"]) + 0.5, 1.5))
+                ev.update(between=abs(xs - a["C"]) < max(abs(a["X"] - a["C"]) + 0.5, 1.5))
             events.append(ev)
         events.sort(key=lambda e: e["frame"])
         # merge duplicates of the same physical buoy (same course position and side)

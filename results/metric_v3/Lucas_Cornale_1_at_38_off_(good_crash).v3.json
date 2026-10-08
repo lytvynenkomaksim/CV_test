@@ -7,13 +7,15 @@
    "t": 8.1,
    "track": 5,
    "kind": "turn",
-   "buoy_X": -6.802235412903743,
-   "skier_X": -7.23613883042614,
-   "s": 119.46013684198134,
+   "buoy_X": -4.9686511744719555,
+   "skier_X": -4.905662852482754,
+   "s": 119.04783314492701,
    "predicted": false,
    "n_obs": 5,
+   "rel": -1.08,
+   "centre_X": -0.21,
    "side": "left",
-   "margin_m": 0.43,
+   "margin_m": -0.06,
    "outside": true,
    "verdict": "ok",
    "slot": 1
@@ -25,41 +27,43 @@
    "end": 472,
    "calibration": {
     "status": "ok",
-    "f_px": 1611.0,
-    "hfov_deg": 36.9,
-    "cam_height_m": 1.6,
-    "pitch0_deg": 5.3,
-    "boat_speed_kmh": 57.4,
+    "f_px": 2148.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 1.2,
+    "pitch0_deg": 3.9,
+    "boat_speed_kmh": 57.9,
     "rope_m": 10.25,
-    "skier_dist_median_m": 10.99,
-    "skier_dist_mad_m": 0.51,
-    "n_buoy_tracks": 5,
-    "cost": 63.9,
-    "n_residuals": 414,
+    "skier_dist_median_m": 10.89,
+    "skier_dist_mad_m": 0.43,
+    "n_buoy_tracks": 3,
+    "cost": 73.0,
+    "n_residuals": 399,
     "calibration": "rig (shared)"
    },
    "metric": true,
    "course": {
-    "s1": 119.46013684198134,
+    "s1": 119.04783314492701,
     "side1": -1,
     "spacing_m": 33.0,
     "slots": [
      {
       "slot": 1,
-      "s": 119.5,
+      "s": 119.0,
       "side": "left",
       "event": {
        "frame": 243,
        "t": 8.1,
        "track": 5,
        "kind": "turn",
-       "buoy_X": -6.802235412903743,
-       "skier_X": -7.23613883042614,
-       "s": 119.46013684198134,
+       "buoy_X": -4.9686511744719555,
+       "skier_X": -4.905662852482754,
+       "s": 119.04783314492701,
        "predicted": false,
        "n_obs": 5,
+       "rel": -1.08,
+       "centre_X": -0.21,
        "side": "left",
-       "margin_m": 0.43,
+       "margin_m": -0.06,
        "outside": true,
        "verdict": "ok",
        "slot": 1
@@ -68,41 +72,41 @@
      },
      {
       "slot": 2,
-      "s": 152.5,
+      "s": 152.0,
       "side": "right",
       "event": null,
       "status": "unseen"
      },
      {
       "slot": 3,
-      "s": 185.5,
+      "s": 185.0,
       "side": "left",
       "event": null,
       "status": "unseen"
      },
      {
       "slot": 4,
-      "s": 218.5,
+      "s": 218.0,
       "side": "right",
       "event": null,
       "status": "unseen"
      },
      {
       "slot": 5,
-      "s": 251.5,
+      "s": 251.0,
       "side": "left",
       "event": null,
       "status": "unseen"
      },
      {
       "slot": 6,
-      "s": 284.5,
+      "s": 284.0,
       "side": "right",
       "event": null,
       "status": "unseen"
      }
     ],
-    "turn_offset_m": 6.802235412903743
+    "turn_offset_m": 4.9686511744719555
    }
   }
  ]

@@ -1,0 +1,27 @@
+{
+ "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+ "official": "6",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 605,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 3050.5,
+    "hfov_deg": 34.9,
+    "cam_height_m": 1.51,
+    "pitch0_deg": 4.3,
+    "boat_speed_kmh": 43.5,
+    "rope_m": 11.25,
+    "skier_dist_median_m": 12.09,
+    "skier_dist_mad_m": 0.56,
+    "n_buoy_tracks": 32,
+    "cost": 268.6,
+    "n_residuals": 1688,
+    "calibration": "per shot"
+   },
+   "metric": false
+  }
+ ]
+}

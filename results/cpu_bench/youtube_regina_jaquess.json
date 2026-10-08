@@ -1,0 +1,904 @@
+{
+ "meta": {
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "fps": 29.97002997002997,
+  "frames": 3934,
+  "width": 1920,
+  "height": 1080,
+  "shots": [
+   0,
+   3476,
+   3933
+  ],
+  "wall_s": 2038.84
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.16,
+   "calls": 1,
+   "ms_per_call": 162.1
+  },
+  "scene_cut": {
+   "total_s": 1.22,
+   "calls": 3934,
+   "ms_per_call": 0.3
+  },
+  "skier_detect_track": {
+   "total_s": 656.71,
+   "calls": 3934,
+   "ms_per_call": 166.9
+  },
+  "camera_pan": {
+   "total_s": 58.15,
+   "calls": 3934,
+   "ms_per_call": 14.8
+  },
+  "pose": {
+   "total_s": 148.14,
+   "calls": 3351,
+   "ms_per_call": 44.2
+  },
+  "buoy_detect": {
+   "total_s": 1162.81,
+   "calls": 3934,
+   "ms_per_call": 295.6
+  },
+  "course_logic": {
+   "total_s": 0.63,
+   "calls": 1,
+   "ms_per_call": 629.4
+  }
+ },
+ "processing_s": 2027.66,
+ "video_s": 131.26,
+ "x_realtime": 15.45,
+ "skier": {
+  "skier_visible_ratio": 0.852,
+  "skier_visible_s": 111.81,
+  "pose_good_ratio": 0.836,
+  "skier_median_height_px": 232.5
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.112,
+  "buoy_tracks": 69,
+  "hidden_ratio_within_tracks": 0.314,
+  "longest_hidden_gap_s": 0.43
+ },
+ "events": [
+  {
+   "frame": 259,
+   "t": 8.64,
+   "track": 4,
+   "buoy_x": 1825.0,
+   "skier_x": 676.1,
+   "buoy_X": 1770.831912937603,
+   "skier_X": 621.8855250242967,
+   "centre": 1544.877543082166,
+   "amp": 2393.341081348723,
+   "ratio": 0.09,
+   "predicted": true,
+   "n_obs": 3,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 311,
+   "t": 10.38,
+   "track": 6,
+   "buoy_x": 1356.3,
+   "skier_x": 1109.0,
+   "buoy_X": 481.95697023334776,
+   "skier_X": 234.69311352346233,
+   "centre": 1444.7883086770862,
+   "amp": 2297.194388165853,
+   "ratio": -0.42,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 450,
+   "t": 15.02,
+   "track": 18,
+   "buoy_x": 752.0,
+   "skier_x": 760.4,
+   "buoy_X": -745.7927624043679,
+   "skier_X": -737.3426546867386,
+   "centre": 1459.5577516716357,
+   "amp": 2146.437610747041,
+   "ratio": -1.03,
+   "predicted": true,
+   "n_obs": 3,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": -8.5,
+   "slot": 1
+  },
+  {
+   "frame": 1060,
+   "t": 35.37,
+   "track": 44,
+   "buoy_x": 1054.2,
+   "skier_x": 1191.4,
+   "buoy_X": 6903.136214970278,
+   "skier_X": 7040.390545494254,
+   "centre": 4654.907400634684,
+   "amp": 2337.432375487312,
+   "ratio": 0.96,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 137.3,
+   "slot": 1
+  },
+  {
+   "frame": 1380,
+   "t": 46.05,
+   "track": 61,
+   "buoy_x": 1124.2,
+   "skier_x": 1141.4,
+   "buoy_X": 6508.294352497148,
+   "skier_X": 6525.465489386493,
+   "centre": 4260.675664157299,
+   "amp": 2216.7051033452867,
+   "ratio": 1.01,
+   "predicted": true,
+   "n_obs": 7,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 17.2,
+   "slot": 1
+  },
+  {
+   "frame": 1922,
+   "t": 64.13,
+   "track": 86,
+   "buoy_x": 1161.4,
+   "skier_x": 1279.1,
+   "buoy_X": 8396.21285720318,
+   "skier_X": 8513.87699802717,
+   "centre": 5945.458788130482,
+   "amp": 2759.3966216996896,
+   "ratio": 0.89,
+   "predicted": true,
+   "n_obs": 3,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 117.7,
+   "slot": 1
+  },
+  {
+   "frame": 2151,
+   "t": 71.77,
+   "track": 96,
+   "buoy_x": 987.4,
+   "skier_x": 780.3,
+   "buoy_X": 7462.168111773868,
+   "skier_X": 7255.149862262149,
+   "centre": 8318.033616199778,
+   "amp": 1090.2107253196136,
+   "ratio": -0.79,
+   "predicted": false,
+   "n_obs": 8,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 207.0,
+   "slot": 1
+  },
+  {
+   "frame": 2153,
+   "t": 71.84,
+   "track": 95,
+   "buoy_x": 581.5,
+   "skier_x": 763.8,
+   "buoy_X": 7064.858304848768,
+   "skier_X": 7247.134097722932,
+   "centre": 8318.033616199778,
+   "amp": 1090.2107253196136,
+   "ratio": -1.15,
+   "predicted": true,
+   "n_obs": 3,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "uncertain",
+   "margin_px": -182.3,
+   "alternation_ok": false
+  },
+  {
+   "frame": 2348,
+   "t": 78.34,
+   "track": 99,
+   "buoy_x": 1357.0,
+   "skier_x": 798.3,
+   "buoy_X": 9406.866293321642,
+   "skier_X": 8848.192770796803,
+   "centre": 8727.36601009741,
+   "amp": 2479.3683794967365,
+   "ratio": 0.27,
+   "predicted": true,
+   "n_obs": 3,
+   "hue": -1,
+   "kind": "centre"
+  },
+  {
+   "frame": 2790,
+   "t": 93.09,
+   "track": 122,
+   "buoy_x": 980.6,
+   "skier_x": 1159.1,
+   "buoy_X": 10671.351020032882,
+   "skier_X": 10849.84665601921,
+   "centre": 8462.34482380439,
+   "amp": 2354.846161430227,
+   "ratio": 0.94,
+   "predicted": false,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 178.5,
+   "slot": 1
+  },
+  {
+   "frame": 3124,
+   "t": 104.24,
+   "track": 132,
+   "buoy_x": 1750.3,
+   "skier_x": 996.9,
+   "buoy_X": 6938.411650863271,
+   "skier_X": 6185.034636242086,
+   "centre": 8654.761101352542,
+   "amp": 2944.9420373284715,
+   "ratio": -0.58,
+   "predicted": true,
+   "n_obs": 6,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 753.4,
+   "slot": 1
+  },
+  {
+   "frame": 3444,
+   "t": 114.91,
+   "track": 147,
+   "buoy_x": 1589.0,
+   "skier_x": 554.8,
+   "buoy_X": 11043.792819697032,
+   "skier_X": 10009.584366780404,
+   "centre": 11420.474756790787,
+   "amp": 1813.4428524401937,
+   "ratio": -0.21,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "estimate": 6,
+  "confirmed": 1,
+  "seen": 1,
+  "slots": "L+ R? L? R? L? R?"
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 3476,
+   "centre": null,
+   "amp": null
+  },
+  {
+   "start": 3476,
+   "end": 3933,
+   "centre": null,
+   "amp": null
+  },
+  {
+   "start": 3933,
+   "end": 3934,
+   "centre": null,
+   "amp": null
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 15.02,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 450,
+      "t": 15.02,
+      "track": 18,
+      "buoy_x": 752.0,
+      "skier_x": 760.4,
+      "buoy_X": -745.7927624043679,
+      "skier_X": -737.3426546867386,
+      "centre": 1459.5577516716357,
+      "amp": 2146.437610747041,
+      "ratio": -1.03,
+      "predicted": true,
+      "n_obs": 3,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": -8.5,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 17.52,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 20.02,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 22.52,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 25.02,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 27.52,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 35.37,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 1060,
+      "t": 35.37,
+      "track": 44,
+      "buoy_x": 1054.2,
+      "skier_x": 1191.4,
+      "buoy_X": 6903.136214970278,
+      "skier_X": 7040.390545494254,
+      "centre": 4654.907400634684,
+      "amp": 2337.432375487312,
+      "ratio": 0.96,
+      "predicted": true,
+      "n_obs": 5,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 137.3,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 37.87,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 40.37,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 42.87,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 45.37,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 47.87,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 46.05,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 1380,
+      "t": 46.05,
+      "track": 61,
+      "buoy_x": 1124.2,
+      "skier_x": 1141.4,
+      "buoy_X": 6508.294352497148,
+      "skier_X": 6525.465489386493,
+      "centre": 4260.675664157299,
+      "amp": 2216.7051033452867,
+      "ratio": 1.01,
+      "predicted": true,
+      "n_obs": 7,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 17.2,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 48.55,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 51.05,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 53.55,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 56.05,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 58.55,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 64.13,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 1922,
+      "t": 64.13,
+      "track": 86,
+      "buoy_x": 1161.4,
+      "skier_x": 1279.1,
+      "buoy_X": 8396.21285720318,
+      "skier_X": 8513.87699802717,
+      "centre": 5945.458788130482,
+      "amp": 2759.3966216996896,
+      "ratio": 0.89,
+      "predicted": true,
+      "n_obs": 3,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 117.7,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 66.63,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 69.13,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 71.63,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 74.13,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 76.63,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 71.77,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 2151,
+      "t": 71.77,
+      "track": 96,
+      "buoy_x": 987.4,
+      "skier_x": 780.3,
+      "buoy_X": 7462.168111773868,
+      "skier_X": 7255.149862262149,
+      "centre": 8318.033616199778,
+      "amp": 1090.2107253196136,
+      "ratio": -0.79,
+      "predicted": false,
+      "n_obs": 8,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 207.0,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 74.27,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 76.77,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 79.27,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 81.77,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 84.27,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 93.09,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 2790,
+      "t": 93.09,
+      "track": 122,
+      "buoy_x": 980.6,
+      "skier_x": 1159.1,
+      "buoy_X": 10671.351020032882,
+      "skier_X": 10849.84665601921,
+      "centre": 8462.34482380439,
+      "amp": 2354.846161430227,
+      "ratio": 0.94,
+      "predicted": false,
+      "n_obs": 5,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 178.5,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 95.59,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 98.09,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 100.59,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 103.09,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 105.59,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 104.24,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 3124,
+      "t": 104.24,
+      "track": 132,
+      "buoy_x": 1750.3,
+      "skier_x": 996.9,
+      "buoy_X": 6938.411650863271,
+      "skier_X": 6185.034636242086,
+      "centre": 8654.761101352542,
+      "amp": 2944.9420373284715,
+      "ratio": -0.58,
+      "predicted": true,
+      "n_obs": 6,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 753.4,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 106.74,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 109.24,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 111.74,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 114.24,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 116.74,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ],
+ "course_scores": [
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 1
+  },
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 1
+  },
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 1
+  },
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 1
+  },
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 1
+  },
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 1
+  },
+  {
+   "estimate": 5,
+   "confirmed": 1,
+   "seen": 1
+  }
+ ],
+ "boat_view_shots": {
+  "0": true,
+  "3476": true,
+  "3933": true
+ },
+ "output_video": "runs/cpu_bench/youtube_regina_jaquess.mp4"
+}

@@ -1,0 +1,376 @@
+{
+ "meta": {
+  "video": "data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4",
+  "fps": 30.00001672241735,
+  "frames": 598,
+  "width": 854,
+  "height": 480,
+  "shots": [
+   0,
+   549
+  ],
+  "wall_s": 305.27
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.13,
+   "calls": 1,
+   "ms_per_call": 126.5
+  },
+  "scene_cut": {
+   "total_s": 0.16,
+   "calls": 598,
+   "ms_per_call": 0.3
+  },
+  "skier_detect_track": {
+   "total_s": 93.24,
+   "calls": 598,
+   "ms_per_call": 155.9
+  },
+  "camera_pan": {
+   "total_s": 2.83,
+   "calls": 598,
+   "ms_per_call": 4.7
+  },
+  "pose": {
+   "total_s": 25.94,
+   "calls": 561,
+   "ms_per_call": 46.2
+  },
+  "buoy_detect": {
+   "total_s": 182.1,
+   "calls": 598,
+   "ms_per_call": 304.5
+  },
+  "course_logic": {
+   "total_s": 0.03,
+   "calls": 1,
+   "ms_per_call": 26.0
+  }
+ },
+ "processing_s": 304.3,
+ "video_s": 19.93,
+ "x_realtime": 15.27,
+ "skier": {
+  "skier_visible_ratio": 0.938,
+  "skier_visible_s": 18.7,
+  "pose_good_ratio": 0.89,
+  "skier_median_height_px": 128.7
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.117,
+  "buoy_tracks": 13,
+  "hidden_ratio_within_tracks": 0.068,
+  "longest_hidden_gap_s": 0.07
+ },
+ "events": [
+  {
+   "frame": 191,
+   "t": 6.37,
+   "track": 9,
+   "buoy_x": 358.8,
+   "skier_x": 379.0,
+   "buoy_X": 435.86345434186705,
+   "skier_X": 456.0709072509592,
+   "centre": -868.2743924351444,
+   "amp": 1307.2483948964573,
+   "ratio": 1.0,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 20.2,
+   "slot": 1
+  },
+  {
+   "frame": 275,
+   "t": 9.17,
+   "track": 12,
+   "buoy_x": 668.9,
+   "skier_x": 406.7,
+   "buoy_X": -2061.4124615650007,
+   "skier_X": -2323.6053175604247,
+   "centre": -1019.9492526675111,
+   "amp": 1298.7029133231108,
+   "ratio": -0.8,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 262.2,
+   "slot": 2
+  },
+  {
+   "frame": 343,
+   "t": 11.43,
+   "track": 14,
+   "buoy_x": 431.3,
+   "skier_x": 431.9,
+   "buoy_X": 272.6957501087291,
+   "skier_X": 273.3061421193572,
+   "centre": -1036.4166731897758,
+   "amp": 1309.7752921922356,
+   "ratio": 1.0,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 0.6,
+   "slot": 3
+  },
+  {
+   "frame": 433,
+   "t": 14.43,
+   "track": 20,
+   "buoy_x": 727.3,
+   "skier_x": 324.5,
+   "buoy_X": -2110.1658587628212,
+   "skier_X": -2513.026847086682,
+   "centre": -1253.116440323644,
+   "amp": 1297.3278213123435,
+   "ratio": -0.66,
+   "predicted": true,
+   "n_obs": 5,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 402.9,
+   "slot": 4
+  },
+  {
+   "frame": 498,
+   "t": 16.6,
+   "track": 22,
+   "buoy_x": 406.7,
+   "skier_x": 495.5,
+   "buoy_X": -43.693052098900495,
+   "skier_X": 45.06296308826455,
+   "centre": -1252.8522996260979,
+   "amp": 1297.9152627143624,
+   "ratio": 0.93,
+   "predicted": true,
+   "n_obs": 3,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 88.8,
+   "slot": 5
+  }
+ ],
+ "score": {
+  "estimate": 5,
+  "confirmed": 5,
+  "seen": 5,
+  "slots": "R+ L+ R+ L+ R+ L-"
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 549,
+   "centre": null,
+   "amp": null
+  },
+  {
+   "start": 549,
+   "end": 598,
+   "centre": null,
+   "amp": null
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.53,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 6.37,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 191,
+      "t": 6.37,
+      "track": 9,
+      "buoy_x": 358.8,
+      "skier_x": 379.0,
+      "buoy_X": 435.86345434186705,
+      "skier_X": 456.0709072509592,
+      "centre": -868.2743924351444,
+      "amp": 1307.2483948964573,
+      "ratio": 1.0,
+      "predicted": true,
+      "n_obs": 5,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 20.2,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 8.9,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 275,
+      "t": 9.17,
+      "track": 12,
+      "buoy_x": 668.9,
+      "skier_x": 406.7,
+      "buoy_X": -2061.4124615650007,
+      "skier_X": -2323.6053175604247,
+      "centre": -1019.9492526675111,
+      "amp": 1298.7029133231108,
+      "ratio": -0.8,
+      "predicted": true,
+      "n_obs": 5,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 262.2,
+      "slot": 2
+     },
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 11.43,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 343,
+      "t": 11.43,
+      "track": 14,
+      "buoy_x": 431.3,
+      "skier_x": 431.9,
+      "buoy_X": 272.6957501087291,
+      "skier_X": 273.3061421193572,
+      "centre": -1036.4166731897758,
+      "amp": 1309.7752921922356,
+      "ratio": 1.0,
+      "predicted": true,
+      "n_obs": 5,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 0.6,
+      "slot": 3
+     },
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 13.97,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 433,
+      "t": 14.43,
+      "track": 20,
+      "buoy_x": 727.3,
+      "skier_x": 324.5,
+      "buoy_X": -2110.1658587628212,
+      "skier_X": -2513.026847086682,
+      "centre": -1253.116440323644,
+      "amp": 1297.3278213123435,
+      "ratio": -0.66,
+      "predicted": true,
+      "n_obs": 5,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 402.9,
+      "slot": 4
+     },
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 16.5,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 498,
+      "t": 16.6,
+      "track": 22,
+      "buoy_x": 406.7,
+      "skier_x": 495.5,
+      "buoy_X": -43.693052098900495,
+      "skier_X": 45.06296308826455,
+      "centre": -1252.8522996260979,
+      "amp": 1297.9152627143624,
+      "ratio": 0.93,
+      "predicted": true,
+      "n_obs": 3,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 88.8,
+      "slot": 5
+     },
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 19.03,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ],
+ "course_scores": [
+  {
+   "estimate": 5,
+   "confirmed": 5,
+   "seen": 5
+  }
+ ],
+ "boat_view_shots": {
+  "0": true,
+  "549": true
+ },
+ "output_video": "runs/cpu_bench/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4"
+}

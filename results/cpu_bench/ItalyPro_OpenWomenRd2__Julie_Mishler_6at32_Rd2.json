@@ -1,0 +1,461 @@
+{
+ "meta": {
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "fps": 29.569266209741404,
+  "frames": 605,
+  "width": 1920,
+  "height": 1064,
+  "shots": [
+   0
+  ],
+  "wall_s": 322.12
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "yolo11-buoy (distilled)"
+ },
+ "buoy_every": 1,
+ "timings": {
+  "load_models": {
+   "total_s": 0.19,
+   "calls": 1,
+   "ms_per_call": 194.5
+  },
+  "scene_cut": {
+   "total_s": 0.18,
+   "calls": 605,
+   "ms_per_call": 0.3
+  },
+  "skier_detect_track": {
+   "total_s": 100.32,
+   "calls": 605,
+   "ms_per_call": 165.8
+  },
+  "camera_pan": {
+   "total_s": 7.77,
+   "calls": 605,
+   "ms_per_call": 12.8
+  },
+  "pose": {
+   "total_s": 25.83,
+   "calls": 538,
+   "ms_per_call": 48.0
+  },
+  "buoy_detect": {
+   "total_s": 186.0,
+   "calls": 605,
+   "ms_per_call": 307.4
+  },
+  "course_logic": {
+   "total_s": 0.12,
+   "calls": 1,
+   "ms_per_call": 123.2
+  }
+ },
+ "processing_s": 320.22,
+ "video_s": 20.46,
+ "x_realtime": 15.65,
+ "skier": {
+  "skier_visible_ratio": 0.889,
+  "skier_visible_s": 18.19,
+  "pose_good_ratio": 0.866,
+  "skier_median_height_px": 177.1
+ },
+ "buoys": {
+  "frames_with_buoy_ratio": 0.628,
+  "buoy_tracks": 34,
+  "hidden_ratio_within_tracks": 0.181,
+  "longest_hidden_gap_s": 0.47
+ },
+ "events": [
+  {
+   "frame": 72,
+   "t": 2.43,
+   "track": 4,
+   "buoy_x": 1164.8,
+   "skier_x": 566.0,
+   "buoy_X": -212.11178122131582,
+   "skier_X": -810.9127150592064,
+   "centre": -609.5263267689706,
+   "amp": 2199.553338518499,
+   "ratio": 0.18,
+   "predicted": false,
+   "n_obs": 18,
+   "hue": -1,
+   "kind": "gate",
+   "gate_with": 5,
+   "through_gate": true,
+   "merged": [
+    5
+   ]
+  },
+  {
+   "frame": 111,
+   "t": 3.75,
+   "track": 7,
+   "buoy_x": 1083.9,
+   "skier_x": 941.4,
+   "buoy_X": -2766.448073006498,
+   "skier_X": -2908.89646550636,
+   "centre": -895.3724788449969,
+   "amp": 1912.2502167972166,
+   "ratio": -0.98,
+   "predicted": true,
+   "n_obs": 9,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 142.4
+  },
+  {
+   "frame": 192,
+   "t": 6.49,
+   "track": 12,
+   "buoy_x": 1462.3,
+   "skier_x": 1472.8,
+   "buoy_X": 733.8366860617805,
+   "skier_X": 744.3400254818275,
+   "centre": -1027.970636376609,
+   "amp": 1730.828316481342,
+   "ratio": 1.02,
+   "predicted": true,
+   "n_obs": 17,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 10.5,
+   "slot": 1
+  },
+  {
+   "frame": 269,
+   "t": 9.1,
+   "track": 20,
+   "buoy_x": 793.2,
+   "skier_x": 857.2,
+   "buoy_X": -3451.919836972542,
+   "skier_X": -3387.873625096642,
+   "centre": -1466.2172179280426,
+   "amp": 1981.7637409960078,
+   "ratio": -1.0,
+   "predicted": true,
+   "n_obs": 7,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "uncertain",
+   "margin_px": -64.0,
+   "merged": [
+    19
+   ],
+   "slot": 2
+  },
+  {
+   "frame": 352,
+   "t": 11.9,
+   "track": 24,
+   "buoy_x": 1189.7,
+   "skier_x": 1336.8,
+   "buoy_X": 24.386142034292817,
+   "skier_X": 171.54613332128042,
+   "centre": -1643.9790862778166,
+   "amp": 1759.3774782131507,
+   "ratio": 0.95,
+   "predicted": true,
+   "n_obs": 24,
+   "hue": -1,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 147.2,
+   "slot": 3
+  },
+  {
+   "frame": 431,
+   "t": 14.58,
+   "track": 30,
+   "buoy_x": 1067.2,
+   "skier_x": 913.3,
+   "buoy_X": -3841.6145469666944,
+   "skier_X": -3995.547612751051,
+   "centre": -2063.402118666545,
+   "amp": 1897.3908559652332,
+   "ratio": -0.94,
+   "predicted": true,
+   "n_obs": 7,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_px": 153.9,
+   "slot": 4
+  },
+  {
+   "frame": 516,
+   "t": 17.45,
+   "track": 41,
+   "buoy_x": 500.6,
+   "skier_x": 1467.2,
+   "buoy_X": -1313.9466587244272,
+   "skier_X": -347.36426126348965,
+   "centre": -2014.7098236777308,
+   "amp": 1585.8469791510272,
+   "ratio": 0.44,
+   "predicted": false,
+   "n_obs": 41,
+   "hue": -1,
+   "kind": "gate",
+   "gate_with": 36,
+   "through_gate": false,
+   "merged": [
+    36
+   ]
+  },
+  {
+   "frame": 562,
+   "t": 19.01,
+   "track": 47,
+   "buoy_x": 691.5,
+   "skier_x": 725.4,
+   "buoy_X": -2026.8233289202853,
+   "skier_X": -1992.9870252093478,
+   "centre": -1457.700002374621,
+   "amp": 1068.2900101616005,
+   "ratio": -0.53,
+   "predicted": false,
+   "n_obs": 17,
+   "hue": -1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "uncertain",
+   "margin_px": -33.8,
+   "merged": [
+    49
+   ],
+   "alternation_ok": false,
+   "slot": 6
+  },
+  {
+   "frame": 575,
+   "t": 19.45,
+   "track": 50,
+   "buoy_x": 1041.7,
+   "skier_x": 724.2,
+   "buoy_X": -1935.2316003393175,
+   "skier_X": -2252.6600976537707,
+   "centre": -1456.0927228863588,
+   "amp": 1075.9756168168042,
+   "ratio": -0.45,
+   "predicted": false,
+   "n_obs": 30,
+   "hue": -1,
+   "kind": "centre"
+  }
+ ],
+ "score": {
+  "estimate": 6,
+  "confirmed": 1,
+  "seen": 3,
+  "slots": "R+ L~ R+ L+ R? L~"
+ },
+ "segments": [
+  {
+   "start": 0,
+   "end": 605,
+   "centre": null,
+   "amp": null
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.67,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 6.43,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 192,
+      "t": 6.49,
+      "track": 12,
+      "buoy_x": 1462.3,
+      "skier_x": 1472.8,
+      "buoy_X": 733.8366860617805,
+      "skier_X": 744.3400254818275,
+      "centre": -1027.970636376609,
+      "amp": 1730.828316481342,
+      "ratio": 1.02,
+      "predicted": true,
+      "n_obs": 17,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 10.5,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 9.1,
+     "side": "left",
+     "status": "uncertain",
+     "event": {
+      "frame": 269,
+      "t": 9.1,
+      "track": 20,
+      "buoy_x": 793.2,
+      "skier_x": 857.2,
+      "buoy_X": -3451.919836972542,
+      "skier_X": -3387.873625096642,
+      "centre": -1466.2172179280426,
+      "amp": 1981.7637409960078,
+      "ratio": -1.0,
+      "predicted": true,
+      "n_obs": 7,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "uncertain",
+      "margin_px": -64.0,
+      "merged": [
+       19
+      ],
+      "slot": 2
+     },
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 11.77,
+     "side": "right",
+     "status": "ok",
+     "event": {
+      "frame": 352,
+      "t": 11.9,
+      "track": 24,
+      "buoy_x": 1189.7,
+      "skier_x": 1336.8,
+      "buoy_X": 24.386142034292817,
+      "skier_X": 171.54613332128042,
+      "centre": -1643.9790862778166,
+      "amp": 1759.3774782131507,
+      "ratio": 0.95,
+      "predicted": true,
+      "n_obs": 24,
+      "hue": -1,
+      "kind": "turn",
+      "side": "right",
+      "skier_side": "left",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 147.2,
+      "slot": 3
+     },
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 14.44,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 431,
+      "t": 14.58,
+      "track": 30,
+      "buoy_x": 1067.2,
+      "skier_x": 913.3,
+      "buoy_X": -3841.6145469666944,
+      "skier_X": -3995.547612751051,
+      "centre": -2063.402118666545,
+      "amp": 1897.3908559652332,
+      "ratio": -0.94,
+      "predicted": true,
+      "n_obs": 7,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_px": 153.9,
+      "slot": 4
+     },
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 17.11,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 19.78,
+     "side": "left",
+     "status": "uncertain",
+     "event": {
+      "frame": 562,
+      "t": 19.01,
+      "track": 47,
+      "buoy_x": 691.5,
+      "skier_x": 725.4,
+      "buoy_X": -2026.8233289202853,
+      "skier_X": -1992.9870252093478,
+      "centre": -1457.700002374621,
+      "amp": 1068.2900101616005,
+      "ratio": -0.53,
+      "predicted": false,
+      "n_obs": 17,
+      "hue": -1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "uncertain",
+      "margin_px": -33.8,
+      "merged": [
+       49
+      ],
+      "alternation_ok": false,
+      "slot": 6
+     },
+     "rejected": []
+    }
+   ]
+  }
+ ],
+ "course_scores": [
+  {
+   "estimate": 6,
+   "confirmed": 1,
+   "seen": 3
+  }
+ ],
+ "boat_view_shots": {
+  "0": true
+ },
+ "output_video": "runs/cpu_bench/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4"
+}

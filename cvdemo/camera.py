@@ -14,7 +14,7 @@ What is measured / estimated
 ----------------------------
 * Frame-to-frame camera ROTATION comes from sparse optical flow on the far background (shore/trees),
   like camera-motion compensation in BoT-SORT: (dx, dy, droll) -> dpsi = -atan(dx/f), dtheta = -atan(dy/f).
-* The unknown constants (f, h, initial pitch theta0, initial yaw psi0 + a slow yaw-drift, boat speed v)
+* The unknown constants (f, h, pitch theta0, a slowly varying yaw correction (knots every 3 s), boat speed v)
   are CALIBRATED per shot with slalom facts, by robust least squares:
     - the skier is at the end of a taut rope:      |(X_skier, Z_skier)| ~ rope length (+ ~0.8 m to the feet)
     - buoys are anchored: in the boat frame they keep X and recede at boat speed:  Z_b(t) = Z_b0 + v t
@@ -33,7 +33,7 @@ class CameraMotion:
     """Per-frame camera rotation increments (dx, dy [px at full resolution], droll [rad]) from LK flow
     on the background (upper image band, minus overlays and the skier)."""
 
-    def __init__(self, band=(0.04, 0.55), scale=0.5, max_pts=400):
+    def __init__(self, band=(0.04, 0.36), scale=0.5, max_pts=400):
         self.band, self.scale, self.max_pts = band, scale, max_pts
         self.prev = None
 
@@ -71,6 +71,14 @@ class CameraMotion:
                         inc = (dx / self.scale, dy / self.scale, float(a))
         self.prev = g
         return inc
+
+
+def _smooth(x, w):
+    """Centred moving average (edge-padded): the operator pans smoothly, frame-to-frame flow noise is removed."""
+    if w < 2:
+        return x
+    k = np.ones(2 * w + 1) / (2 * w + 1)
+    return np.convolve(np.pad(x, w, mode="edge"), k, mode="valid")
 
 
 # --------------------------------------------------------------------------------------------- model
@@ -144,12 +152,18 @@ class ShotCalibration:
         self.report = {}
 
     # angles of every frame of the shot for given f and offsets
-    def angles(self, f, theta0, psi0, psi1):
+    def knot_times(self, every_s=3.0):
+        T = len(self.inc) / self.fps
+        return np.append(np.arange(0.0, T, every_s), T)
+
+    def angles(self, f, theta0, knots):
+        """knots: yaw offset (rad) at self.knot_times(); piecewise-linear correction of the integrated pan,
+        which drifts by several degrees over a pass."""
         # pan is integrated from flow; tilt and roll are taken as constant per shot: integrated vertical
         # flow drifts (boat motion -> receding shore looks like tilt) while the operator mostly pans
         dpsi = -np.arctan(self.inc[:, 0] / f)
         t = np.arange(len(self.inc)) / self.fps
-        psi = psi0 + np.cumsum(dpsi) + psi1 * t
+        psi = _smooth(np.cumsum(dpsi), int(0.3 * self.fps)) + np.interp(t, self.knot_times(), knots)
         theta = np.full(len(self.inc), theta0)
         rho = np.zeros(len(self.inc))
         return theta, psi, rho
@@ -174,9 +188,10 @@ class ShotCalibration:
         start = (sk_i < anchor_s * self.fps) if self.s0 == 0 else np.zeros(len(sk_i), bool)
 
         def resid(p):
-            lf, h, th0, ps0, ps1, v = p
+            lf, h, th0, v = p[:4]
+            kn = p[4:]
             f = np.exp(lf)
-            theta, psi, rho = self.angles(f, th0, ps0, ps1)
+            theta, psi, rho = self.angles(f, th0, kn)
             X, Z = pixel_to_water(sk[:, 1], sk[:, 2], f, self.cx, self.cy, h, theta[sk_i], psi[sk_i], rho[sk_i])
             bad = ~np.isfinite(X)
             X, Z = np.nan_to_num(X, nan=0.0), np.nan_to_num(Z, nan=100.0)
@@ -202,14 +217,16 @@ class ShotCalibration:
             for w in wins_big:
                 xs = np.abs(X[win == w])
                 r.append(np.array([(np.percentile(xs, 92) - 10.5) / 2.5]))
-            r.append(np.array([(v - v_prior) / 0.25, ps1 / 0.02]))  # boat speed is set by the rules
+            r.append(np.array([(v - v_prior) / 0.25]))  # boat speed is set by the rules
+            r.append(np.diff(kn) / 0.06)  # yaw correction changes slowly (~3.5 deg per 3 s at most)
             if fixed is None:
                 r.append(np.array([(h - 2.2) / 0.6, (lf - np.log(0.95 * self.W)) / 0.6]))  # weak priors
             return np.concatenate(r)
 
         best = None
-        lo = [np.log(self.f_range[0] * self.W), 1.5, -0.1, -1.6, -0.1, 12.0]
-        hi = [np.log(self.f_range[1] * self.W), 3.2, 0.7, 1.6, 0.1, 18.5]
+        nk = len(self.knot_times())
+        lo = [np.log(self.f_range[0] * self.W), 1.5, -0.1, 12.0] + [-1.6] * nk
+        hi = [np.log(self.f_range[1] * self.W), 3.2, 0.7, 18.5] + [1.6] * nk
         f_starts = (0.7, 1.0, 1.4, 1.9)
         if fixed is not None:
             lf_fix = np.log(fixed[0] * self.W)
@@ -219,7 +236,7 @@ class ShotCalibration:
         for f0 in f_starts:
             for th0 in th_starts:
                 for ps0 in ps_starts:
-                    p0 = [np.log(f0 * self.W), fixed[1] if fixed is not None else 2.0, th0, ps0, 0.0, v_prior]
+                    p0 = [np.log(f0 * self.W), fixed[1] if fixed is not None else 2.0, th0, v_prior] + [ps0] * nk
                     try:
                         res = least_squares(resid, p0, loss="soft_l1", f_scale=1.0, max_nfev=200, bounds=(lo, hi))
                     except Exception as e:  # noqa: BLE001
@@ -231,8 +248,8 @@ class ShotCalibration:
             self.report = dict(status="fit failed", error=getattr(self, "last_error", ""))
             return False
         self.p = best.x
-        lf, h, th0, ps0, ps1, v = best.x
-        theta, psi, rho = self.angles(np.exp(lf), th0, ps0, ps1)
+        lf, h, th0, v = best.x[:4]
+        theta, psi, rho = self.angles(np.exp(lf), th0, best.x[4:])
         self.theta, self.psi, self.rho = theta, psi, rho
         X, Z = self.to_water(sk[:, 0].astype(int), sk[:, 1], sk[:, 2])
         dist = np.hypot(X, Z)
@@ -260,7 +277,7 @@ class ShotCalibration:
 
     @property
     def v(self):
-        return float(self.p[5])
+        return float(self.p[3])
 
     def to_water(self, frame, u, v):
         i = np.asarray(frame, int) - self.s0

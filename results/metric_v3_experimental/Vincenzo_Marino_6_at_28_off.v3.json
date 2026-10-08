@@ -1,0 +1,25 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+ "official": "6",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 751,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 2144.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 3.2,
+    "pitch0_deg": 12.7,
+    "boat_speed_kmh": 43.2,
+    "rope_m": 12.0,
+    "skier_dist_median_m": 12.81,
+    "skier_dist_mad_m": 0.17,
+    "n_buoy_tracks": 13,
+    "cost": 158.7
+   },
+   "metric": false
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "video": "/content/CV_test/data/videos/youtube/youtube_regina_jaquess.mp4",
+ "official": "?",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 3476,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 3840.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 3.2,
+    "pitch0_deg": 13.3,
+    "boat_speed_kmh": 43.2,
+    "rope_m": 11.25,
+    "skier_dist_median_m": 11.92,
+    "skier_dist_mad_m": 0.45,
+    "n_buoy_tracks": 43,
+    "cost": 242.2
+   },
+   "metric": false
+  },
+  {
+   "start": 3476,
+   "end": 3933,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 3840.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 3.2,
+    "pitch0_deg": 14.0,
+    "boat_speed_kmh": 55.1,
+    "rope_m": 11.25,
+    "skier_dist_median_m": 11.68,
+    "skier_dist_mad_m": 0.86,
+    "n_buoy_tracks": 0,
+    "cost": 18.1
+   },
+   "metric": false
+  }
+ ]
+}

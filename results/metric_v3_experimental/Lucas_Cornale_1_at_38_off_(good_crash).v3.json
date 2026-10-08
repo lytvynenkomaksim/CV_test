@@ -1,0 +1,25 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+ "official": "1",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 472,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 2148.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 2.64,
+    "pitch0_deg": 11.2,
+    "boat_speed_kmh": 57.1,
+    "rope_m": 10.25,
+    "skier_dist_median_m": 11.05,
+    "skier_dist_mad_m": 0.24,
+    "n_buoy_tracks": 5,
+    "cost": 49.9
+   },
+   "metric": false
+  }
+ ]
+}

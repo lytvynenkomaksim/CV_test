@@ -1,0 +1,25 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 2 at 39.5 off.mp4",
+ "official": "2",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 597,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 2144.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 3.2,
+    "pitch0_deg": 13.8,
+    "boat_speed_kmh": 56.6,
+    "rope_m": 9.75,
+    "skier_dist_median_m": 10.79,
+    "skier_dist_mad_m": 0.42,
+    "n_buoy_tracks": 7,
+    "cost": 193.4
+   },
+   "metric": false
+  }
+ ]
+}

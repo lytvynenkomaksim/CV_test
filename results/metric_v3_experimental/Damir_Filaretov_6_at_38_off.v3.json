@@ -1,0 +1,25 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Damir Filaretov 6 at 38 off.mp4",
+ "official": "6",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 660,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 1690.3,
+    "hfov_deg": 35.2,
+    "cam_height_m": 1.5,
+    "pitch0_deg": 5.0,
+    "boat_speed_kmh": 43.2,
+    "rope_m": 10.25,
+    "skier_dist_median_m": 10.99,
+    "skier_dist_mad_m": 0.42,
+    "n_buoy_tracks": 34,
+    "cost": 314.8
+   },
+   "metric": false
+  }
+ ]
+}

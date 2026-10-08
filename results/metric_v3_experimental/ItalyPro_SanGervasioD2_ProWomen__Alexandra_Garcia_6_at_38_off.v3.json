@@ -1,0 +1,25 @@
+{
+ "video": "/content/CV_test/data/videos/drive_extra/ItalyPro_SanGervasioD2_ProWomen__Alexandra_Garcia_6_at_38_off.mp4",
+ "official": "6",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 741,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 1571.1,
+    "hfov_deg": 37.7,
+    "cam_height_m": 1.5,
+    "pitch0_deg": 5.0,
+    "boat_speed_kmh": 43.2,
+    "rope_m": 10.25,
+    "skier_dist_median_m": 11.08,
+    "skier_dist_mad_m": 0.43,
+    "n_buoy_tracks": 34,
+    "cost": 323.0
+   },
+   "metric": false
+  }
+ ]
+}

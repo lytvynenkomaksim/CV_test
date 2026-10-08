@@ -1,0 +1,181 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Damir Filaretov 6 at 35 off.mp4",
+ "official": "6",
+ "events": [
+  {
+   "frame": 47,
+   "t": 1.57,
+   "track": 2,
+   "kind": "turn",
+   "buoy_X": -8.924465852563745,
+   "skier_X": -5.3358077977119525,
+   "s": 14.068034995344858,
+   "predicted": false,
+   "n_obs": 10,
+   "side": "left",
+   "margin_m": -3.59,
+   "outside": false,
+   "verdict": "miss",
+   "slot": 1
+  },
+  {
+   "frame": 216,
+   "t": 7.2,
+   "track": 3,
+   "kind": "centre",
+   "buoy_X": -0.4448107863572471,
+   "skier_X": -0.3565675382359798,
+   "s": 102.4882593309493,
+   "predicted": false,
+   "n_obs": 5,
+   "between": true
+  },
+  {
+   "frame": 216,
+   "t": 7.2,
+   "track": 4,
+   "kind": "centre",
+   "buoy_X": 1.6094755228454176,
+   "skier_X": -0.3565675382359798,
+   "s": 102.61601878170768,
+   "predicted": false,
+   "n_obs": 3,
+   "between": true
+  },
+  {
+   "frame": 333,
+   "t": 11.11,
+   "track": 8,
+   "kind": "turn",
+   "buoy_X": 6.858482035437577,
+   "skier_X": 7.190332540484564,
+   "s": 166.99673623911332,
+   "predicted": false,
+   "n_obs": 4,
+   "side": "right",
+   "margin_m": 0.33,
+   "outside": true,
+   "verdict": "ok"
+  },
+  {
+   "frame": 342,
+   "t": 11.41,
+   "track": 9,
+   "kind": "centre",
+   "buoy_X": 1.3142585833640121,
+   "skier_X": 6.4796936713530835,
+   "s": 172.19387459569225,
+   "predicted": true,
+   "n_obs": 4,
+   "between": false
+  },
+  {
+   "frame": 698,
+   "t": 23.28,
+   "track": 19,
+   "kind": "gate",
+   "buoy_X": -0.20820154673247854,
+   "skier_X": 0.5465370675380131,
+   "s": 357.23856661270366,
+   "predicted": false,
+   "n_obs": 8,
+   "between": true
+  },
+  {
+   "frame": 701,
+   "t": 23.38,
+   "track": 20,
+   "kind": "gate",
+   "buoy_X": 1.8576370415415502,
+   "skier_X": 0.30919521538137845,
+   "s": 358.4885944867018,
+   "predicted": false,
+   "n_obs": 10,
+   "between": true
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 720,
+   "calibration": {
+    "status": "ok",
+    "f_px": 1226.0,
+    "hfov_deg": 47.3,
+    "cam_height_m": 2.1,
+    "pitch0_deg": 7.1,
+    "boat_speed_kmh": 57.1,
+    "rope_m": 10.75,
+    "skier_dist_median_m": 11.45,
+    "skier_dist_mad_m": 0.35,
+    "n_buoy_tracks": 11,
+    "cost": 90.1
+   },
+   "metric": true,
+   "course": {
+    "s1": 14.068034995344858,
+    "side1": -1,
+    "slots": [
+     {
+      "slot": 1,
+      "s": 14.1,
+      "side": "left",
+      "event": {
+       "frame": 47,
+       "t": 1.57,
+       "track": 2,
+       "kind": "turn",
+       "buoy_X": -8.924465852563745,
+       "skier_X": -5.3358077977119525,
+       "s": 14.068034995344858,
+       "predicted": false,
+       "n_obs": 10,
+       "side": "left",
+       "margin_m": -3.59,
+       "outside": false,
+       "verdict": "miss",
+       "slot": 1
+      },
+      "status": "miss"
+     },
+     {
+      "slot": 2,
+      "s": 55.1,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 3,
+      "s": 96.1,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 4,
+      "s": 137.1,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 5,
+      "s": 178.1,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 6,
+      "s": 219.1,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     }
+    ],
+    "turn_offset_m": 7.891473944000661
+   }
+  }
+ ]
+}

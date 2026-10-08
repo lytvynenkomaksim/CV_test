@@ -381,7 +381,9 @@ def _dash(img, pts, col, th=1, on=10, off=8):
         acc += seg
 
 
-def render_metric(video, out_path, frames, meta, ana, labels, note=""):
+def render_metric(video, out_path, frames, meta, ana, labels, note="", show_lines=True, timing_line=None):
+    """show_lines=False: same video without the course centre line, buoy lines and mini-map
+    (buoy markers, skeleton and pass notifications are kept)."""
     import subprocess
 
     import cv2
@@ -413,12 +415,12 @@ def render_metric(video, out_path, frames, meta, ana, labels, note=""):
             zs = sh["skier"].get(f, (None, None))[1]
             # course centre line (boat path) and the two buoy lines
             Zl = np.linspace(2.0, 60.0, 60)
-            for Xc, col, th in ((0.0, (255, 255, 255), 2), (off, (0, 140, 255), 1), (-off, (0, 140, 255), 1)):
+            for Xc, col, th in () if not show_lines else ((0.0, (255, 255, 255), 2), (off, (0, 140, 255), 1), (-off, (0, 140, 255), 1)):
                 u, v = cal.to_pixel(f, np.full_like(Zl, Xc), Zl)
                 pts = [(int(a), int(b)) for a, b in zip(u, v) if np.isfinite(a) and -W < a < 2 * W and 0 <= b < H]
                 if len(pts) > 1:
                     (_dash(img, pts, col, th) if Xc else cv2.polylines(img, [np.array(pts)], False, col, th, cv2.LINE_AA))
-            if zs is not None:
+            if zs is not None and show_lines:
                 u, v = cal.to_pixel(f, np.array([0.0]), np.array([zs]))
                 if np.isfinite(u[0]) and 0 <= u[0] < W:
                     cv2.putText(img, "course centre", (int(u[0]) + 5, int(v[0]) - 6), cv2.FONT_HERSHEY_SIMPLEX, 0.45,
@@ -460,28 +462,35 @@ def render_metric(video, out_path, frames, meta, ana, labels, note=""):
             cv2.rectangle(img, (int(x0), int(y0)), (int(x1), int(y1)), (255, 0, 255), 1)
             if r["kpts"] is not None:
                 P.draw_skeleton(img, np.array(r["kpts"]))
-        # event banners
+        # event banners (pass notifications), stacked, scaled to the video size
+        fs = max(0.6, W / 1400)
+        row = 0
         for e in evs:
-            if 0 <= f - e["frame"] < int(1.2 * fps):
-                if e["kind"] == "turn" and not e.get("slot"):
-                    continue  # not part of the fitted course (duplicate / far buoy): no banner
-                if e["kind"] == "turn":
-                    col = {"ok": (0, 200, 0), "miss": (0, 0, 255), "uncertain": (0, 200, 255)}[e["verdict"]]
-                    slot = f"buoy {e['slot']} " if e.get("slot") else ""
-                    msg = {"ok": "OUTSIDE - OK", "miss": "INSIDE - MISS", "uncertain": "too close to call"}[e["verdict"]]
-                    msg = f"{slot}{e['side'].upper()}: skier {msg} ({e['margin_m']:+.1f} m)"
-                    if e["predicted"]:
-                        msg += " [buoy hidden]"
-                elif e["kind"] == "gate":
-                    col = (0, 200, 0) if e["between"] else (0, 0, 255)
-                    msg = "GATE: between the gate buoys" if e["between"] else "GATE: missed"
-                else:
-                    continue
-                (tw, _), _ = cv2.getTextSize(msg, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
-                cv2.rectangle(img, (W // 2 - tw // 2 - 8, 60), (W // 2 + tw // 2 + 8, 92), (0, 0, 0), -1)
-                cv2.putText(img, msg, (W // 2 - tw // 2, 84), cv2.FONT_HERSHEY_SIMPLEX, 0.7, col, 2, cv2.LINE_AA)
+            if not (0 <= f - e["frame"] < int(1.5 * fps)):
+                continue
+            if e["kind"] == "turn" and not e.get("slot"):
+                continue  # not part of the fitted course (duplicate / far buoy): no banner
+            if e["kind"] == "turn":
+                col = {"ok": (0, 200, 0), "miss": (0, 0, 255), "uncertain": (0, 200, 255)}[e["verdict"]]
+                res = {"ok": "passed OUTSIDE - CORRECT", "miss": "passed INSIDE - MISSED",
+                       "uncertain": "too close to call"}[e["verdict"]]
+                msg = f"BUOY {e['slot']} ({e['side'].upper()}): {res}"
+                if e["predicted"]:
+                    msg += " [buoy hidden, position estimated]"
+            elif e["kind"] == "gate":
+                col = (0, 200, 0) if e["between"] else (0, 0, 255)
+                msg = ("CENTRE GATE: skier passed BETWEEN - CORRECT" if e["between"]
+                       else "CENTRE GATE: skier NOT between - MISSED")
+            else:
+                continue
+            (tw, th_), _ = cv2.getTextSize(msg, cv2.FONT_HERSHEY_SIMPLEX, fs, 2)
+            y0b = int(55 * fs) + row * int(th_ + 22)
+            cv2.rectangle(img, (W // 2 - tw // 2 - 10, y0b), (W // 2 + tw // 2 + 10, y0b + th_ + 16), (0, 0, 0), -1)
+            cv2.rectangle(img, (W // 2 - tw // 2 - 10, y0b), (W // 2 + tw // 2 + 10, y0b + th_ + 16), col, 2)
+            cv2.putText(img, msg, (W // 2 - tw // 2, y0b + th_ + 7), cv2.FONT_HERSHEY_SIMPLEX, fs, col, 2, cv2.LINE_AA)
+            row += 1
         # mini-map (top-down, boat at the top)
-        if mm is not None:
+        if mm is not None and show_lines:
             x0m, y0m = W - MW - 10, 110
             ov = img.copy()
             cv2.rectangle(ov, (x0m, y0m), (x0m + MW, y0m + MH), (40, 40, 40), -1)
@@ -507,24 +516,39 @@ def render_metric(video, out_path, frames, meta, ana, labels, note=""):
                 cv2.line(img, P2(0, 0), P2(X, Z), (180, 180, 180), 1, cv2.LINE_AA)  # rope
                 cv2.circle(img, P2(X, Z), 5, (255, 0, 255), -1, cv2.LINE_AA)
             cv2.putText(img, "top view (m)", (x0m + 4, y0m + MH - 6), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255, 255, 255), 1)
-        # HUD
+        # HUD: scoreboard + models + timing
         sh_c = (sh or {}).get("course") or {}
-        done = [sl for sl in sh_c.get("slots", []) if sl["event"] is not None and sl["event"]["frame"] <= f]
-        sym = dict(ok="OK", miss="X", uncertain="?")
-        lines = [f"models: {labels.get('skier', '')} | pose {labels.get('pose', '')} | buoys {labels.get('buoy', '')}",
-                 "buoys: " + " ".join(f"{sl['slot']}{sl['side'][0].upper()}:{sym[sl['status']]}" for sl in done)]
-        if cal is not None:
+        sym = dict(ok="OK", miss="MISS", uncertain="?")
+        board = []
+        slots_ = sh_c.get("slots", [])
+        last_seen = max([sl["event"]["frame"] for sl in slots_ if sl["event"] is not None] or [10 ** 9])
+        for sl in slots_:
+            e = sl["event"]
+            if e is not None and e["frame"] <= f:
+                board.append(f"{sl['slot']}{sl['side'][0].upper()} {sym[sl['status']]}")
+            elif e is None and f > last_seen:  # run over: buoys that were never observed
+                board.append(f"{sl['slot']}{sl['side'][0].upper()} not seen")
+        gates = [e for e in evs if e["kind"] == "gate" and e["frame"] <= f]
+        lines = ["buoys: " + (" | ".join(board) if board else "-")
+                 + ("   gates: " + " ".join("OK" if g["between"] else "MISS" for g in gates) if gates else ""),
+                 f"models: {labels.get('skier', '')} | pose {labels.get('pose', '')} | buoys {labels.get('buoy', '')}"]
+        if cal is not None and show_lines:
             rep = sh["calibration"]
-            lines.append(f"camera model: f={rep['f_px']:.0f}px h={rep['cam_height_m']}m boat {rep['boat_speed_kmh']} km/h"
+            lines.append(f"camera model: f={rep['f_px']:.0f}px h={rep['cam_height_m']}m"
                          + (f" | {note}" if note else ""))
-        elif sh is not None or f in shot_of:
+        elif cal is None and (sh is not None or f in shot_of):
             lines.append("camera not calibrated for this shot")
-        y = H - 12 - 18 * (len(lines) - 1)
+        if timing_line:
+            lines.append(timing_line)
+        hs = max(0.45, W / 2300)
+        lh = int(40 * hs)
+        y = H - 12 - lh * (len(lines) - 1)
         ov = img.copy()
-        cv2.rectangle(ov, (0, y - 16), (W, H), (0, 0, 0), -1)
-        img = cv2.addWeighted(ov, 0.55, img, 0.45, 0)
+        cv2.rectangle(ov, (0, y - lh), (W, H), (0, 0, 0), -1)
+        img = cv2.addWeighted(ov, 0.6, img, 0.4, 0)
         for i, l in enumerate(lines):
-            cv2.putText(img, l, (8, y + 18 * i), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
+            cv2.putText(img, l, (8, y + lh * i), cv2.FONT_HERSHEY_SIMPLEX, hs * (1.25 if i == 0 else 1),
+                        (255, 255, 255), 1 if i else 2, cv2.LINE_AA)
         vw.write(img)
         f += 1
     vw.release()

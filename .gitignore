@@ -6,3 +6,5 @@ data/buoy_dataset/data_resolved.yaml
 *.tmp.mp4
 data/buoy_dataset_v2/images/
 runs/
+results/demo_final/youtube/youtube_regina_jaquess_lines.mp4
+results/demo_final/youtube/youtube_regina_jaquess_clean.mp4

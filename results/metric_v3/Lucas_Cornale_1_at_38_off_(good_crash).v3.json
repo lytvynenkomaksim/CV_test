@@ -1,0 +1,109 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+ "official": "1",
+ "events": [
+  {
+   "frame": 243,
+   "t": 8.1,
+   "track": 5,
+   "kind": "turn",
+   "buoy_X": -6.802235412903743,
+   "skier_X": -7.23613883042614,
+   "s": 119.46013684198134,
+   "predicted": false,
+   "n_obs": 5,
+   "side": "left",
+   "margin_m": 0.43,
+   "outside": true,
+   "verdict": "ok",
+   "slot": 1
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 472,
+   "calibration": {
+    "status": "ok",
+    "f_px": 1611.0,
+    "hfov_deg": 36.9,
+    "cam_height_m": 1.6,
+    "pitch0_deg": 5.3,
+    "boat_speed_kmh": 57.4,
+    "rope_m": 10.25,
+    "skier_dist_median_m": 10.99,
+    "skier_dist_mad_m": 0.51,
+    "n_buoy_tracks": 5,
+    "cost": 63.9,
+    "n_residuals": 414,
+    "calibration": "rig (shared)"
+   },
+   "metric": true,
+   "course": {
+    "s1": 119.46013684198134,
+    "side1": -1,
+    "spacing_m": 33.0,
+    "slots": [
+     {
+      "slot": 1,
+      "s": 119.5,
+      "side": "left",
+      "event": {
+       "frame": 243,
+       "t": 8.1,
+       "track": 5,
+       "kind": "turn",
+       "buoy_X": -6.802235412903743,
+       "skier_X": -7.23613883042614,
+       "s": 119.46013684198134,
+       "predicted": false,
+       "n_obs": 5,
+       "side": "left",
+       "margin_m": 0.43,
+       "outside": true,
+       "verdict": "ok",
+       "slot": 1
+      },
+      "status": "ok"
+     },
+     {
+      "slot": 2,
+      "s": 152.5,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 3,
+      "s": 185.5,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 4,
+      "s": 218.5,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 5,
+      "s": 251.5,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 6,
+      "s": 284.5,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     }
+    ],
+    "turn_offset_m": 6.802235412903743
+   }
+  }
+ ]
+}

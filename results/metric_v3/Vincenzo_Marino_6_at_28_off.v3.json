@@ -1,0 +1,200 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+ "official": "6",
+ "events": [
+  {
+   "frame": 36,
+   "t": 1.2,
+   "track": 1,
+   "kind": "centre",
+   "buoy_X": -1.125884992777666,
+   "skier_X": -0.7685340925262024,
+   "s": 1.0463496699071335,
+   "predicted": false,
+   "n_obs": 36,
+   "between": true
+  },
+  {
+   "frame": 245,
+   "t": 8.17,
+   "track": 5,
+   "kind": "centre",
+   "buoy_X": 1.4264379316871352,
+   "skier_X": 1.2075127875699823,
+   "s": 84.69122472345727,
+   "predicted": true,
+   "n_obs": 8,
+   "between": true
+  },
+  {
+   "frame": 364,
+   "t": 12.14,
+   "track": 10,
+   "kind": "turn",
+   "buoy_X": 5.608471103591535,
+   "skier_X": 6.1335648409613,
+   "s": 133.88403980249439,
+   "predicted": true,
+   "n_obs": 4,
+   "side": "right",
+   "margin_m": 0.53,
+   "outside": true,
+   "verdict": "ok",
+   "slot": 1
+  },
+  {
+   "frame": 364,
+   "t": 12.14,
+   "track": 11,
+   "kind": "centre",
+   "buoy_X": 1.2912266322729646,
+   "skier_X": 6.1335648409613,
+   "s": 134.38387077356435,
+   "predicted": false,
+   "n_obs": 6,
+   "between": false
+  },
+  {
+   "frame": 621,
+   "t": 20.71,
+   "track": 21,
+   "kind": "turn",
+   "buoy_X": -4.7553980313933035,
+   "skier_X": -3.3172284940233094,
+   "s": 235.2967418105683,
+   "predicted": true,
+   "n_obs": 4,
+   "side": "left",
+   "margin_m": -1.44,
+   "outside": false,
+   "verdict": "uncertain",
+   "slot": 4
+  },
+  {
+   "frame": 674,
+   "t": 22.48,
+   "track": 23,
+   "kind": "centre",
+   "buoy_X": -0.6871764794991735,
+   "skier_X": 4.031229749043219,
+   "s": 256.89364715007184,
+   "predicted": false,
+   "n_obs": 14,
+   "between": false
+  },
+  {
+   "frame": 727,
+   "t": 24.24,
+   "track": 24,
+   "kind": "centre",
+   "buoy_X": -1.602842117054703,
+   "skier_X": -1.0804993482607455,
+   "s": 277.85284742570605,
+   "predicted": false,
+   "n_obs": 18,
+   "between": true
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 751,
+   "calibration": {
+    "status": "ok",
+    "f_px": 1608.0,
+    "hfov_deg": 36.9,
+    "cam_height_m": 1.6,
+    "pitch0_deg": 5.4,
+    "boat_speed_kmh": 43.2,
+    "rope_m": 12.0,
+    "skier_dist_median_m": 12.77,
+    "skier_dist_mad_m": 0.42,
+    "n_buoy_tracks": 13,
+    "cost": 195.1,
+    "n_residuals": 997,
+    "calibration": "rig (shared)"
+   },
+   "metric": true,
+   "course": {
+    "s1": 133.88403980249439,
+    "side1": 1,
+    "spacing_m": 33.0,
+    "slots": [
+     {
+      "slot": 1,
+      "s": 133.9,
+      "side": "right",
+      "event": {
+       "frame": 364,
+       "t": 12.14,
+       "track": 10,
+       "kind": "turn",
+       "buoy_X": 5.608471103591535,
+       "skier_X": 6.1335648409613,
+       "s": 133.88403980249439,
+       "predicted": true,
+       "n_obs": 4,
+       "side": "right",
+       "margin_m": 0.53,
+       "outside": true,
+       "verdict": "ok",
+       "slot": 1
+      },
+      "status": "ok"
+     },
+     {
+      "slot": 2,
+      "s": 166.9,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 3,
+      "s": 199.9,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 4,
+      "s": 232.9,
+      "side": "left",
+      "event": {
+       "frame": 621,
+       "t": 20.71,
+       "track": 21,
+       "kind": "turn",
+       "buoy_X": -4.7553980313933035,
+       "skier_X": -3.3172284940233094,
+       "s": 235.2967418105683,
+       "predicted": true,
+       "n_obs": 4,
+       "side": "left",
+       "margin_m": -1.44,
+       "outside": false,
+       "verdict": "uncertain",
+       "slot": 4
+      },
+      "status": "uncertain"
+     },
+     {
+      "slot": 5,
+      "s": 265.9,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 6,
+      "s": 298.9,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     }
+    ],
+    "turn_offset_m": 5.181934567492419
+   }
+  }
+ ]
+}

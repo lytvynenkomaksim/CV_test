@@ -1,0 +1,27 @@
+{
+ "video": "/content/CV_test/data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4",
+ "official": "6",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 549,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 1708.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 3.2,
+    "pitch0_deg": 11.0,
+    "boat_speed_kmh": 57.7,
+    "rope_m": 12.0,
+    "skier_dist_median_m": 12.68,
+    "skier_dist_mad_m": 0.34,
+    "n_buoy_tracks": 12,
+    "cost": 101.6,
+    "n_residuals": 669,
+    "calibration": "per shot"
+   },
+   "metric": false
+  }
+ ]
+}

@@ -1,0 +1,148 @@
+{
+ "video": "/content/CV_test/data/videos/front_view/Damir Filaretov 1 at 39.5 off (close call).mp4",
+ "official": "1",
+ "events": [
+  {
+   "frame": 134,
+   "t": 4.46,
+   "track": 1,
+   "kind": "centre",
+   "buoy_X": -1.5010076527274012,
+   "skier_X": -3.1132577862821846,
+   "s": 60.82398265609403,
+   "predicted": false,
+   "n_obs": 4,
+   "between": false
+  },
+  {
+   "frame": 173,
+   "t": 5.76,
+   "track": 2,
+   "kind": "turn",
+   "buoy_X": -5.30414158705135,
+   "skier_X": -9.277599232889555,
+   "s": 85.22010260161072,
+   "predicted": false,
+   "n_obs": 17,
+   "side": "left",
+   "margin_m": 3.97,
+   "outside": true,
+   "verdict": "ok",
+   "slot": 1
+  },
+  {
+   "frame": 205,
+   "t": 6.83,
+   "track": 4,
+   "kind": "turn",
+   "buoy_X": -6.276426010270271,
+   "skier_X": -5.299385259978535,
+   "s": 99.61274891244622,
+   "predicted": false,
+   "n_obs": 3,
+   "side": "left",
+   "margin_m": -0.98,
+   "outside": false,
+   "verdict": "uncertain"
+  },
+  {
+   "frame": 339,
+   "t": 11.29,
+   "track": 8,
+   "kind": "centre",
+   "buoy_X": 2.0431422944923767,
+   "skier_X": 0.4178366915172536,
+   "s": 169.0358413051108,
+   "predicted": false,
+   "n_obs": 10,
+   "between": true
+  }
+ ],
+ "shots": [
+  {
+   "start": 0,
+   "end": 378,
+   "calibration": {
+    "status": "ok",
+    "f_px": 1605.0,
+    "hfov_deg": 36.9,
+    "cam_height_m": 1.6,
+    "pitch0_deg": 5.5,
+    "boat_speed_kmh": 57.5,
+    "rope_m": 9.75,
+    "skier_dist_median_m": 10.38,
+    "skier_dist_mad_m": 0.42,
+    "n_buoy_tracks": 5,
+    "cost": 64.6,
+    "n_residuals": 423,
+    "calibration": "rig (shared)"
+   },
+   "metric": true,
+   "course": {
+    "s1": 85.22010260161072,
+    "side1": -1,
+    "spacing_m": 33.0,
+    "slots": [
+     {
+      "slot": 1,
+      "s": 85.2,
+      "side": "left",
+      "event": {
+       "frame": 173,
+       "t": 5.76,
+       "track": 2,
+       "kind": "turn",
+       "buoy_X": -5.30414158705135,
+       "skier_X": -9.277599232889555,
+       "s": 85.22010260161072,
+       "predicted": false,
+       "n_obs": 17,
+       "side": "left",
+       "margin_m": 3.97,
+       "outside": true,
+       "verdict": "ok",
+       "slot": 1
+      },
+      "status": "ok"
+     },
+     {
+      "slot": 2,
+      "s": 118.2,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 3,
+      "s": 151.2,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 4,
+      "s": 184.2,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 5,
+      "s": 217.2,
+      "side": "left",
+      "event": null,
+      "status": "unseen"
+     },
+     {
+      "slot": 6,
+      "s": 250.2,
+      "side": "right",
+      "event": null,
+      "status": "unseen"
+     }
+    ],
+    "turn_offset_m": 5.790283798660811
+   }
+  }
+ ]
+}

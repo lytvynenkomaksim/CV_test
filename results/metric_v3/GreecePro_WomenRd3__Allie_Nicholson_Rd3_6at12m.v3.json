@@ -1,0 +1,27 @@
+{
+ "video": "/content/CV_test/data/videos/drive_extra/GreecePro_WomenRd3__Allie_Nicholson_Rd3_6at12m.mp4",
+ "official": "6",
+ "events": [],
+ "shots": [
+  {
+   "start": 0,
+   "end": 1166,
+   "calibration": {
+    "status": "at parameter bound (zoom camera?)",
+    "f_px": 2560.0,
+    "hfov_deg": 28.1,
+    "cam_height_m": 3.2,
+    "pitch0_deg": 10.8,
+    "boat_speed_kmh": 43.2,
+    "rope_m": 12.0,
+    "skier_dist_median_m": 12.73,
+    "skier_dist_mad_m": 0.36,
+    "n_buoy_tracks": 17,
+    "cost": 139.6,
+    "n_residuals": 929,
+    "calibration": "per shot"
+   },
+   "metric": false
+  }
+ ]
+}

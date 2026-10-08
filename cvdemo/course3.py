@@ -284,32 +284,43 @@ def fit_metric_course(turns, cal, fps, n=6):
     if not turns:
         return dict(slots=[], s1=None)
     s = np.array([e["s"] for e in turns])
+    # spacing is 41 m on the lake; the measured value absorbs any remaining scale error of the camera model
     best = None
-    for anchor in s:  # try each detected turn buoy as buoy k, keep the grid explaining most buoys
-        k = np.round((s - anchor) / TURN_SPACING_M)
-        fit = np.abs(s - (anchor + k * TURN_SPACING_M)) < 8
-        lo = int(k[fit].min())
-        for first in range(lo - n + 1, lo + 1):
-            inside = fit & (k >= first) & (k < first + n)
-            score = (inside.sum(), first)
-            if best is None or score > best[0]:
-                best = (score, anchor + first * TURN_SPACING_M)
-    s1 = best[1]
-    vote = sum((1 if e["side"] == "right" else -1) * (-1) ** int(round((e["s"] - s1) / TURN_SPACING_M))
+    for D in np.arange(25.0, 50.5, 1.0):
+        for anchor in s:  # try each detected turn buoy as buoy k, keep the grid explaining most buoys
+            k = np.round((s - anchor) / D)
+            fit = np.abs(s - (anchor + k * D)) < 0.18 * D
+            lo = int(k[fit].min())
+            for first in range(lo - n + 1, lo + 1):
+                inside = fit & (k >= first) & (k < first + n)
+                # most buoys; then alternation consistency; then closest to the nominal 41 m
+                alt = sum(1 for e, kk, ok in zip(turns, k, inside) if ok) and _alternation(turns, k, inside)
+                score = (inside.sum(), alt, -abs(D - TURN_SPACING_M * 0.8), first)
+                if best is None or score > best[0]:
+                    best = (score, anchor + first * D, D)
+    s1, D = best[1], best[2]
+    vote = sum((1 if e["side"] == "right" else -1) * (-1) ** int(round((e["s"] - s1) / D))
                * (1 + 0.1 * e["n_obs"]) for e in turns)
     side1 = 1 if vote >= 0 else -1
     slots = []
     for i in range(n):
-        sc = s1 + i * TURN_SPACING_M
+        sc = s1 + i * D
         side = "right" if side1 * (-1) ** i > 0 else "left"
-        cands = [e for e in turns if abs(e["s"] - sc) < 8 and e["side"] == side]
+        cands = [e for e in turns if abs(e["s"] - sc) < 0.18 * D and e["side"] == side]
         ev = max(cands, key=lambda e: (not e["predicted"], e["n_obs"])) if cands else None
         if ev is not None:
             ev["slot"] = i + 1
         slots.append(dict(slot=i + 1, s=round(float(sc), 1), side=side, event=ev,
                           status="unseen" if ev is None else ev["verdict"]))
     offs = [abs(e["buoy_X"]) for e in turns]
-    return dict(s1=float(s1), side1=side1, slots=slots, turn_offset_m=float(np.median(offs)) if offs else TURN_OFFSET_M)
+    return dict(s1=float(s1), side1=side1, spacing_m=float(D), slots=slots,
+                turn_offset_m=float(np.median(offs)) if offs else TURN_OFFSET_M)
+
+
+def _alternation(turns, k, inside):
+    """How many detected turn buoys agree with alternating sides along the grid (best parity)."""
+    sg = [(1 if e["side"] == "right" else -1) * (-1) ** int(kk) for e, kk, ok in zip(turns, k, inside) if ok]
+    return max(sum(1 for x in sg if x > 0), sum(1 for x in sg if x < 0))
 
 
 def course_score(course):

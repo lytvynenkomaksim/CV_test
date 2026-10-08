@@ -168,7 +168,8 @@ class ShotCalibration:
         rho = np.zeros(len(self.inc))
         return theta, psi, rho
 
-    def fit(self, skier_obs, buoy_tracks, rope_m, v_prior=15.6, anchor_s=2.0, fixed=None, quick=False):
+    def fit(self, skier_obs, buoy_tracks, rope_m, v_prior=15.6, anchor_s=2.0, fixed=None, quick=False,
+            horizon_row=None):
         """skier_obs: list of (frame, u, v); buoy_tracks: list of [(frame, u, v), ...] (observed points).
         fixed=(f_rel, h): lens (focal length / image width) and camera height known, e.g. from a joint
         calibration of several videos filmed with the same boat camera (tools/calibrate_rig.py)."""
@@ -217,7 +218,9 @@ class ShotCalibration:
             for w in wins_big:
                 xs = np.abs(X[win == w])
                 r.append(np.array([(np.percentile(xs, 92) - 10.5) / 2.5]))
-            r.append(np.array([(v - v_prior) / 0.25]))  # boat speed is set by the rules
+            r.append(np.array([(v - v_prior) / 0.1]))  # boat speed is set by the rules (and shown in the overlay)
+            if horizon_row is not None:  # far shoreline at the start ~ horizon -> tilt (+0.3 deg: shore ~300 m)
+                r.append(np.array([(th0 - (np.arctan((self.cy - horizon_row) / f) + 0.005)) / 0.006]))
             r.append(np.diff(kn) / 0.06)  # yaw correction changes slowly (~3.5 deg per 3 s at most)
             if fixed is None:
                 r.append(np.array([(h - 2.2) / 0.6, (lf - np.log(0.95 * self.W)) / 0.6]))  # weak priors

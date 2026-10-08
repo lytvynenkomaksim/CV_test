@@ -31,16 +31,19 @@ TURN_OFFSET_M = 11.5
 
 
 def skier_foot(r):
-    """Where the ski is on the water: ankles from the skeleton if visible, else the box bottom-centre."""
+    """Where the ski touches the water. The ankles are ~0.3 m ABOVE the water, so projecting them onto the
+    water plane overestimates the distance (biases the whole metric scale); use the bottom of the skier box
+    (ski on the water) for the depth, and the ankles (if visible) only for the sideways position."""
+    s = r["skier"]
+    x, y = (s[0] + s[2]) / 2, s[3]
     k = r.get("kpts")
     if k is not None:
         k = np.asarray(k)
         a = k[[15, 16]]
         a = a[a[:, 2] > 0.3]
         if len(a):
-            return float(a[:, 0].mean()), float(a[:, 1].max())
-    s = r["skier"]
-    return (s[0] + s[2]) / 2, s[3]
+            x = float(a[:, 0].mean())
+    return x, y
 
 
 class MetricTrack:
@@ -171,8 +174,35 @@ def calibration_inputs(frames, meta, s0, s1):
             tr.update(f, frames[f]["buoys"], frames[f]["pan"])
     ptracks = [[(h[0], h[1] - frames[h[0]]["pan"], h[2]) for h in t.hist if h[6]]
                for t in tr.all_tracks() if t.n_obs() >= 4]
+    # only anchored buoys: a static buoy always recedes, i.e. moves up the image towards the horizon.
+    # Tracks that stay put move WITH the boat (ski, spray, the skier's board) and would bias the scale.
+    ptracks = [t for t in ptracks if len(t) >= 6 and t[-1][2] - t[0][2] < -0.012 * H]
     skier_obs = [(f, *skier_foot(frames[f])) for f in range(s0, s1) if frames[f]["skier"]]
     return skier_obs, ptracks
+
+
+def far_shore_row(video, s0, n=20):
+    """Row of the far shoreline at the start of a shot (camera looking straight down the lake): the lake's
+    far end is hundreds of metres away, so this row is within a few pixels of the true horizon."""
+    import cv2
+    cap = cv2.VideoCapture(str(video))
+    cap.set(cv2.CAP_PROP_POS_FRAMES, s0)
+    rows = []
+    for _ in range(n):
+        ok, img = cap.read()
+        if not ok:
+            break
+        H, W = img.shape[:2]
+        hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV).astype(int)
+        water = (hsv[..., 0] >= 75) & (hsv[..., 0] <= 105) & (hsv[..., 1] >= 40) & (hsv[..., 2] < 220)
+        for x in np.linspace(0.38 * W, 0.62 * W, 13).astype(int):
+            col = water[int(0.15 * H):int(0.7 * H), x]
+            run = np.convolve(col.astype(int), np.ones(20, int), "valid")
+            idx = np.where(run == 20)[0]
+            if len(idx):
+                rows.append(idx[0] + int(0.15 * H))
+    cap.release()
+    return float(np.median(rows)) if len(rows) >= 10 else None
 
 
 def is_women(name):
@@ -193,7 +223,8 @@ def analyse_course_metric(frames, meta, inc, name, boat_view=None, rig=None):
             continue
         skier_obs, ptracks = calibration_inputs(frames, meta, s0, s1)
         cal = CAM.ShotCalibration(s0, s1, W, H, fps, inc)
-        cal.fit(skier_obs, ptracks, rope, v_prior=15.3 if women else 16.1, fixed=rig)
+        cal.fit(skier_obs, ptracks, rope, v_prior=15.3 if women else 16.1, fixed=rig,
+                horizon_row=meta.get("horizon_rows", {}).get(str(s0)))
         shot = dict(start=s0, end=s1, calibration=cal.report, metric=cal.ok)
         out["shots"].append(shot)
         if not cal.ok:

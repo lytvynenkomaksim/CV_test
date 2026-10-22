@@ -30,7 +30,7 @@ out.mkdir(parents=True, exist_ok=True)
 
 timer = PL.Timer()
 with timer("load_models"):
-    skier = PL.SkierTracker("s", imgsz=None)  # full resolution
+    skier = PL.SkierTracker("s", imgsz=None, tracker=None)  # full resolution, keeps low-confidence skier in spray
     pose_est = P.build("yolo-s")
     buoy_det = None
     ski_det = None if a.from_frames else SkiDetector()
@@ -55,6 +55,7 @@ for v in a.videos:
         frames, meta = PL.analyse(v, VideoBuoys(v), pose_est, skier, timer=timer, max_frames=a.max_frames,
                                   ski_det=ski_det)
     with timer("course_logic"):
+        n_filled = PL.fill_skier_gaps(frames, meta["fps"])
         crs = C4.analyse_course_v4(frames, meta)
     tsum = timer.summary()
     proc_s = sum(x["total_s"] for k, x in tsum.items() if k != "load_models")
@@ -70,6 +71,7 @@ for v in a.videos:
                      gates=" ".join(f"{g['role']}:" + {True: "in", False: "OUT", None: "not judged"}[g["through_gate"]]
                                    for g in gates) or "-",
                      ski_found=f"{sum(1 for r in frames if r.get('ski'))}/{sum(1 for r in frames if r['skier'])}",
+                     skier_gap_filled=n_filled,
                      frames=n, ms_per_frame=round(proc_s / n * 1000),
                      s_per_video_s=round(proc_s / (n / fps), 1),
                      **{f"ms_{k}": round(x["total_s"] / n * 1000) for k, x in tsum.items() if k != "load_models"}))

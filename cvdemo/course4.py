@@ -52,7 +52,7 @@ def _skier_series(frames, s0, s1):
 
 
 def buoy_events_v4(tracks, frames, s0, s1, fps, motion_s=0.8, near_rows=0.35, near_cols=3.0,
-                   gate_gap=2.5, gate_dy=0.25, min_obs_miss=6, guide_cols=None):
+                   gate_gap=2.5, gate_dy=0.25, min_obs_miss=6, guide_cols=None, cluster_s=0.8):
     """near_rows / near_cols / gate_gap / gate_dy are in skier heights. A 'miss' needs a buoy track with at
     least min_obs_miss detections: short tracks next to the ski are mostly the ski / spray, not a buoy.
     Kinds: 'turn' (judged), 'gate' (pair at the same depth: entry/exit gate or boat guides), 'centre' (single
@@ -183,7 +183,23 @@ def buoy_events_v4(tracks, frames, s0, s1, fps, motion_s=0.8, near_rows=0.35, ne
             merged.append(e)
         elif e["n_obs"] > m["n_obs"]:
             merged[merged.index(m)] = e
-    return merged
+    # turn buoys come ~2.6 s apart: several turn candidates within `cluster_s` are one turn buoy plus guide /
+    # far buoys at about the same depth -> keep the one the skier passes closest to (the one being rounded)
+    out, group = [], []
+
+    def flush():
+        if group:
+            out.append(min(group, key=lambda e: abs(e["buoy_x"] - e["skier_x"]) / max(1.0, e["amp"] / 6)))
+            group.clear()
+    for e in merged:
+        if e["kind"] != "turn":
+            out.append(e)
+            continue
+        if group and e["frame"] - group[0]["frame"] > cluster_s * fps:
+            flush()
+        group.append(e)
+    flush()
+    return sorted(out, key=lambda e: e["frame"])
 
 
 def drop_skier_attached(frames, fps, win_s=0.4, span_s=0.3, tol_x=0.3, tol_y=0.1):
@@ -252,7 +268,8 @@ def analyse_course_v4(frames, meta, boat_view=None):
     def end_for(p):
         return ends[max(s for s in ends if s <= p[0]["frame"])]
 
-    courses = [G.fit_course(p, fps, end_frame=end_for(p)) for p in passes]
+    gate_frames = [e["frame"] for e in events if e["kind"] == "gate"]
+    courses = [G.fit_course_joint(p, fps, end_frame=end_for(p), gates=gate_frames) for p in passes]
     # only the ENTRY / EXIT gates have to be passed through; pairs met in the middle of a pass are the boat
     # guide buoys (the boat goes between them, the skier swings across) -> shown but not judged
     for g in (e for e in events if e["kind"] == "gate"):

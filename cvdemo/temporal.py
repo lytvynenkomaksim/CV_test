@@ -18,6 +18,31 @@ import cv2
 import numpy as np
 
 
+def stands_out(img, b, min_contrast=14.0):
+    """Lab colour distance between the box interior and a ring of water around it (2.2x the box). A buoy
+    stands out; a patch of plain water / shore texture that a template happened to match does not."""
+    w, h = b[2] - b[0], b[3] - b[1]
+    if w < 2 or h < 2:
+        return False
+    H, W = img.shape[:2]
+    X0, Y0 = int(max(0, b[0] - 0.6 * w)), int(max(0, b[1] - 0.6 * h))
+    X1, Y1 = int(min(W, b[2] + 0.6 * w)), int(min(H, b[3] + 0.6 * h))
+    if X1 - X0 < 4 or Y1 - Y0 < 4:
+        return False
+    lab = cv2.cvtColor(img[Y0:Y1, X0:X1], cv2.COLOR_BGR2LAB).astype(np.float32)
+    inner = np.zeros(lab.shape[:2], bool)
+    ix0, iy0 = int(b[0] - X0 + 0.2 * w), int(b[1] - Y0 + 0.2 * h)
+    ix1, iy1 = int(b[2] - X0 - 0.2 * w), int(b[3] - Y0 - 0.2 * h)
+    inner[max(0, iy0):max(iy0 + 1, iy1), max(0, ix0):max(ix0 + 1, ix1)] = True
+    ring = np.ones_like(inner)
+    ring[max(0, int(b[1] - Y0)):int(b[3] - Y0), max(0, int(b[0] - X0)):int(b[2] - X0)] = False
+    if inner.sum() < 2 or ring.sum() < 4:
+        return False
+    d = lab[inner].mean(0) - lab[ring].mean(0)
+    d[0] *= 100 / 255
+    return float(np.sqrt((d ** 2).sum())) >= min_contrast
+
+
 class Track:
     _next = 0
 
@@ -105,7 +130,10 @@ class TemporalBuoys:
             return None
         padx, pady = (tw - w) / 2, (th - h) / 2
         nx, ny = x0 + loc[0] + padx, y0 + loc[1] + pady
-        return [nx, ny, nx + w, ny + h], ncc
+        nb = [nx, ny, nx + w, ny + h]
+        if not stands_out(img, nb):  # matched plain water / shore texture, not the buoy
+            return None
+        return nb, ncc
 
     def _associate(self, f, img, b, s):
         cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2

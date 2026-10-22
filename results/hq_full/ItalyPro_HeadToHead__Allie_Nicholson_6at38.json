@@ -1,0 +1,185 @@
+{
+ "meta": {
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "fps": 29.587014588041914,
+  "frames": 600,
+  "width": 1914,
+  "height": 1064,
+  "shots": [
+   0
+  ],
+  "wall_s": 149.82
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack (full res)",
+  "pose": "yolo11s-pose",
+  "buoy": "multi-frame: YOLOE 'buoy' + colour/CLIP, local search, >=4 frames (no training, full res)",
+  "ski": "ski: YOLOE-26L 'water ski' at the feet (no training)"
+ },
+ "timings": {
+  "scene_cut": {
+   "total_s": 0.16,
+   "calls": 600,
+   "ms_per_call": 0.3
+  },
+  "skier_detect_track": {
+   "total_s": 13.03,
+   "calls": 600,
+   "ms_per_call": 21.7
+  },
+  "camera_pan": {
+   "total_s": 9.64,
+   "calls": 600,
+   "ms_per_call": 16.1
+  },
+  "pose": {
+   "total_s": 6.24,
+   "calls": 354,
+   "ms_per_call": 17.6
+  },
+  "ski": {
+   "total_s": 8.62,
+   "calls": 354,
+   "ms_per_call": 24.4
+  },
+  "buoy_detect": {
+   "total_s": 111.0,
+   "calls": 600,
+   "ms_per_call": 185.0
+  },
+  "course_logic": {
+   "total_s": 0.39,
+   "calls": 2,
+   "ms_per_call": 195.3
+  }
+ },
+ "row": {
+  "video": "ItalyPro_HeadToHead__Allie_Nicholson_6at38",
+  "official": "6",
+  "slots": "R+ L+ R? L? R? L?",
+  "gates": "-",
+  "ski_found": "49/354",
+  "frames": 600,
+  "ms_per_frame": 248,
+  "s_per_video_s": 7.4,
+  "ms_scene_cut": 0,
+  "ms_skier_detect_track": 22,
+  "ms_camera_pan": 16,
+  "ms_pose": 10,
+  "ms_ski": 14,
+  "ms_buoy_detect": 185,
+  "ms_course_logic": 1
+ },
+ "events": [
+  {
+   "frame": 0,
+   "t": 0.0,
+   "track": 1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_h": -2.73,
+   "margin_px": -688.7,
+   "n_close": 1,
+   "buoy_x": 223.5,
+   "skier_x": 912.1699829101562,
+   "n_obs": 9,
+   "predicted": false,
+   "alt_of_weak_pair": false,
+   "buoy_X": 223.5,
+   "skier_X": 912.1699829101562,
+   "amp": 1512.9873046875
+  },
+  {
+   "frame": 121,
+   "t": 4.09,
+   "track": 2,
+   "kind": "turn",
+   "side": "right",
+   "skier_side": "left",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 0.23,
+   "margin_px": 52.8,
+   "n_close": 23,
+   "buoy_x": 1070.8061637944047,
+   "skier_x": 1116.3999633789062,
+   "n_obs": 7,
+   "predicted": false,
+   "alt_of_weak_pair": false,
+   "buoy_X": 3799.329263537434,
+   "skier_X": 3844.9230631219357,
+   "amp": 1386.6542358398438,
+   "slot": 1
+  },
+  {
+   "frame": 185,
+   "t": 6.25,
+   "track": 4,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 5.48,
+   "margin_px": 1202.0,
+   "n_close": 1,
+   "buoy_x": 1849.1099742610459,
+   "skier_x": 647.0651550292969,
+   "n_obs": 7,
+   "predicted": true,
+   "alt_of_weak_pair": false,
+   "buoy_X": 2413.6951274912676,
+   "skier_X": 1211.6503082595186,
+   "amp": 1317.0697631835938,
+   "slot": 2
+  },
+  {
+   "frame": 368,
+   "t": 12.44,
+   "track": 37,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 0.4,
+   "margin_px": 66.4,
+   "n_close": 2,
+   "buoy_x": 792.0,
+   "skier_x": 718.0409545898438,
+   "n_obs": 14,
+   "predicted": false,
+   "alt_of_weak_pair": false,
+   "buoy_X": 79.17196029955937,
+   "skier_X": 5.212914889403123,
+   "amp": 1003.85888671875,
+   "slot": 1
+  },
+  {
+   "frame": 520,
+   "t": 17.58,
+   "track": 51,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 2.57,
+   "margin_px": 490.2,
+   "n_close": 13,
+   "buoy_x": 1099.2247930170658,
+   "skier_x": 597.9500122070312,
+   "n_obs": 8,
+   "predicted": true,
+   "alt_of_weak_pair": false,
+   "buoy_X": 1198.4099051347896,
+   "skier_X": 697.135124324755,
+   "amp": 1144.7200927734375,
+   "alternation_ok": false,
+   "slot": 3
+  }
+ ]
+}

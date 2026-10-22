@@ -56,8 +56,10 @@ class SkierTracker:
     def __init__(self, size="s", conf=0.2, imgsz=960, tracker="bytetrack"):
         from ultralytics import YOLO
         self.m = YOLO(str(MODELS / f"yolo11{size}.pt"))
-        self.tracker = f"{tracker}.yaml"  # "bytetrack" or "botsort" (BoT-SORT adds camera-motion compensation)
-        self.name = f"yolo11{size} + {'ByteTrack' if tracker == 'bytetrack' else 'BoT-SORT'}"
+        # "bytetrack" / "botsort" (BoT-SORT adds camera-motion compensation) / None = every detection, nearest
+        self.tracker = f"{tracker}.yaml" if tracker else None
+        self.name = f"yolo11{size} + " + {"bytetrack": "ByteTrack", "botsort": "BoT-SORT"}.get(tracker or "",
+                                                                                          "nearest-to-last")
         self.boats = []
         self.conf, self.imgsz = conf, imgsz
         self.score = defaultdict(float)
@@ -65,7 +67,7 @@ class SkierTracker:
 
     def reset(self):
         # new shot -> fresh tracker state
-        if getattr(self.m, "predictor", None) is not None and hasattr(self.m.predictor, "trackers"):
+        if self.tracker and getattr(self.m, "predictor", None) is not None and hasattr(self.m.predictor, "trackers"):
             for t in self.m.predictor.trackers:
                 t.reset()
         self.last = None
@@ -73,8 +75,11 @@ class SkierTracker:
     def __call__(self, frame):
         # person (0) + boat (8): boats are only recorded, to recognise shots from another camera
         imgsz = self.imgsz or (max(frame.shape[:2]) + 31) // 32 * 32  # None = full resolution
-        r = self.m.track(frame, persist=True, classes=[0, 8], conf=self.conf, imgsz=imgsz,
-                         tracker=self.tracker, verbose=False)[0]
+        if self.tracker is None:  # all detections >= conf, continuity handled below (skier in spray: 0.2-0.5)
+            r = self.m.predict(frame, classes=[0, 8], conf=self.conf, imgsz=imgsz, verbose=False)[0]
+        else:  # ByteTrack drops low-confidence detections that start / keep a track
+            r = self.m.track(frame, persist=True, classes=[0, 8], conf=self.conf, imgsz=imgsz,
+                             tracker=self.tracker, verbose=False)[0]
         cls = r.boxes.cls.int().tolist()
         allb = r.boxes.xyxy.tolist()
         self.boats = [b for b, c in zip(allb, cls) if c == 8]
@@ -415,3 +420,21 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def fill_skier_gaps(frames, fps, max_gap_s=0.3):
+    """The skier disappears for a few frames in heavy spray: fill gaps up to max_gap_s (longer gaps: the turn
+    is a curve, a straight line puts the skier in the wrong place) by moving the box
+    linearly between the last frame before and the first frame after (marked skier_interp=True)."""
+    have = [i for i, r in enumerate(frames) if r["skier"]]
+    filled = 0
+    for a, b in zip(have, have[1:]):
+        if 1 < b - a <= max_gap_s * fps:
+            A, Bx = frames[a]["skier"], frames[b]["skier"]
+            for g in range(a + 1, b):
+                w = (g - a) / (b - a)
+                box = [(1 - w) * p + w * q for p, q in zip(A[:4], Bx[:4])]
+                frames[g].update(skier=box + [min(A[4], Bx[4]), A[5]], skier_interp=True,
+                                 skier_X=(box[0] + box[2]) / 2 + frames[g]["pan"], foot_y=box[3])
+                filled += 1
+    return filled

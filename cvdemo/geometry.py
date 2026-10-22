@@ -438,3 +438,67 @@ def score_pass(events):
         score += 1
     return dict(turn_buoys_seen=len(turns), turn_buoys_outside=sum(e["outside"] for e in turns),
                 score=min(score, 6))
+
+
+def fit_course_joint(turns, fps, n_buoys=6, period_range=(2.0, 3.4), end_frame=None, tol_frac=0.22, gates=(),
+                     gate_offset=27.0 / 41.0, gate_bonus=0.8):
+    """Joint fit of the slalom rhythm: period T, phase t0 and the left/right alternation together.
+
+    Every candidate turn event votes for the grid slot it falls in, but only if its side matches the
+    alternation; its vote = evidence weight (track length, really seen, how close the skier passed it - the
+    buoy being rounded is the one next to the skier) x how close it is to the grid time. The 6 consecutive
+    slots with the most evidence win. Unlike fit_course this cannot be pulled off by extra buoys (guide /
+    far buoys) because they fail the rhythm, the alternation or the closeness.
+    gates: frames of detected buoy pairs; the entry gate is 27 m before buoy 1 and the exit gate 27 m after
+    buoy 6 (turn buoys are 41 m apart), i.e. ~0.66 T: a pair found there pins which slot is buoy 1."""
+    if not turns:
+        return dict(period_s=None, slots=[])
+    t = np.array([e["frame"] / fps for e in turns])
+    sgn = np.array([1 if e["side"] == "right" else -1 for e in turns])
+    w = np.array([(0.5 if e.get("predicted") else 1.0) * min(1.0, e["n_obs"] / 10.0)
+                  / (1.0 + abs(e["buoy_x"] - e["skier_x"]) / max(1.0, e.get("amp", 6) / 6) / 2.0)
+                  for e in turns])
+    best = None
+    for T in np.arange(period_range[0], period_range[1] + 1e-6, 0.02):
+        tol = tol_frac * T
+        for t0 in t:
+            k = np.round((t - t0) / T).astype(int)
+            d = np.abs(t - (t0 + k * T))
+            near = d <= tol
+            for par in (1, -1):
+                ok = near & (sgn == par * (-1) ** (k - k.min()))
+                if not ok.any():
+                    continue
+                sc = {}
+                for i in np.nonzero(ok)[0]:
+                    v = w[i] * (1 - d[i] / tol)
+                    sc[k[i]] = max(sc.get(k[i], 0.0), v)
+                ks = sorted(sc)
+                for s0 in range(ks[0] - n_buoys + 1, ks[-1] + 1):
+                    tot = sum(sc.get(q, 0.0) for q in range(s0, s0 + n_buoys))
+                    for te in (t0 + s0 * T - gate_offset * T, t0 + (s0 + n_buoys - 1) * T + gate_offset * T):
+                        if any(abs(g / fps - te) <= tol for g in gates):
+                            tot += gate_bonus
+                    key = (round(tot, 3), s0 * T + t0)  # tie -> later window (first turn = buoy 1)
+                    if best is None or key > best[0]:
+                        best = (key, T, t0, par, s0, k.min())
+    _, T, t0, par, s0, kref = best
+    tol = tol_frac * T
+    slots = []
+    for i in range(n_buoys):
+        q = s0 + i
+        tq = t0 + q * T
+        side_s = par if (q - kref) % 2 == 0 else -par
+        side = "right" if side_s > 0 else "left"
+        inslot = [j for j in range(len(turns)) if abs(t[j] - tq) <= tol]
+        agree = [j for j in inslot if sgn[j] == side_s]
+        conflict = [j for j in inslot if sgn[j] != side_s]
+        ev = turns[max(agree, key=lambda j: w[j] * (1 - abs(t[j] - tq) / tol))] if agree else None
+        status = "unseen" if ev is None else ev.get("verdict", "ok" if ev["outside"] else "miss")
+        if ev is None and conflict:
+            status = "conflict"
+        if ev is None and end_frame is not None and tq * fps > end_frame + 0.3 * T * fps:
+            status = "not_reached"
+        slots.append(dict(slot=i + 1, t=round(tq, 2), side=side, status=status, event=ev,
+                          rejected=[turns[j]["track"] for j in conflict]))
+    return dict(period_s=round(float(T), 2), slots=slots)

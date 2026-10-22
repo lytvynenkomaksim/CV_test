@@ -259,6 +259,8 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
                            "uncertain": f"{slot}{e['side'].upper()}: too close to call"}[verdict]
                     if e["predicted"]:
                         msg += " (buoy hidden, position estimated)"
+                elif e["kind"] == "gate" and e.get("role") == "guide":
+                    col, msg = (0, 255, 255), "boat guide buoys passed (not judged)"
                 elif e["kind"] == "gate":
                     ok_ = e.get("through_gate", True)
                     col = (0, 200, 0) if ok_ else (0, 0, 255)

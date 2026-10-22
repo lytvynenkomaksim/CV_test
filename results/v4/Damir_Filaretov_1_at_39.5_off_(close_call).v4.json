@@ -1,0 +1,137 @@
+{
+ "events": [
+  {
+   "frame": 134,
+   "t": 4.46,
+   "track": 3,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 2.72,
+   "margin_px": 276.6,
+   "n_close": 1,
+   "buoy_x": 632.2742004394531,
+   "skier_x": 355.6750030517578,
+   "n_obs": 7,
+   "predicted": false,
+   "buoy_X": 1174.249085165654,
+   "skier_X": 897.6498877779586,
+   "amp": 609.785888671875,
+   "slot": 1
+  },
+  {
+   "frame": 181,
+   "t": 6.03,
+   "track": 4,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 9.42,
+   "margin_px": 590.8,
+   "n_close": 1,
+   "buoy_x": 1117.6071692822109,
+   "skier_x": 526.8221130371094,
+   "n_obs": 17,
+   "predicted": true,
+   "buoy_X": 475.47639212763613,
+   "skier_X": -115.30866411746536,
+   "amp": 376.4498291015625,
+   "alternation_ok": false
+  },
+  {
+   "frame": 336,
+   "t": 11.19,
+   "track": 13,
+   "kind": "gate",
+   "gate_with": 12,
+   "through_gate": true,
+   "between": true,
+   "buoy_x": 531.4262084960938,
+   "skier_x": 385.07000732421875,
+   "n_obs": 12,
+   "predicted": false,
+   "buoy_X": 1644.3963616948754,
+   "skier_X": 1498.0401605230004,
+   "role": "exit"
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.5,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 4.46,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 134,
+      "t": 4.46,
+      "track": 3,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_h": 2.72,
+      "margin_px": 276.6,
+      "n_close": 1,
+      "buoy_x": 632.2742004394531,
+      "skier_x": 355.6750030517578,
+      "n_obs": 7,
+      "predicted": false,
+      "buoy_X": 1174.249085165654,
+      "skier_X": 897.6498877779586,
+      "amp": 609.785888671875,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 6.96,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 9.46,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 11.96,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 14.46,
+     "side": "left",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 16.96,
+     "side": "right",
+     "status": "not_reached",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ]
+}

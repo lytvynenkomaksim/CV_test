@@ -1,0 +1,164 @@
+{
+ "events": [
+  {
+   "frame": 5,
+   "t": 0.17,
+   "track": 1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_h": -2.49,
+   "margin_px": -319.2,
+   "n_close": 9,
+   "buoy_x": 200.1743392944336,
+   "skier_x": 532.9249877929688,
+   "n_obs": 13,
+   "predicted": false,
+   "buoy_X": 203.17671635511186,
+   "skier_X": 535.927364853647,
+   "amp": 770.545166015625,
+   "slot": 1
+  },
+  {
+   "frame": 184,
+   "t": 6.13,
+   "track": 5,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 4.29,
+   "margin_px": 401.2,
+   "n_close": 1,
+   "buoy_x": 760.0431081717912,
+   "skier_x": 358.8450012207031,
+   "n_obs": 6,
+   "predicted": true,
+   "buoy_X": 1484.1620016603179,
+   "skier_X": 1082.9638947092299,
+   "amp": 561.2830810546875,
+   "alternation_ok": false,
+   "slot": 3
+  },
+  {
+   "frame": 229,
+   "t": 7.63,
+   "track": 8,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": true,
+   "verdict": "ok",
+   "margin_h": 6.82,
+   "margin_px": 601.5,
+   "n_close": 1,
+   "buoy_x": 1108.4869270305694,
+   "skier_x": 506.94000244140625,
+   "n_obs": 17,
+   "predicted": true,
+   "buoy_X": 769.9200427260175,
+   "skier_X": 168.37311813685443,
+   "amp": 528.9869384765625,
+   "alternation_ok": false
+  }
+ ],
+ "courses": [
+  {
+   "period_s": 2.98,
+   "slots": [
+    {
+     "slot": 1,
+     "t": 0.17,
+     "side": "left",
+     "status": "miss",
+     "event": {
+      "frame": 5,
+      "t": 0.17,
+      "track": 1,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": false,
+      "verdict": "miss",
+      "margin_h": -2.49,
+      "margin_px": -319.2,
+      "n_close": 9,
+      "buoy_x": 200.1743392944336,
+      "skier_x": 532.9249877929688,
+      "n_obs": 13,
+      "predicted": false,
+      "buoy_X": 203.17671635511186,
+      "skier_X": 535.927364853647,
+      "amp": 770.545166015625,
+      "slot": 1
+     },
+     "rejected": []
+    },
+    {
+     "slot": 2,
+     "t": 3.15,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 6.13,
+     "side": "left",
+     "status": "ok",
+     "event": {
+      "frame": 184,
+      "t": 6.13,
+      "track": 5,
+      "kind": "turn",
+      "side": "left",
+      "skier_side": "right",
+      "outside": true,
+      "verdict": "ok",
+      "margin_h": 4.29,
+      "margin_px": 401.2,
+      "n_close": 1,
+      "buoy_x": 760.0431081717912,
+      "skier_x": 358.8450012207031,
+      "n_obs": 6,
+      "predicted": true,
+      "buoy_X": 1484.1620016603179,
+      "skier_X": 1082.9638947092299,
+      "amp": 561.2830810546875,
+      "alternation_ok": false,
+      "slot": 3
+     },
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 9.12,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 12.1,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 6,
+     "t": 15.08,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    }
+   ]
+  }
+ ]
+}

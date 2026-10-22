@@ -1,0 +1,13 @@
+{
+ "hsv": 5.3,
+ "coco_ball": 604.0,
+ "yoloworld_s": 298.2,
+ "yoloworld_m": 648.4,
+ "yoloe11l": 967.0,
+ "yoloe26l": 1011.2,
+ "gdino_tiny": 7870.7,
+ "mmgdino_tiny": 7321.9,
+ "finetuned": 201.6,
+ "yoloe26l_visual": 7173.7,
+ "owlv2": 11018.8
+}

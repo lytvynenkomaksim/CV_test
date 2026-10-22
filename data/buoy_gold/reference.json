@@ -1,0 +1,30 @@
+{
+ "image": "reference.jpg",
+ "video": "data/videos/front_view/Damir Filaretov 6 at 38 off.mp4",
+ "boxes": [
+  [
+   436,
+   405,
+   459,
+   432
+  ],
+  [
+   696,
+   409,
+   718,
+   435
+  ],
+  [
+   767,
+   412,
+   786,
+   436
+  ],
+  [
+   613,
+   472,
+   635,
+   492
+  ]
+ ]
+}

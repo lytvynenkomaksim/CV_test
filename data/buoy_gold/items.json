@@ -1,0 +1,1262 @@
+[
+ {
+  "image": "images/Damir_Filaretov_1_at_39.5_off_(close_cal_f00021.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 1 at 39.5 off (close call).mp4",
+  "frame": 21,
+  "W": 1070,
+  "H": 596,
+  "skier": [
+   712.1615600585938,
+   264.60113525390625,
+   761.8908081054688,
+   407.38909912109375,
+   0.7968894839286804,
+   1
+  ],
+  "roi": [
+   0,
+   257,
+   1070,
+   596
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_1_at_39.5_off_(close_cal_f00133.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 1 at 39.5 off (close call).mp4",
+  "frame": 133,
+  "W": 1070,
+  "H": 596,
+  "skier": [
+   342.3255615234375,
+   299.4154968261719,
+   394.3553466796875,
+   398.9081726074219,
+   0.8115948438644409,
+   1
+  ],
+  "roi": [
+   0,
+   294,
+   1070,
+   596
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_1_at_39.5_off_(close_cal_f00339.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 1 at 39.5 off (close call).mp4",
+  "frame": 339,
+  "W": 1070,
+  "H": 596,
+  "skier": [
+   366.2362365722656,
+   270.9874572753906,
+   420.1722412109375,
+   396.839111328125,
+   0.8479049205780029,
+   78
+  ],
+  "roi": [
+   0,
+   264,
+   1070,
+   596
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_1_at_39.5_off_(close_cal_f00341.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 1 at 39.5 off (close call).mp4",
+  "frame": 341,
+  "W": 1070,
+  "H": 596,
+  "skier": [
+   351.3883361816406,
+   267.880615234375,
+   408.5885925292969,
+   392.7080383300781,
+   0.8837830424308777,
+   78
+  ],
+  "roi": [
+   0,
+   261,
+   1070,
+   596
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_32_off_f00333.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 32 off.mp4",
+  "frame": 333,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   651.4689331054688,
+   281.7095947265625,
+   705.7010498046875,
+   377.15850830078125,
+   0.7366191148757935,
+   32
+  ],
+  "roi": [
+   0,
+   276,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_32_off_f00471.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 32 off.mp4",
+  "frame": 471,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   595.89453125,
+   285.1952819824219,
+   642.0299682617188,
+   368.25244140625,
+   0.8116915225982666,
+   88
+  ],
+  "roi": [
+   0,
+   281,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_32_off_f00736.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 32 off.mp4",
+  "frame": 736,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   447.7619323730469,
+   259.7405090332031,
+   496.0171203613281,
+   368.6123962402344,
+   0.7639217972755432,
+   144
+  ],
+  "roi": [
+   0,
+   254,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_32_off_f00755.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 32 off.mp4",
+  "frame": 755,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   487.8380126953125,
+   245.52845764160156,
+   523.2694702148438,
+   341.3400573730469,
+   0.7331303358078003,
+   144
+  ],
+  "roi": [
+   0,
+   246,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_35_off_f00248.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 35 off.mp4",
+  "frame": 248,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   316.1753845214844,
+   283.5734558105469,
+   381.82159423828125,
+   362.3383483886719,
+   0.42693930864334106,
+   1
+  ],
+  "roi": [
+   0,
+   279,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_35_off_f00385.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 35 off.mp4",
+  "frame": 385,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   354.2106018066406,
+   265.6640625,
+   418.14910888671875,
+   371.05352783203125,
+   0.8110008835792542,
+   92
+  ],
+  "roi": [
+   0,
+   260,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_35_off_f00423.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 35 off.mp4",
+  "frame": 423,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   721.809814453125,
+   275.84375,
+   808.0905151367188,
+   362.07635498046875,
+   0.22997982800006866,
+   106
+  ],
+  "roi": [
+   0,
+   271,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_35_off_f00688.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 35 off.mp4",
+  "frame": 688,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   444.4654541015625,
+   258.0075988769531,
+   494.0230712890625,
+   351.95635986328125,
+   0.8155959844589233,
+   143
+  ],
+  "roi": [
+   0,
+   256,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_38_off_f00142.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 38 off.mp4",
+  "frame": 142,
+  "W": 1074,
+  "H": 598,
+  "skier": [
+   735.3115844726562,
+   267.72222900390625,
+   772.3594360351562,
+   398.9450988769531,
+   0.8483777046203613,
+   1
+  ],
+  "roi": [
+   0,
+   261,
+   1074,
+   598
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_38_off_f00322.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 38 off.mp4",
+  "frame": 322,
+  "W": 1074,
+  "H": 598,
+  "skier": [
+   660.8667602539062,
+   292.92877197265625,
+   708.867431640625,
+   401.8501892089844,
+   0.8200839161872864,
+   50
+  ],
+  "roi": [
+   0,
+   287,
+   1074,
+   598
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_38_off_f00458.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 38 off.mp4",
+  "frame": 458,
+  "W": 1074,
+  "H": 598,
+  "skier": [
+   660.0615844726562,
+   308.54364013671875,
+   699.6782836914062,
+   375.6256103515625,
+   0.7652039527893066,
+   94
+  ],
+  "roi": [
+   0,
+   308,
+   1074,
+   598
+  ]
+ },
+ {
+  "image": "images/Damir_Filaretov_6_at_38_off_f00736.jpg",
+  "video": "data/videos/front_view/Damir Filaretov 6 at 38 off.mp4",
+  "frame": 736,
+  "W": 1074,
+  "H": 598,
+  "skier": [
+   517.1085815429688,
+   275.31488037109375,
+   561.4729614257812,
+   310.7744140625,
+   0.6434718370437622,
+   45
+  ],
+  "roi": [
+   0,
+   275,
+   1074,
+   452
+  ]
+ },
+ {
+  "image": "images/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12_f00072.jpg",
+  "video": "data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4",
+  "frame": 72,
+  "W": 854,
+  "H": 480,
+  "skier": [
+   487.4757080078125,
+   250.95037841796875,
+   565.4553833007812,
+   375.391357421875,
+   0.8286313414573669,
+   1
+  ],
+  "roi": [
+   0,
+   244,
+   854,
+   480
+  ]
+ },
+ {
+  "image": "images/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12_f00113.jpg",
+  "video": "data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4",
+  "frame": 113,
+  "W": 854,
+  "H": 480,
+  "skier": [
+   322.0305480957031,
+   218.69342041015625,
+   420.1344299316406,
+   316.8108825683594,
+   0.8431708216667175,
+   1
+  ],
+  "roi": [
+   0,
+   213,
+   854,
+   480
+  ]
+ },
+ {
+  "image": "images/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12_f00404.jpg",
+  "video": "data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4",
+  "frame": 404,
+  "W": 854,
+  "H": 480,
+  "skier": [
+   485.49176025390625,
+   205.4393768310547,
+   611.6141357421875,
+   349.8406677246094,
+   0.8250442743301392,
+   99
+  ],
+  "roi": [
+   0,
+   211,
+   854,
+   480
+  ]
+ },
+ {
+  "image": "images/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12_f00448.jpg",
+  "video": "data/videos/drive_extra/GreecePro_MenRd3__Aaron_Davis_Rd3_6at12.mp4",
+  "frame": 448,
+  "W": 854,
+  "H": 480,
+  "skier": [
+   352.65765380859375,
+   241.16104125976562,
+   428.68658447265625,
+   330.7266540527344,
+   0.6475603580474854,
+   99
+  ],
+  "roi": [
+   0,
+   240,
+   854,
+   480
+  ]
+ },
+ {
+  "image": "images/GreecePro_WomenRd3__Allie_Nicholson_Rd3__f00620.jpg",
+  "video": "data/videos/drive_extra/GreecePro_WomenRd3__Allie_Nicholson_Rd3_6at12m.mp4",
+  "frame": 620,
+  "W": 1280,
+  "H": 720,
+  "skier": [
+   598.5686645507812,
+   309.3701477050781,
+   692.5172729492188,
+   501.18389892578125,
+   0.8183265328407288,
+   43
+  ],
+  "roi": [
+   0,
+   303,
+   1280,
+   720
+  ]
+ },
+ {
+  "image": "images/GreecePro_WomenRd3__Allie_Nicholson_Rd3__f00902.jpg",
+  "video": "data/videos/drive_extra/GreecePro_WomenRd3__Allie_Nicholson_Rd3_6at12m.mp4",
+  "frame": 902,
+  "W": 1280,
+  "H": 720,
+  "skier": [
+   497.94451904296875,
+   354.8395080566406,
+   624.9961547851562,
+   510.4643249511719,
+   0.8835645914077759,
+   56
+  ],
+  "roi": [
+   0,
+   347,
+   1280,
+   720
+  ]
+ },
+ {
+  "image": "images/GreecePro_WomenRd3__Allie_Nicholson_Rd3__f01010.jpg",
+  "video": "data/videos/drive_extra/GreecePro_WomenRd3__Allie_Nicholson_Rd3_6at12m.mp4",
+  "frame": 1010,
+  "W": 1280,
+  "H": 720,
+  "skier": [
+   570.8257446289062,
+   334.9526062011719,
+   765.2398071289062,
+   525.3997802734375,
+   0.3156397342681885,
+   92
+  ],
+  "roi": [
+   0,
+   325,
+   1280,
+   720
+  ]
+ },
+ {
+  "image": "images/GreecePro_WomenRd3__Allie_Nicholson_Rd3__f01145.jpg",
+  "video": "data/videos/drive_extra/GreecePro_WomenRd3__Allie_Nicholson_Rd3_6at12m.mp4",
+  "frame": 1145,
+  "W": 1280,
+  "H": 720,
+  "skier": [
+   610.9862670898438,
+   285.47650146484375,
+   726.6325073242188,
+   564.0905151367188,
+   0.8652245998382568,
+   105
+  ],
+  "roi": [
+   0,
+   271,
+   1280,
+   720
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00077.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 77,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   548.952880859375,
+   479.0881652832031,
+   657.0985717773438,
+   675.4096069335938,
+   0.5411334037780762,
+   1
+  ],
+  "roi": [
+   0,
+   469,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00169.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 169,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   1300.4935302734375,
+   510.64593505859375,
+   1433.301025390625,
+   702.310302734375,
+   0.8540196418762207,
+   19
+  ],
+  "roi": [
+   0,
+   501,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00511.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 511,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   1463.738037109375,
+   555.0107421875,
+   1646.56103515625,
+   723.1555786132812,
+   0.5679735541343689,
+   72
+  ],
+  "roi": [
+   0,
+   546,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00604.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 604,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   757.0768432617188,
+   411.9307861328125,
+   850.778076171875,
+   669.3084106445312,
+   0.6558765769004822,
+   90
+  ],
+  "roi": [
+   0,
+   399,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_SanGervasioD2_ProWomen__Alexand_f00334.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_SanGervasioD2_ProWomen__Alexandra_Garcia_6_at_38_off.mp4",
+  "frame": 334,
+  "W": 1072,
+  "H": 600,
+  "skier": [
+   485.1559143066406,
+   288.6816101074219,
+   541.2431640625,
+   363.0653381347656,
+   0.5984036326408386,
+   1
+  ],
+  "roi": [
+   0,
+   284,
+   1072,
+   600
+  ]
+ },
+ {
+  "image": "images/ItalyPro_SanGervasioD2_ProWomen__Alexand_f00366.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_SanGervasioD2_ProWomen__Alexandra_Garcia_6_at_38_off.mp4",
+  "frame": 366,
+  "W": 1072,
+  "H": 600,
+  "skier": [
+   682.8031616210938,
+   317.35968017578125,
+   727.6189575195312,
+   380.9525451660156,
+   0.7837563157081604,
+   1
+  ],
+  "roi": [
+   0,
+   314,
+   1072,
+   600
+  ]
+ },
+ {
+  "image": "images/ItalyPro_SanGervasioD2_ProWomen__Alexand_f00432.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_SanGervasioD2_ProWomen__Alexandra_Garcia_6_at_38_off.mp4",
+  "frame": 432,
+  "W": 1072,
+  "H": 600,
+  "skier": [
+   649.7916870117188,
+   326.73370361328125,
+   725.3148193359375,
+   403.0920104980469,
+   0.7850472331047058,
+   16
+  ],
+  "roi": [
+   0,
+   322,
+   1072,
+   600
+  ]
+ },
+ {
+  "image": "images/ItalyPro_SanGervasioD2_ProWomen__Alexand_f00861.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_SanGervasioD2_ProWomen__Alexandra_Garcia_6_at_38_off.mp4",
+  "frame": 861,
+  "W": 1072,
+  "H": 600,
+  "skier": [
+   547.72412109375,
+   303.04364013671875,
+   579.3430786132812,
+   358.3010559082031,
+   0.44883885979652405,
+   54
+  ],
+  "roi": [
+   0,
+   303,
+   1072,
+   579
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_1_at_38_off_(good_crash)_f00092.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+  "frame": 92,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   708.2573852539062,
+   274.234130859375,
+   752.9765625,
+   401.9130554199219,
+   0.715382993221283,
+   7
+  ],
+  "roi": [
+   0,
+   267,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_1_at_38_off_(good_crash)_f00114.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+  "frame": 114,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   748.6624755859375,
+   270.7852478027344,
+   803.338623046875,
+   414.2486572265625,
+   0.8482882380485535,
+   10
+  ],
+  "roi": [
+   0,
+   263,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_1_at_38_off_(good_crash)_f00206.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+  "frame": 206,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   345.5299377441406,
+   303.1502685546875,
+   398.18157958984375,
+   398.9975280761719,
+   0.6940316557884216,
+   10
+  ],
+  "roi": [
+   0,
+   298,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_1_at_38_off_(good_crash)_f00319.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 1 at 38 off (good crash).mp4",
+  "frame": 319,
+  "W": 1074,
+  "H": 600,
+  "skier": [
+   786.9205932617188,
+   329.1866149902344,
+   877.9634399414062,
+   420.5228576660156,
+   0.23547406494617462,
+   164
+  ],
+  "roi": [
+   0,
+   324,
+   1074,
+   600
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_6_at_35_off_f00231.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 6 at 35 off.mp4",
+  "frame": 231,
+  "W": 1066,
+  "H": 602,
+  "skier": [
+   633.40771484375,
+   304.2218017578125,
+   681.1996459960938,
+   375.74542236328125,
+   0.7669345140457153,
+   50
+  ],
+  "roi": [
+   0,
+   300,
+   1066,
+   602
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_6_at_35_off_f00389.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 6 at 35 off.mp4",
+  "frame": 389,
+  "W": 1066,
+  "H": 602,
+  "skier": [
+   614.274658203125,
+   296.815673828125,
+   663.0775146484375,
+   376.525390625,
+   0.7281976938247681,
+   116
+  ],
+  "roi": [
+   0,
+   292,
+   1066,
+   602
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_6_at_35_off_f00613.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 6 at 35 off.mp4",
+  "frame": 613,
+  "W": 1066,
+  "H": 602,
+  "skier": [
+   389.14349365234375,
+   281.97705078125,
+   461.6419372558594,
+   383.9101257324219,
+   0.4057725965976715,
+   242
+  ],
+  "roi": [
+   0,
+   277,
+   1066,
+   602
+  ]
+ },
+ {
+  "image": "images/Lucas_Cornale_6_at_35_off_f00704.jpg",
+  "video": "data/videos/front_view/Lucas Cornale 6 at 35 off.mp4",
+  "frame": 704,
+  "W": 1066,
+  "H": 602,
+  "skier": [
+   588.3128051757812,
+   240.45960998535156,
+   637.8778686523438,
+   356.5372314453125,
+   0.8224443793296814,
+   1
+  ],
+  "roi": [
+   0,
+   243,
+   1066,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_2_at_39.5_off_f00031.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 2 at 39.5 off.mp4",
+  "frame": 31,
+  "W": 1072,
+  "H": 602,
+  "skier": [
+   619.705810546875,
+   312.57830810546875,
+   671.4692993164062,
+   394.8075256347656,
+   0.8710932731628418,
+   1
+  ],
+  "roi": [
+   0,
+   309,
+   1072,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_2_at_39.5_off_f00133.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 2 at 39.5 off.mp4",
+  "frame": 133,
+  "W": 1072,
+  "H": 602,
+  "skier": [
+   615.5133666992188,
+   272.9737548828125,
+   677.1700439453125,
+   412.4400329589844,
+   0.5133493542671204,
+   1
+  ],
+  "roi": [
+   0,
+   266,
+   1072,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_2_at_39.5_off_f00228.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 2 at 39.5 off.mp4",
+  "frame": 228,
+  "W": 1072,
+  "H": 602,
+  "skier": [
+   439.086181640625,
+   323.4908142089844,
+   554.6368408203125,
+   409.2265319824219,
+   0.47563624382019043,
+   5
+  ],
+  "roi": [
+   0,
+   319,
+   1072,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_2_at_39.5_off_f00385.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 2 at 39.5 off.mp4",
+  "frame": 385,
+  "W": 1072,
+  "H": 602,
+  "skier": [
+   400.89495849609375,
+   95.23416900634766,
+   673.8829345703125,
+   466.16900634765625,
+   0.8605126738548279,
+   28
+  ],
+  "roi": [
+   0,
+   77,
+   1072,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_28_off_f00014.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+  "frame": 14,
+  "W": 1072,
+  "H": 598,
+  "skier": [
+   544.3858032226562,
+   248.949951171875,
+   574.6101684570312,
+   348.40008544921875,
+   0.7753603458404541,
+   1
+  ],
+  "roi": [
+   0,
+   243,
+   1072,
+   598
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_28_off_f00095.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+  "frame": 95,
+  "W": 1072,
+  "H": 598,
+  "skier": [
+   648.15966796875,
+   291.2809143066406,
+   690.1905517578125,
+   355.9534912109375,
+   0.7544876933097839,
+   1
+  ],
+  "roi": [
+   0,
+   288,
+   1072,
+   598
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_28_off_f00492.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+  "frame": 492,
+  "W": 1072,
+  "H": 598,
+  "skier": [
+   689.9963989257812,
+   285.67919921875,
+   755.3502807617188,
+   383.3600769042969,
+   0.8359920382499695,
+   24
+  ],
+  "roi": [
+   0,
+   280,
+   1072,
+   598
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_28_off_f00732.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 28 off.mp4",
+  "frame": 732,
+  "W": 1072,
+  "H": 598,
+  "skier": [
+   458.6447448730469,
+   246.44467163085938,
+   504.16900634765625,
+   350.9446105957031,
+   0.8758612871170044,
+   57
+  ],
+  "roi": [
+   0,
+   241,
+   1072,
+   598
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_32_off_f00007.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 32 off.mp4",
+  "frame": 7,
+  "W": 1070,
+  "H": 602,
+  "skier": [
+   521.0482177734375,
+   249.115966796875,
+   557.7235107421875,
+   357.7779846191406,
+   0.8344395756721497,
+   1
+  ],
+  "roi": [
+   0,
+   243,
+   1070,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_32_off_f00477.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 32 off.mp4",
+  "frame": 477,
+  "W": 1070,
+  "H": 602,
+  "skier": [
+   598.7247314453125,
+   287.4045715332031,
+   642.2759399414062,
+   366.4794616699219,
+   0.5590422749519348,
+   79
+  ],
+  "roi": [
+   0,
+   283,
+   1070,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_32_off_f00697.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 32 off.mp4",
+  "frame": 697,
+  "W": 1070,
+  "H": 602,
+  "skier": [
+   440.0057373046875,
+   275.3866882324219,
+   476.9227600097656,
+   373.3749694824219,
+   0.7306370139122009,
+   166
+  ],
+  "roi": [
+   0,
+   270,
+   1070,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_32_off_f00732.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 32 off.mp4",
+  "frame": 732,
+  "W": 1070,
+  "H": 602,
+  "skier": [
+   495.4588928222656,
+   256.1155090332031,
+   546.9463500976562,
+   345.9205017089844,
+   0.7443221807479858,
+   166
+  ],
+  "roi": [
+   0,
+   256,
+   1070,
+   602
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_35_off_f00124.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 35 off.mp4",
+  "frame": 124,
+  "W": 1066,
+  "H": 598,
+  "skier": [
+   782.8268432617188,
+   265.4649963378906,
+   830.673828125,
+   391.1951599121094,
+   0.8760327696800232,
+   1
+  ],
+  "roi": [
+   0,
+   264,
+   1066,
+   598
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_35_off_f00274.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 35 off.mp4",
+  "frame": 274,
+  "W": 1066,
+  "H": 598,
+  "skier": [
+   682.8865966796875,
+   310.9620056152344,
+   733.1768798828125,
+   374.0139465332031,
+   0.6964397430419922,
+   38
+  ],
+  "roi": [
+   0,
+   307,
+   1066,
+   598
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_35_off_f00503.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 35 off.mp4",
+  "frame": 503,
+  "W": 1066,
+  "H": 598,
+  "skier": [
+   430.85540771484375,
+   304.5193786621094,
+   507.5184631347656,
+   386.63201904296875,
+   0.8156174421310425,
+   73
+  ],
+  "roi": [
+   0,
+   300,
+   1066,
+   598
+  ]
+ },
+ {
+  "image": "images/Vincenzo_Marino_6_at_35_off_f00692.jpg",
+  "video": "data/videos/front_view/Vincenzo Marino 6 at 35 off.mp4",
+  "frame": 692,
+  "W": 1066,
+  "H": 598,
+  "skier": [
+   423.7541809082031,
+   263.9341125488281,
+   478.9018249511719,
+   377.9951477050781,
+   0.4987443685531616,
+   101
+  ],
+  "roi": [
+   0,
+   258,
+   1066,
+   598
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f00480.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 480,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   855.4710083007812,
+   436.453369140625,
+   973.3397827148438,
+   606.518310546875,
+   0.7451445460319519,
+   47
+  ],
+  "roi": [
+   0,
+   427,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f00848.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 848,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   1091.9674072265625,
+   319.015380859375,
+   1183.1278076171875,
+   607.76708984375,
+   0.8425422310829163,
+   59
+  ],
+  "roi": [
+   0,
+   314,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f01493.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 1493,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   1015.8472900390625,
+   449.3143310546875,
+   1142.9376220703125,
+   677.1942749023438,
+   0.8765324354171753,
+   271
+  ],
+  "roi": [
+   0,
+   437,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f02535.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 2535,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   631.3970336914062,
+   428.45867919921875,
+   791.6264038085938,
+   687.260986328125,
+   0.5052027106285095,
+   464
+  ],
+  "roi": [
+   0,
+   415,
+   1920,
+   1080
+  ]
+ }
+]

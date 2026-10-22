@@ -86,6 +86,8 @@ for js in tqdm(sorted(p for p in Path(a.run).glob("*.json") if not p.name.endswi
                      v4_slots=slots(v4),
                      v4_gates=" ".join(g["role"] + (":in" if g["through_gate"] else ":OUT") for g in gates
                                   if g["role"] != "guide") or "-",
+                     v4_guide=sum(e["kind"] == "centre" for e in v4["events"]) + sum(
+                         e["kind"] == "gate" and e.get("role") == "guide" for e in v4["events"]),
                      motion_s=round(t_motion, 1), logic_s=round(t_v4, 2)))
     (out / f"{js.stem}.v4.json").write_text(json.dumps(dict(events=v4["events"], courses=v4["courses"]),
                                                        indent=1, default=float))

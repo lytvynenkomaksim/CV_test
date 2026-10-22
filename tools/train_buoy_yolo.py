@@ -19,9 +19,12 @@ ap.add_argument("--epochs", type=int, default=40)
 ap.add_argument("--imgsz", type=int, default=1088)
 ap.add_argument("--batch", type=int, default=8)
 ap.add_argument("--workers", type=int, default=2)
-ap.add_argument("--device", default=None, help="cpu, 0 (first GPU), ... default: GPU if available")
+ap.add_argument("--device", default=None, help="cpu, 0 (first NVIDIA GPU), mps (Apple GPU / Metal); default: best available")
 ap.add_argument("--patience", type=int, default=15)
 ap.add_argument("--cache", default=False, help="ram | disk | False")
+ap.add_argument("--fraction", type=float, default=1.0, help="use only this fraction of the train images (timing)")
+ap.add_argument("--hsv-h", type=float, default=0.02, help="hue augmentation (0.02 keeps colours; 0.3 = any colour)")
+ap.add_argument("--out", default=None, help="weights file name under models/ (default buoy_<model>.pt)")
 ap.add_argument("--name", default=None, help="run name under runs/train (default buoy_<model>)")
 a = ap.parse_args()
 
@@ -33,7 +36,7 @@ run_yaml = data.parent / "data_resolved.yaml"
 run_yaml.write_text("\n".join(cfg) + "\n")
 if a.device is None:
     import torch
-    a.device = 0 if torch.cuda.is_available() else "cpu"
+    a.device = 0 if torch.cuda.is_available() else ("mps" if torch.backends.mps.is_available() else "cpu")  # mps = Apple GPU
 
 run_name = a.name or f"buoy_{Path(a.model).stem}"
 m = YOLO(str(ROOT / "models" / a.model))
@@ -41,9 +44,10 @@ m.train(data=str(run_yaml), epochs=a.epochs, imgsz=a.imgsz, batch=a.batch, worke
         project=str(ROOT / "runs/train"), name=run_name, exist_ok=True, patience=a.patience,
         cache=(a.cache if a.cache in ("ram", "disk") else False),
         # small objects: keep scale aug mild, no vertical flips (water plane), keep mosaic
-        scale=0.3, fliplr=0.5, flipud=0.0, mosaic=1.0, close_mosaic=5, hsv_h=0.02, plots=True)
+        scale=0.3, fliplr=0.5, flipud=0.0, mosaic=1.0, close_mosaic=5, hsv_h=a.hsv_h, plots=True,
+        fraction=a.fraction)
 best = ROOT / "runs/train" / run_name / "weights/best.pt"
-dst = ROOT / "models" / f"buoy_{Path(a.model).stem}.pt"
+dst = ROOT / "models" / (a.out or f"buoy_{Path(a.model).stem}.pt")
 shutil.copy(best, dst)
 print("saved", dst)
 YOLO(str(dst)).export(format="onnx", imgsz=a.imgsz, dynamic=False, simplify=True)

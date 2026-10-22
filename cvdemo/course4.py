@@ -52,9 +52,13 @@ def _skier_series(frames, s0, s1):
 
 
 def buoy_events_v4(tracks, frames, s0, s1, fps, motion_s=0.8, near_rows=0.35, near_cols=3.0,
-                   gate_gap=2.5, gate_dy=0.25, min_obs_miss=6):
+                   gate_gap=2.5, gate_dy=0.25, min_obs_miss=6, guide_cols=None):
     """near_rows / near_cols / gate_gap / gate_dy are in skier heights. A 'miss' needs a buoy track with at
-    least min_obs_miss detections: short tracks next to the ski are mostly the ski / spray, not a buoy."""
+    least min_obs_miss detections: short tracks next to the ski are mostly the ski / spray, not a buoy.
+    Kinds: 'turn' (judged), 'gate' (pair at the same depth: entry/exit gate or boat guides), 'centre' (single
+    buoy the skier never gets within guide_cols heights of: a boat guide buoy whose partner was not seen).
+    guide_cols=None (default) switches that single-buoy rule off: on the 15 test videos it removed 1 wrong
+    call but also 4 correct ones (real turn buoys are sometimes > 5 heights from the ski when level)."""
     sf, sx, sy, sh, sX = _skier_series(frames, s0, s1)
     if len(sf) < 10:
         return []
@@ -117,6 +121,16 @@ def buoy_events_v4(tracks, frames, s0, s1, fps, motion_s=0.8, near_rows=0.35, ne
             events.append(dict(frame=int(cross), t=round(cross / fps, 2), track=t.tid, kind="gate",
                                gate_with=partner[0].tid, through_gate=bool(between), between=bool(between),
                                buoy_x=float(bx), skier_x=float(sx[ci]), n_obs=nobs, predicted=not observed,
+                               buoy_X=float(bx + frames[cross]["pan"]), skier_X=float(sX[ci])))
+            continue
+        # ---- single buoy the skier never comes near while level with it: a boat guide buoy (they sit at the
+        # same depth as each turn buoy, but in the middle, ~6 skier heights from a skier rounding the turn buoy)
+        near_any = [c for c in cand if abs(c[0] - cross) <= 0.4 * fps and abs(c[5]) <= near_rows
+                    and abs(c[2] - sx[c[1]]) <= (guide_cols or 0) * sh[c[1]]]
+        if guide_cols is not None and not near_any:
+            events.append(dict(frame=int(cross), t=round(cross / fps, 2), track=t.tid, kind="centre",
+                               buoy_x=float(bx), skier_x=float(sx[ci]), n_obs=nobs, predicted=not observed,
+                               dist_h=round(abs(bx - sx[ci]) / hpx, 1),
                                buoy_X=float(bx + frames[cross]["pan"]), skier_X=float(sX[ci])))
             continue
         # ---- single buoy: side from the skier's movement direction before reaching it

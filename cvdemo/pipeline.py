@@ -192,8 +192,11 @@ def reason(frames, meta, buoy_every=1):
 def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=None):
     cap = cv2.VideoCapture(str(video))
     W, H, fps = meta["width"], meta["height"], meta["fps"]
-    tmp = str(out_path) + ".tmp.mp4"
-    vw = cv2.VideoWriter(tmp, cv2.VideoWriter_fourcc(*"mp4v"), fps, (W, H))
+    # frames go straight into ONE high-quality H.264 encode (no lossy intermediate file): CRF 17 is visually
+    # lossless, so the result video keeps the source quality
+    vw = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}",
+                           "-r", f"{fps:.5f}", "-i", "-", "-c:v", "libx264", "-preset", "slow", "-crf", "17",
+                           "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(out_path)], stdin=subprocess.PIPE)
     # per-frame buoy draw list from tracks (observed + coasting)
     draw = defaultdict(list)
     ev_by_track = {e["track"]: e for e in events}
@@ -315,13 +318,12 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
         img = cv2.addWeighted(ov, 0.55, img, 0.45, 0)
         for i, l in enumerate(lines):
             cv2.putText(img, l, (8, y + 18 * i), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1, cv2.LINE_AA)
-        vw.write(img)
+        vw.stdin.write(np.ascontiguousarray(img).tobytes())
         f += 1
-    vw.release()
+    vw.stdin.close()
+    if vw.wait() != 0:
+        raise RuntimeError(f"ffmpeg failed writing {out_path}")
     cap.release()
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", tmp, "-c:v", "libx264", "-preset", "veryfast", "-crf", "26",
-                    "-pix_fmt", "yuv420p", "-movflags", "+faststart", str(out_path)], check=True)
-    Path(tmp).unlink()
 
 
 def _dashed_circle(img, c, r, col, n=16):

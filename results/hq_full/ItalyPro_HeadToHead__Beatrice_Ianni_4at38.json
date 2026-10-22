@@ -12,7 +12,7 @@
   "wall_s": 234.83
  },
  "models": {
-  "skier": "yolo11s + ByteTrack (full res)",
+  "skier": "yolo11s + nearest-to-last (full res)",
   "pose": "yolo11s-pose",
   "buoy": "multi-frame: YOLOE 'buoy' + colour/CLIP, local search, >=4 frames (no training, full res)",
   "ski": "ski: YOLOE-26L 'water ski' at the feet (no training)"
@@ -49,9 +49,9 @@
    "ms_per_call": 218.1
   },
   "course_logic": {
-   "total_s": 0.42,
-   "calls": 2,
-   "ms_per_call": 210.8
+   "total_s": 0.61,
+   "calls": 3,
+   "ms_per_call": 204.8
   }
  },
  "row": {
@@ -59,9 +59,10 @@
   "official": "4",
   "slots": "L+ R+ L? R- L- R-",
   "gates": "-",
-  "ski_found": "61/638",
+  "ski_found": "61/719",
+  "skier_gap_filled": 81,
   "frames": 794,
-  "ms_per_frame": 294,
+  "ms_per_frame": 295,
   "s_per_video_s": 8.8,
   "ms_scene_cut": 0,
   "ms_skier_detect_track": 23,

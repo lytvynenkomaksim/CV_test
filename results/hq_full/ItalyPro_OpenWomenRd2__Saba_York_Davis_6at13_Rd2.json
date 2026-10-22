@@ -11,7 +11,7 @@
   "wall_s": 156.92
  },
  "models": {
-  "skier": "yolo11s + ByteTrack (full res)",
+  "skier": "yolo11s + nearest-to-last (full res)",
   "pose": "yolo11s-pose",
   "buoy": "multi-frame: YOLOE 'buoy' + colour/CLIP, local search, >=4 frames (no training, full res)",
   "ski": "ski: YOLOE-26L 'water ski' at the feet (no training)"
@@ -48,9 +48,9 @@
    "ms_per_call": 172.6
   },
   "course_logic": {
-   "total_s": 0.43,
-   "calls": 2,
-   "ms_per_call": 214.7
+   "total_s": 0.63,
+   "calls": 3,
+   "ms_per_call": 208.5
   }
  },
  "row": {
@@ -58,7 +58,8 @@
   "official": "6",
   "slots": "L! R? L+ R? L+ R?",
   "gates": "exit:not judged",
-  "ski_found": "43/444",
+  "ski_found": "43/559",
+  "skier_gap_filled": 115,
   "frames": 653,
   "ms_per_frame": 239,
   "s_per_video_s": 7.0,
@@ -72,25 +73,25 @@
  },
  "events": [
   {
-   "frame": 152,
-   "t": 5.16,
+   "frame": 146,
+   "t": 4.96,
    "track": 2,
    "kind": "turn",
    "side": "left",
    "skier_side": "right",
    "outside": true,
    "verdict": "ok",
-   "margin_h": 2.66,
-   "margin_px": 300.7,
-   "n_close": 1,
-   "buoy_x": 1654.2575228394949,
-   "skier_x": 624.82470703125,
+   "margin_h": 2.59,
+   "margin_px": 365.3,
+   "n_close": 2,
+   "buoy_x": 1257.0,
+   "skier_x": 574.9808088030134,
    "n_obs": 17,
    "predicted": false,
    "alt_of_weak_pair": false,
-   "buoy_X": 2085.3224357011673,
-   "skier_X": 1055.8896198929224,
-   "amp": 677.5801391601562
+   "buoy_X": 2133.673221299242,
+   "skier_X": 1451.6540301022553,
+   "amp": 847.0903930664062
   },
   {
    "frame": 202,
@@ -123,8 +124,8 @@
    "outside": true,
    "verdict": "ok",
    "margin_h": 0.23,
-   "margin_px": 29.9,
-   "n_close": 7,
+   "margin_px": 29.5,
+   "n_close": 8,
    "buoy_x": 1112.5,
    "skier_x": 1011.7950134277344,
    "n_obs": 13,
@@ -161,9 +162,9 @@
    "skier_side": "right",
    "outside": true,
    "verdict": "ok",
-   "margin_h": 1.74,
-   "margin_px": 230.3,
-   "n_close": 7,
+   "margin_h": 1.59,
+   "margin_px": 210.4,
+   "n_close": 8,
    "buoy_x": 921.7174310693131,
    "skier_x": 771.1917724609375,
    "n_obs": 5,

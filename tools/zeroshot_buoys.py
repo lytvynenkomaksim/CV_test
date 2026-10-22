@@ -139,12 +139,28 @@ def owlv2(image_ref=None):
     return run
 
 
+def colorblob(verify=False):
+    from cvdemo.colorblob import ColorBlobBuoy
+    from cvdemo.verify import ClipVerifier
+    d = ColorBlobBuoy(verifier=ClipVerifier() if verify else None)
+
+    def run(img):  # img = the zone crop already
+        c = [b[:5] for b in d.candidates(img)]
+        if verify and c:
+            c = sorted(c, key=lambda b: -b[4])[:d.max_verify]
+            c = [(*b[:4], float(p)) for b, p in zip(c, d.verifier(img, c))]
+        return c
+    return run
+
+
 def build(name, ref):
     if name.startswith("yolo="):  # any trained buoy model: yolo=<weights under models/>[@imgsz]
         w, _, sz = name[5:].partition("@")
         return ultra(w, imgsz=int(sz or 1280))
     return {
         "hsv": hsv_detector,
+        "colorblob": lambda: colorblob(False),
+        "colorblob_clip": lambda: colorblob(True),
         "coco_ball": lambda: ultra("yolo11m.pt", coco_ids=[32]),
         "yoloworld_s": lambda: ultra("yolov8s-worldv2.pt", PROMPTS),
         "yoloworld_m": lambda: ultra("yolov8m-worldv2.pt", PROMPTS),

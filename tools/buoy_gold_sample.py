@@ -19,7 +19,8 @@ sys.path.insert(0, str(ROOT))
 from cvdemo import course4 as C4  # noqa: E402
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--run", default=str(ROOT / "results/colab_t4/demo"))
+ap.add_argument("--run", nargs="+", default=[str(ROOT / "results/colab_t4/demo")])
+ap.add_argument("--only", nargs="*", help="substrings of the video names to use")
 ap.add_argument("--out", default=str(ROOT / "data/buoy_gold"))
 ap.add_argument("--per-video", type=int, default=4)
 a = ap.parse_args()
@@ -34,8 +35,10 @@ def roi(r, W, H):
 
 
 items = []
-for js in sorted(Path(a.run).glob("*.frames.json")):
+for js in sorted(j for r in a.run for j in Path(r).glob("*.frames.json")):
     stem = js.name[:-len(".frames.json")]
+    if a.only and not any(o in stem for o in a.only):
+        continue
     meta = json.loads((js.parent / f"{stem}.json").read_text())["meta"]
     W, H = meta["width"], meta["height"]
     frames = json.loads(js.read_text())

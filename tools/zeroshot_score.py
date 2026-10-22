@@ -16,6 +16,8 @@ ap = argparse.ArgumentParser()
 ap.add_argument("--gold", default="data/buoy_gold")
 ap.add_argument("--preds", default="results/zeroshot/preds")
 ap.add_argument("--out", default="results/zeroshot")
+ap.add_argument("--no-heldout", dest="heldout", action="store_false",
+                help="skip the held-out table (all test videos are unseen by the fine-tuned model)")
 a = ap.parse_args()
 gold = Path(a.gold)
 items = json.loads((gold / "items.json").read_text())
@@ -86,9 +88,11 @@ def evaluate(P, its):
 # videos the fine-tuned buoy model never saw in training (its val split + the YouTube video)
 HELD_OUT = ("Aaron_Davis", "Lucas Cornale 6 at 35", "Vincenzo Marino 6 at 35", "youtube")
 md = []
-for title, keep in [("All test frames", lambda it: True),
-                    ("Held-out videos only (fair for the fine-tuned model)",
-                     lambda it: any(h in it["video"] for h in HELD_OUT))]:
+groups = [("All test frames", lambda it: True)]
+if a.heldout:
+    groups.append(("Held-out videos only (fair for the fine-tuned model)",
+                   lambda it: any(h in it["video"] for h in HELD_OUT)))
+for title, keep in groups:
     rows = []
     for p in sorted(Path(a.preds).glob("*.json")):
         if p.stem == "timing":

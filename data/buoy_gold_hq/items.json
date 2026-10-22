@@ -1,0 +1,842 @@
+[
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00020.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 20,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   1331.589599609375,
+   438.5237731933594,
+   1443.002197265625,
+   703.1499633789062,
+   0.8606945276260376,
+   1
+  ],
+  "roi": [
+   0,
+   425,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00143.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 143,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   1116.138916015625,
+   511.9898681640625,
+   1220.9600830078125,
+   676.8837280273438,
+   0.7731704115867615,
+   19
+  ],
+  "roi": [
+   0,
+   503,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00231.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 231,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   569.1808471679688,
+   506.90411376953125,
+   664.3245849609375,
+   660.7421875,
+   0.4764065742492676,
+   27
+  ],
+  "roi": [
+   0,
+   499,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00285.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 285,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   1324.49072265625,
+   515.8895874023438,
+   1536.766845703125,
+   661.3973388671875,
+   0.7933379411697388,
+   42
+  ],
+  "roi": [
+   0,
+   508,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00358.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 358,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   1087.30322265625,
+   586.064697265625,
+   1263.188232421875,
+   712.5174560546875,
+   0.6864326596260071,
+   46
+  ],
+  "roi": [
+   0,
+   579,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00557.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 557,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   734.2962036132812,
+   466.7326354980469,
+   889.7971801757812,
+   698.6873779296875,
+   0.8137098550796509,
+   90
+  ],
+  "roi": [
+   0,
+   455,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00584.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 584,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   672.2052001953125,
+   454.4685363769531,
+   782.3534545898438,
+   698.262939453125,
+   0.7742594480514526,
+   90
+  ],
+  "roi": [
+   0,
+   442,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Julie_Mishler_6at_f00601.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Julie_Mishler_6at32_Rd2.mp4",
+  "frame": 601,
+  "W": 1920,
+  "H": 1064,
+  "skier": [
+   754.0653686523438,
+   415.2143859863281,
+   845.4364013671875,
+   660.3652954101562,
+   0.7276109457015991,
+   90
+  ],
+  "roi": [
+   0,
+   402,
+   1920,
+   1064
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f00899.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 899,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   1017.5940551757812,
+   439.928466796875,
+   1170.78564453125,
+   681.5704956054688,
+   0.8158484101295471,
+   59
+  ],
+  "roi": [
+   0,
+   432,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f01433.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 1433,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   786.7224731445312,
+   479.44610595703125,
+   963.6427001953125,
+   735.6709594726562,
+   0.8439605832099915,
+   257
+  ],
+  "roi": [
+   0,
+   466,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f01576.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 1576,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   1124.6103515625,
+   376.61273193359375,
+   1224.426513671875,
+   622.9718017578125,
+   0.7646631598472595,
+   271
+  ],
+  "roi": [
+   0,
+   366,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f01881.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 1881,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   595.9600219726562,
+   496.262451171875,
+   704.8238525390625,
+   721.4823608398438,
+   0.8211466670036316,
+   356
+  ],
+  "roi": [
+   0,
+   485,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f02151.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 2151,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   700.4227905273438,
+   390.5147705078125,
+   860.26708984375,
+   695.5763549804688,
+   0.8875992298126221,
+   402
+  ],
+  "roi": [
+   0,
+   375,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f02155.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 2155,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   674.7206420898438,
+   360.3062744140625,
+   827.5383911132812,
+   680.54736328125,
+   0.8648327589035034,
+   402
+  ],
+  "roi": [
+   0,
+   344,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f02321.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 2321,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   879.341552734375,
+   497.2629699707031,
+   1069.0845947265625,
+   729.7255249023438,
+   0.7817751169204712,
+   417
+  ],
+  "roi": [
+   0,
+   485,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/youtube_regina_jaquess_f02671.jpg",
+  "video": "data/videos/youtube/youtube_regina_jaquess.mp4",
+  "frame": 2671,
+  "W": 1920,
+  "H": 1080,
+  "skier": [
+   743.9402465820312,
+   460.0517272949219,
+   888.814208984375,
+   702.0540161132812,
+   0.8720256686210632,
+   509
+  ],
+  "roi": [
+   0,
+   447,
+   1920,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00075.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 75,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   1429.010009765625,
+   454.916748046875,
+   1546.05078125,
+   778.3173828125,
+   0.7956843972206116,
+   1
+  ],
+  "roi": [
+   0,
+   451,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00132.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 132,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   927.4328002929688,
+   498.1000061035156,
+   1025.090087890625,
+   735.0089111328125,
+   0.8031018972396851,
+   1
+  ],
+  "roi": [
+   0,
+   486,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00164.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 164,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   598.5693359375,
+   581.4100952148438,
+   681.8377075195312,
+   714.1514282226562,
+   0.23473934829235077,
+   1
+  ],
+  "roi": [
+   0,
+   576,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00207.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 207,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   687.0526733398438,
+   521.6213989257812,
+   839.8543701171875,
+   688.688720703125,
+   0.6479121446609497,
+   25
+  ],
+  "roi": [
+   0,
+   513,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00216.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 216,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   712.798095703125,
+   580.0175170898438,
+   865.8375854492188,
+   691.9263916015625,
+   0.2134065330028534,
+   -1
+  ],
+  "roi": [
+   0,
+   580,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00367.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 367,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   699.728271484375,
+   517.4928588867188,
+   876.7169799804688,
+   673.713623046875,
+   0.7389779686927795,
+   89
+  ],
+  "roi": [
+   0,
+   509,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00489.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 489,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   609.7053833007812,
+   576.726318359375,
+   684.5845336914062,
+   717.03369140625,
+   0.20071202516555786,
+   -1
+  ],
+  "roi": [
+   0,
+   576,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Allie_Nicholson_6at_f00536.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "frame": 536,
+  "W": 1914,
+  "H": 1064,
+  "skier": [
+   729.0903930664062,
+   558.3766479492188,
+   870.5738525390625,
+   671.070068359375,
+   0.22664646804332733,
+   -1
+  ],
+  "roi": [
+   0,
+   558,
+   1914,
+   1064
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00155.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 155,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   961.952392578125,
+   283.5964050292969,
+   1063.8817138671875,
+   608.9642333984375,
+   0.84212726354599,
+   1
+  ],
+  "roi": [
+   0,
+   267,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00156.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 156,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   964.2598876953125,
+   291.5354309082031,
+   1064.8145751953125,
+   608.9574584960938,
+   0.7798522710800171,
+   1
+  ],
+  "roi": [
+   0,
+   275,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00205.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 205,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   939.9611206054688,
+   242.65072631835938,
+   1034.93603515625,
+   572.86279296875,
+   0.86276775598526,
+   1
+  ],
+  "roi": [
+   0,
+   226,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00445.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 445,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   632.4614868164062,
+   286.69775390625,
+   783.0740356445312,
+   520.140625,
+   0.7032549977302551,
+   1
+  ],
+  "roi": [
+   0,
+   275,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00497.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 497,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   1204.9287109375,
+   388.3066101074219,
+   1295.5814208984375,
+   582.7080688476562,
+   0.749891996383667,
+   82
+  ],
+  "roi": [
+   0,
+   378,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00531.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 531,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   1201.1033935546875,
+   331.04736328125,
+   1349.748291015625,
+   586.731689453125,
+   0.7697658538818359,
+   82
+  ],
+  "roi": [
+   0,
+   320,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00623.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 623,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   595.0477294921875,
+   339.0055236816406,
+   748.3545532226562,
+   547.2785034179688,
+   0.7931729555130005,
+   116
+  ],
+  "roi": [
+   0,
+   332,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_HeadToHead__Beatrice_Ianni_4at3_f00754.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "frame": 754,
+  "W": 1896,
+  "H": 1076,
+  "skier": [
+   642.393310546875,
+   298.284423828125,
+   760.86474609375,
+   581.5267333984375,
+   0.84392911195755,
+   161
+  ],
+  "roi": [
+   0,
+   284,
+   1896,
+   1076
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00137.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 137,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   595.5847778320312,
+   517.4138793945312,
+   655.8704223632812,
+   676.6702270507812,
+   0.2491029053926468,
+   -1
+  ],
+  "roi": [
+   0,
+   517,
+   1904,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00173.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 173,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   702.7201538085938,
+   470.01507568359375,
+   858.108154296875,
+   641.780029296875,
+   0.46152833104133606,
+   35
+  ],
+  "roi": [
+   0,
+   461,
+   1904,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00180.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 180,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   648.6826782226562,
+   507.1324462890625,
+   870.2301025390625,
+   640.7203369140625,
+   0.5031201839447021,
+   39
+  ],
+  "roi": [
+   0,
+   500,
+   1904,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00399.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 399,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   1259.852294921875,
+   538.7122802734375,
+   1379.251220703125,
+   738.7274169921875,
+   0.5647038817405701,
+   172
+  ],
+  "roi": [
+   0,
+   528,
+   1904,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00496.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 496,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   616.73974609375,
+   478.9627380371094,
+   745.1484985351562,
+   639.029296875,
+   0.7803874015808105,
+   222
+  ],
+  "roi": [
+   0,
+   470,
+   1904,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00606.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 606,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   827.7732543945312,
+   505.65167236328125,
+   907.5192260742188,
+   698.1942749023438,
+   0.557711124420166,
+   305
+  ],
+  "roi": [
+   0,
+   496,
+   1904,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00628.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 628,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   726.7745971679688,
+   481.7264404296875,
+   845.9011840820312,
+   700.0242309570312,
+   0.7710409760475159,
+   304
+  ],
+  "roi": [
+   0,
+   470,
+   1904,
+   1080
+  ]
+ },
+ {
+  "image": "images/ItalyPro_OpenWomenRd2__Saba_York_Davis_6_f00650.jpg",
+  "video": "data/videos/drive_extra/ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4",
+  "frame": 650,
+  "W": 1904,
+  "H": 1080,
+  "skier": [
+   675.9457397460938,
+   464.9144287109375,
+   776.8638916015625,
+   689.2725219726562,
+   0.7751980423927307,
+   308
+  ],
+  "roi": [
+   0,
+   453,
+   1904,
+   1080
+  ]
+ }
+]

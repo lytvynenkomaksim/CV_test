@@ -1,0 +1,74 @@
+{
+ "meta": {
+  "video": "data/videos/drive_extra/ItalyPro_MenFinal__Nate_Smith_4at41.mp4",
+  "fps": 27.8957351913464,
+  "frames": 801,
+  "width": 1912,
+  "height": 1076,
+  "shots": [
+   0
+  ],
+  "wall_s": 2092.34
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "YOLOE-26L 'buoy' (no training, zone only)",
+  "ski": "ski: YOLOE-26L 'water ski' at the feet (no training)"
+ },
+ "timings": {
+  "scene_cut": {
+   "total_s": 0.35,
+   "calls": 801,
+   "ms_per_call": 0.4
+  },
+  "skier_detect_track": {
+   "total_s": 347.08,
+   "calls": 801,
+   "ms_per_call": 433.3
+  },
+  "camera_pan": {
+   "total_s": 14.9,
+   "calls": 801,
+   "ms_per_call": 18.6
+  },
+  "pose": {
+   "total_s": 65.92,
+   "calls": 526,
+   "ms_per_call": 125.3
+  },
+  "ski": {
+   "total_s": 356.0,
+   "calls": 526,
+   "ms_per_call": 676.8
+  },
+  "buoy_detect": {
+   "total_s": 1303.52,
+   "calls": 801,
+   "ms_per_call": 1627.4
+  },
+  "course_logic": {
+   "total_s": 0.02,
+   "calls": 1,
+   "ms_per_call": 16.3
+  }
+ },
+ "row": {
+  "video": "ItalyPro_MenFinal__Nate_Smith_4at41",
+  "official": "4",
+  "slots": "",
+  "gates": "-",
+  "ski_found": "37/526",
+  "frames": 801,
+  "ms_per_frame": 2606,
+  "s_per_video_s": 72.7,
+  "ms_scene_cut": 0,
+  "ms_skier_detect_track": 433,
+  "ms_camera_pan": 19,
+  "ms_pose": 82,
+  "ms_ski": 444,
+  "ms_buoy_detect": 1627,
+  "ms_course_logic": 0
+ },
+ "events": []
+}

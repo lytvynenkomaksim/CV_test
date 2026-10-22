@@ -21,7 +21,7 @@ from cvdemo.ski import SkiDetector  # noqa: E402
 
 ap = argparse.ArgumentParser()
 ap.add_argument("videos", nargs="+")
-ap.add_argument("--out", default=str(ROOT / "results/hq_untrained"))
+ap.add_argument("--out", default=str(ROOT / "results/hq_full"))
 ap.add_argument("--max-frames", type=int)
 ap.add_argument("--from-frames", action="store_true", help="reuse <out>/<name>.frames.json (no detection, re-score + render)")
 a = ap.parse_args()
@@ -30,11 +30,13 @@ out.mkdir(parents=True, exist_ok=True)
 
 timer = PL.Timer()
 with timer("load_models"):
-    skier = PL.SkierTracker("s")
+    skier = PL.SkierTracker("s", imgsz=None)  # full resolution
     pose_est = P.build("yolo-s")
-    buoy_det = None if a.from_frames else B.build("yoloe-zone")
+    buoy_det = None
     ski_det = None if a.from_frames else SkiDetector()
-labels = dict(skier=skier.name, pose=pose_est.name, buoy=B.YoloEZoneBuoy.name, ski=SkiDetector.name)
+from cvdemo.temporal import VideoBuoys  # noqa: E402
+
+labels = dict(skier=skier.name + " (full res)", pose=pose_est.name, buoy=VideoBuoys.name, ski=SkiDetector.name)
 import torch  # noqa: E402
 
 dev = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU (4 cores)"
@@ -50,7 +52,7 @@ for v in a.videos:
         timer.t.update({k: x["total_s"] for k, x in old["timings"].items()})
         timer.n.update({k: x.get("calls", 1) for k, x in old["timings"].items()})
     else:
-        frames, meta = PL.analyse(v, buoy_det, pose_est, skier, timer=timer, max_frames=a.max_frames,
+        frames, meta = PL.analyse(v, VideoBuoys(v), pose_est, skier, timer=timer, max_frames=a.max_frames,
                                   ski_det=ski_det)
     with timer("course_logic"):
         crs = C4.analyse_course_v4(frames, meta)
@@ -76,8 +78,9 @@ for v in a.videos:
     (out / f"{tag}.frames.json").write_text(json.dumps(frames, default=float))
     print(rows[-1], flush=True)
     hdr = list(rows[0])
-    md = ["High-quality videos, no trained models of ours (YOLOE 'buoy' in the skier zone, YOLOE 'water ski' at the "
-          "feet, COCO YOLO11 skier + pose), course logic v4. Slots: + outside (correct), x inside, ~ too close / "
+    md = ["High-quality videos at FULL resolution, no trained models of ours: multi-frame buoys (YOLOE 'buoy' + colour "
+          "centre-surround with CLIP check, local search, >= 4 frames), YOLOE 'water ski' at the feet, COCO YOLO11 "
+          "skier + pose; course logic v4. Slots: + outside (correct), x inside, ~ too close / "
           "hidden, ? not seen, - not reached, ! conflicting.", "",
           "| " + " | ".join(hdr) + " |", "|" + "---|" * len(hdr)]
     md += ["| " + " | ".join(str(r.get(h, "")) for h in hdr) + " |" for r in rows]

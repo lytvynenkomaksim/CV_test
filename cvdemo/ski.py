@@ -48,7 +48,8 @@ class SkiDetector:
         if x1 - x0 < 16 or y1 - y0 < 8:
             return None
         crop = frame[y0:y1, x0:x1]
-        r = self.m.predict(crop, imgsz=640, conf=self.conf, verbose=False)[0]
+        sz = max(640, (max(crop.shape[:2]) + 31) // 32 * 32)  # never shrink the crop
+        r = self.m.predict(crop, imgsz=sz, conf=self.conf, verbose=False)[0]
         if r.masks is None:
             return None
         fxl, fyl = fx - x0, fy - y0

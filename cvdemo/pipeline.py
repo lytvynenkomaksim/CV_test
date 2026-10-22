@@ -72,7 +72,8 @@ class SkierTracker:
 
     def __call__(self, frame):
         # person (0) + boat (8): boats are only recorded, to recognise shots from another camera
-        r = self.m.track(frame, persist=True, classes=[0, 8], conf=self.conf, imgsz=self.imgsz,
+        imgsz = self.imgsz or (max(frame.shape[:2]) + 31) // 32 * 32  # None = full resolution
+        r = self.m.track(frame, persist=True, classes=[0, 8], conf=self.conf, imgsz=imgsz,
                          tracker=self.tracker, verbose=False)[0]
         cls = r.boxes.cls.int().tolist()
         allb = r.boxes.xyxy.tolist()
@@ -141,7 +142,10 @@ def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, tim
         if ski_det is not None and best:
             with timer("ski"):
                 rec["ski"] = ski_det(frame, rec)
-        if buoy_det is not None and f % buoy_every == 0:
+        if buoy_det is not None and hasattr(buoy_det, "feed"):  # multi-frame detector: decides after the video
+            with timer("buoy_detect"):
+                buoy_det.feed(f, frame, pan, best[0] if best else None, persons)
+        elif buoy_det is not None and f % buoy_every == 0:
             if hasattr(buoy_det, "skier_box"):
                 buoy_det.skier_box = best[0] if best else None
             with timer("buoy_detect"):
@@ -151,6 +155,11 @@ def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, tim
         bar.update(1)
     bar.close()
     cap.release()
+    if buoy_det is not None and hasattr(buoy_det, "feed"):
+        res = buoy_det.finish()
+        for i, rec in enumerate(frames):
+            rec["buoys"] = [list(map(float, b[:5])) for b in res.get(i, [])]
+            rec["buoy_how"] = [b[6] for b in res.get(i, [])]
     meta = dict(video=str(video), fps=fps, frames=len(frames), width=W, height=H, shots=shots,
                 wall_s=round(time.perf_counter() - t_start, 2))
     return frames, meta

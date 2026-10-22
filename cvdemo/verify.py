@@ -21,9 +21,10 @@ class ClipVerifier:
         import clip
         import torch
         self.torch = torch
-        self.m, self.pre = clip.load(str(MODELS / "clip/ViT-B-32.pt"), device="cpu")
+        self.dev = "cuda" if torch.cuda.is_available() else "cpu"
+        self.m, self.pre = clip.load(str(MODELS / "clip/ViT-B-32.pt"), device=self.dev)
         with torch.no_grad():
-            t = self.m.encode_text(clip.tokenize(POS + NEG))
+            t = self.m.encode_text(clip.tokenize(POS + NEG).to(self.dev)).float()
         self.t = t / t.norm(dim=-1, keepdim=True)
         self.npos, self.pad = len(POS), pad
 
@@ -38,7 +39,7 @@ class ClipVerifier:
             c = cv2.cvtColor(frame[y0:y1, x0:x1], cv2.COLOR_BGR2RGB)
             crops.append(self.pre(Image.fromarray(c)))
         with self.torch.no_grad():
-            f = self.m.encode_image(self.torch.stack(crops))
+            f = self.m.encode_image(self.torch.stack(crops).to(self.dev)).float()
             f = f / f.norm(dim=-1, keepdim=True)
-            p = (100 * f @ self.t.T).softmax(-1).numpy()
+            p = (100 * f @ self.t.T).softmax(-1).cpu().numpy()
         return p[:, :self.npos].sum(1)

@@ -53,7 +53,8 @@ class YoloPose:
         crop = frame[y0:y1, x0:x1]
         if crop.size == 0:
             return None
-        r = self.m.predict(crop, imgsz=320, conf=0.15, verbose=False)[0]
+        sz = max(320, (max(crop.shape[:2]) + 31) // 32 * 32)  # never shrink the skier crop
+        r = self.m.predict(crop, imgsz=sz, conf=0.15, verbose=False)[0]
         if r.keypoints is None or len(r.keypoints) == 0:
             return None
         i = int(r.boxes.conf.argmax())

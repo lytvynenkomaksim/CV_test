@@ -37,3 +37,14 @@ to fetch from a normal machine:
 
 Suggested command (with cookies):
 `yt-dlp --cookies cookies.txt -f "bv*[height<=1080][ext=mp4]+ba[ext=m4a]/b[height<=1080]" URL`
+
+## drive_extra/ - high-quality set (added for the "high quality only" test)
+Download only, unchanged copies. All ~1900x1070, sharp, boat camera with buoys visible.
+
+| file | Drive path |
+|---|---|
+| ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4 | Italy Pro/Italy pro  Pro Head to head/Allie Nicholson 6@38.mp4 |
+| ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4 | Italy Pro/Italy pro  Pro Head to head/Beatrice ianni 4@38.mp4 |
+| ItalyPro_MenFinal__Nate_Smith_4at41.mp4 | Italy Pro/Italy pro men final/Nate smith 4@41.mp4 |
+| ItalyPro_MenFinal__Saha_Descuns_4at41_semi_final.mp4 | Italy Pro/Italy pro men final/Saha Descuns 4@41 semi final.mp4 |
+| ItalyPro_OpenWomenRd2__Saba_York_Davis_6at13_Rd2.mp4 | Italy Pro/Open Women Round 2/Saba York Davis 6@13 Rd 2.mp4 |

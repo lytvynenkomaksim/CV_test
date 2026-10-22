@@ -166,8 +166,40 @@ class RfDetrBuoy:
                 if _small(b, W, H) and _not_in(b, persons)]
 
 
+class YoloEZoneBuoy:
+    """UNTRAINED: YOLOE-26L open-vocabulary detector with the text prompt "buoy", run only on the zone that
+    matters - the water band around the skier's depth (1 skier-height beyond the ski to 4 heights closer to
+    the boat). Without a skier, the lower 55 % of the frame. Set .skier_box before each call."""
+    name = "YOLOE-26L 'buoy' (no training, zone only)"
+
+    def __init__(self, weights="yoloe-26l-seg.pt", conf=0.1, imgsz=1280, prompts=("buoy",)):
+        from ultralytics import YOLOE
+        self.m = YOLOE(str(MODELS / weights))
+        self.m.set_classes(list(prompts), self.m.get_text_pe(list(prompts)))
+        self.conf, self.imgsz, self.skier_box = conf, imgsz, None
+
+    def zone(self, H):
+        s = self.skier_box
+        if s is not None and s[3] - s[1] > 20:
+            h = s[3] - s[1]
+            return int(max(0, s[3] - 1.0 * h)), int(min(H, s[3] + 4.0 * h))
+        return int(0.45 * H), H
+
+    def __call__(self, frame, persons=()):
+        H, W = frame.shape[:2]
+        y0, y1 = self.zone(H)
+        r = self.m.predict(frame[y0:y1], imgsz=min(self.imgsz, (W + 31) // 32 * 32), conf=self.conf,
+                           verbose=False)[0]
+        out = []
+        for b, s in zip(r.boxes.xyxy.tolist(), r.boxes.conf.tolist()):
+            b = [b[0], b[1] + y0, b[2], b[3] + y0]
+            if _small(b, W, H) and _not_in(b, persons):
+                out.append((*b, s))
+        return out
+
+
 def build(name: str, **kw):
-    return {"yolo-buoy": YoloBuoy, "gdino": GDinoBuoy, "yoloworld": YoloWorldBuoy, "owlv2": Owlv2Buoy,
+    return {"yoloe-zone": YoloEZoneBuoy, "yolo-buoy": YoloBuoy, "gdino": GDinoBuoy, "yoloworld": YoloWorldBuoy, "owlv2": Owlv2Buoy,
             "rfdetr": RfDetrBuoy}[name](**kw)
 
 

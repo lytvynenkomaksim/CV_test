@@ -25,8 +25,8 @@ def ski_point(r):
     s = r["skier"]
     h = max(10.0, s[3] - s[1])
     ski = r.get("ski")
-    if ski:
-        return (ski[0] + ski[2]) / 2, ski[3], h
+    if ski:  # detected ski: its centre (both ends averaged)
+        return (ski[4][0] + ski[5][0]) / 2, (ski[4][1] + ski[5][1]) / 2, h
     k = r.get("kpts")
     if k is not None:
         k = np.asarray(k)
@@ -109,8 +109,11 @@ def buoy_events_v4(tracks, frames, s0, s1, fps, motion_s=0.8, near_rows=0.35, ne
         for t2, pos2, n2 in tobs:
             if t2 is t or cross not in pos2:
                 continue
-            bx2, by2, _ = pos2[cross]
-            bx, by, _ = pos[cross]
+            bx2, by2, seen2 = pos2[cross]
+            bx, by, seen1 = pos[cross]
+            # a gate needs two real, well-tracked buoys seen at that moment (not a buoy + a spray blip)
+            if not (seen1 and seen2 and nobs >= min_obs_miss and n2 >= min_obs_miss):
+                continue
             if abs(by2 - by) < gate_dy * hpx and 0.3 * hpx < abs(bx2 - bx) < gate_gap * hpx:
                 partner = (t2, bx2)
                 break

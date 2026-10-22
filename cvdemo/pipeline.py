@@ -102,7 +102,8 @@ class SkierTracker:
         return best, persons
 
 
-def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, timer=None, progress=True):
+def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, timer=None, progress=True,
+            ski_det=None):
     cap = cv2.VideoCapture(str(video))
     fps = cap.get(cv2.CAP_PROP_FPS) or 30
     n = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -137,7 +138,12 @@ def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, tim
                     k = pose_est(frame, b)
                 if k is not None:
                     rec["kpts"] = np.round(k, 2).tolist()
+        if ski_det is not None and best:
+            with timer("ski"):
+                rec["ski"] = ski_det(frame, rec)
         if buoy_det is not None and f % buoy_every == 0:
+            if hasattr(buoy_det, "skier_box"):
+                buoy_det.skier_box = best[0] if best else None
             with timer("buoy_detect"):
                 rec["buoys"] = [list(map(float, d)) for d in buoy_det(frame, persons)]
         frames.append(rec)
@@ -241,6 +247,9 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
             trail.append((r["skier_X"], r["foot_y"]))
             if r["kpts"] is not None:
                 P.draw_skeleton(img, np.array(r["kpts"]))
+            if r.get("ski"):  # detected ski (orange line)
+                cv2.line(img, tuple(map(int, r["ski"][4])), tuple(map(int, r["ski"][5])), (0, 140, 255), 3,
+                         cv2.LINE_AA)
         trail = trail[-int(fps * 2):]
         pts = [(int(X - pan), int(y)) for X, y in trail]
         for a, b in zip(pts[:-1], pts[1:]):
@@ -375,7 +384,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
     ap.add_argument("--out", default="runs/demo")
-    ap.add_argument("--buoy", default="yolo-buoy", choices=["yolo-buoy", "rfdetr", "gdino", "yoloworld", "owlv2", "none"])
+    ap.add_argument("--buoy", default="yolo-buoy", choices=["yolo-buoy", "yoloe-zone", "rfdetr", "gdino", "yoloworld", "owlv2", "none"])
     ap.add_argument("--pose", default="yolo-s", help="yolo-n|yolo-s|yolo-m|vitpose|rtmpose|mediapipe|none")
     ap.add_argument("--skier", default="s", help="YOLO11 size for the person detector (n/s/m)")
     ap.add_argument("--buoy-every", type=int, default=1, help="run the buoy detector every N frames")

@@ -270,6 +270,8 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
                         msg += " (buoy hidden, position estimated)"
                 elif e["kind"] == "gate" and e.get("role") == "guide":
                     col, msg = (0, 255, 255), "boat guide buoys passed (not judged)"
+                elif e["kind"] == "gate" and e.get("through_gate") is None:
+                    col, msg = (0, 255, 255), "gate buoys passed (too unclear to judge)"
                 elif e["kind"] == "gate":
                     ok_ = e.get("through_gate", True)
                     col = (0, 200, 0) if ok_ else (0, 0, 255)
@@ -278,9 +280,13 @@ def render(video, out_path, frames, meta, events, segs, tracks, labels, timings=
                     col, msg = (0, 255, 255), "centre buoy (boat guide) passed"
                 if f - e["frame"] < 3:
                     cv2.line(img, (bx, y), (sx, y), col, 2, cv2.LINE_AA)
-                (tw, th), _ = cv2.getTextSize(msg, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)
-                cv2.rectangle(img, (W // 2 - tw // 2 - 8, 60), (W // 2 + tw // 2 + 8, 92), (0, 0, 0), -1)
-                cv2.putText(img, msg, (W // 2 - tw // 2, 84), cv2.FONT_HERSHEY_SIMPLEX, 0.7, col, 2, cv2.LINE_AA)
+                fs = max(0.7, W / 1100)  # readable on 1080p too
+                th_ = max(2, int(round(2 * fs)))
+                (tw, th), _ = cv2.getTextSize(msg, cv2.FONT_HERSHEY_SIMPLEX, fs, th_)
+                cv2.rectangle(img, (W // 2 - tw // 2 - 10, int(60 * fs) - th - 10),
+                              (W // 2 + tw // 2 + 10, int(60 * fs) + 12), (0, 0, 0), -1)
+                cv2.putText(img, msg, (W // 2 - tw // 2, int(60 * fs)), cv2.FONT_HERSHEY_SIMPLEX, fs, col, th_,
+                            cv2.LINE_AA)
         # HUD (bottom-left)
         done = [e for e in turn_events if e["frame"] <= f]
         sym = {"ok": "OK", "miss": "X", "uncertain": "?"}

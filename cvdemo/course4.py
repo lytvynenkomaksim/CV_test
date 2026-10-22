@@ -111,21 +111,27 @@ def buoy_events_v4(tracks, frames, s0, s1, fps, motion_s=0.8, near_rows=0.35, ne
                 continue
             bx2, by2, seen2 = pos2[cross]
             bx, by, seen1 = pos[cross]
-            # a gate needs two real, well-tracked buoys seen at that moment (not a buoy + a spray blip)
-            if not (seen1 and seen2 and nobs >= min_obs_miss and n2 >= min_obs_miss):
-                continue
             if abs(by2 - by) < gate_dy * hpx and 0.3 * hpx < abs(bx2 - bx) < gate_gap * hpx:
-                partner = (t2, bx2)
+                # judge the pair only when both are real, well-tracked buoys seen at that moment
+                # (not a buoy + a spray blip); otherwise it is still a pair (never a turn buoy), not judged
+                strong = seen1 and seen2 and nobs >= min_obs_miss and n2 >= min_obs_miss
+                partner = (t2, bx2, strong)
                 break
         bx, by, observed = pos[cross]
+        weak_pair = False
         if partner is not None:
             lo, hi = sorted((bx, partner[1]))
             between = lo - 0.2 * hpx <= sx[ci] <= hi + 0.2 * hpx
             events.append(dict(frame=int(cross), t=round(cross / fps, 2), track=t.tid, kind="gate",
-                               gate_with=partner[0].tid, through_gate=bool(between), between=bool(between),
+                               gate_with=partner[0].tid, through_gate=bool(between) if partner[2] else None,
+                               between=bool(between), weak=not partner[2],
                                buoy_x=float(bx), skier_x=float(sx[ci]), n_obs=nobs, predicted=not observed,
                                buoy_X=float(bx + frames[cross]["pan"]), skier_X=float(sX[ci])))
-            continue
+            if partner[2]:
+                continue
+            # weak pair (one buoy poorly tracked): also evaluate it as a single turn buoy; the course step
+            # keeps the turn if it falls inside a pass (between turn buoys), the gate pair otherwise
+            weak_pair = True
         # ---- single buoy the skier never comes near while level with it: a boat guide buoy (they sit at the
         # same depth as each turn buoy, but in the middle, ~6 skier heights from a skier rounding the turn buoy)
         near_any = [c for c in cand if abs(c[0] - cross) <= 0.4 * fps and abs(c[5]) <= near_rows
@@ -164,7 +170,7 @@ def buoy_events_v4(tracks, frames, s0, s1, fps, motion_s=0.8, near_rows=0.35, ne
                            side="right" if side > 0 else "left", skier_side="left" if side > 0 else "right",
                            outside=m > -0.1, verdict=verdict, margin_h=round(m, 2), margin_px=round(m * hpx, 1),
                            n_close=len(close), buoy_x=float(bx), skier_x=float(sx[ci]), n_obs=nobs,
-                           predicted=not seen,
+                           predicted=not seen, alt_of_weak_pair=weak_pair,
                            # fields used by the shared course fit / renderer
                            buoy_X=float(bx + frames[cross]["pan"]), skier_X=float(sX[ci]), amp=float(hpx * 6)))
     events.sort(key=lambda e: e["frame"])
@@ -227,6 +233,17 @@ def analyse_course_v4(frames, meta, boat_view=None):
         tracks_all += [(s0, s1, t) for t in tracks]
         events += buoy_events_v4(tracks, frames, s0, s1, fps)
         ends[s0] = G.run_end_frame(frames, s0, s1, fps)
+    # weak pairs: inside a pass (between turn buoys) it is a turn buoy, outside (start / end) a gate pair
+    core = [e for e in events if e["kind"] == "turn" and not e.get("alt_of_weak_pair")]
+    spans = [(p[0]["frame"], p[-1]["frame"]) for p in G.split_passes(core, fps)]
+    drop = set()
+    for e in events:
+        if e["kind"] == "turn" and e.get("alt_of_weak_pair"):
+            inside = any(a < e["frame"] < b for a, b in spans)
+            gate = next((g for g in events if g["kind"] == "gate" and g["track"] == e["track"]
+                         and g["frame"] == e["frame"]), None)
+            drop.add(id(gate) if inside and gate is not None else id(e))
+    events = [e for e in events if id(e) not in drop]
     turns_all = [e for e in events if e["kind"] == "turn"]
     passes = G.split_passes(turns_all, fps)
     for p in passes:

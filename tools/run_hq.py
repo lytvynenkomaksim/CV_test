@@ -23,6 +23,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("videos", nargs="+")
 ap.add_argument("--out", default=str(ROOT / "results/hq_untrained"))
 ap.add_argument("--max-frames", type=int)
+ap.add_argument("--from-frames", action="store_true", help="reuse <out>/<name>.frames.json (no detection, re-score + render)")
 a = ap.parse_args()
 out = Path(a.out)
 out.mkdir(parents=True, exist_ok=True)
@@ -31,9 +32,9 @@ timer = PL.Timer()
 with timer("load_models"):
     skier = PL.SkierTracker("s")
     pose_est = P.build("yolo-s")
-    buoy_det = B.build("yoloe-zone")
-    ski_det = SkiDetector()
-labels = dict(skier=skier.name, pose=pose_est.name, buoy=buoy_det.name, ski=ski_det.name)
+    buoy_det = None if a.from_frames else B.build("yoloe-zone")
+    ski_det = None if a.from_frames else SkiDetector()
+labels = dict(skier=skier.name, pose=pose_est.name, buoy=B.YoloEZoneBuoy.name, ski=SkiDetector.name)
 import torch  # noqa: E402
 
 dev = torch.cuda.get_device_name(0) if torch.cuda.is_available() else "CPU (4 cores)"
@@ -43,7 +44,14 @@ for v in a.videos:
     tag = v.stem.replace(" ", "_")
     timer = PL.Timer()
     skier.reset()
-    frames, meta = PL.analyse(v, buoy_det, pose_est, skier, timer=timer, max_frames=a.max_frames, ski_det=ski_det)
+    if a.from_frames and (out / f"{tag}.frames.json").exists():
+        old = json.loads((out / f"{tag}.json").read_text())
+        frames, meta = json.loads((out / f"{tag}.frames.json").read_text()), old["meta"]
+        timer.t.update({k: x["total_s"] for k, x in old["timings"].items()})
+        timer.n.update({k: x.get("calls", 1) for k, x in old["timings"].items()})
+    else:
+        frames, meta = PL.analyse(v, buoy_det, pose_est, skier, timer=timer, max_frames=a.max_frames,
+                                  ski_det=ski_det)
     with timer("course_logic"):
         crs = C4.analyse_course_v4(frames, meta)
     tsum = timer.summary()
@@ -57,7 +65,8 @@ for v in a.videos:
     gates = [e for e in crs["events"] if e["kind"] == "gate" and e.get("role") != "guide"]
     m = re.search(r"(\d(?:\.\d+)?)\s*(?:at|@)", v.stem.replace("_", " "))
     rows.append(dict(video=tag, official=m.group(1) if m else "?", slots=slots,
-                     gates=" ".join(f"{g['role']}:{'in' if g['through_gate'] else 'OUT'}" for g in gates) or "-",
+                     gates=" ".join(f"{g['role']}:" + {True: "in", False: "OUT", None: "not judged"}[g["through_gate"]]
+                                   for g in gates) or "-",
                      ski_found=f"{sum(1 for r in frames if r.get('ski'))}/{sum(1 for r in frames if r['skier'])}",
                      frames=n, ms_per_frame=round(proc_s / n * 1000),
                      s_per_video_s=round(proc_s / (n / fps), 1),

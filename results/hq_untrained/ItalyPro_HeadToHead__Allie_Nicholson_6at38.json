@@ -1,0 +1,74 @@
+{
+ "meta": {
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Allie_Nicholson_6at38.mp4",
+  "fps": 29.587014588041914,
+  "frames": 600,
+  "width": 1914,
+  "height": 1064,
+  "shots": [
+   0
+  ],
+  "wall_s": 1291.43
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "YOLOE-26L 'buoy' (no training, zone only)",
+  "ski": "ski: YOLOE-26L 'water ski' at the feet (no training)"
+ },
+ "timings": {
+  "scene_cut": {
+   "total_s": 0.27,
+   "calls": 600,
+   "ms_per_call": 0.5
+  },
+  "skier_detect_track": {
+   "total_s": 196.06,
+   "calls": 600,
+   "ms_per_call": 326.8
+  },
+  "camera_pan": {
+   "total_s": 13.54,
+   "calls": 600,
+   "ms_per_call": 22.6
+  },
+  "pose": {
+   "total_s": 46.15,
+   "calls": 446,
+   "ms_per_call": 103.5
+  },
+  "ski": {
+   "total_s": 261.3,
+   "calls": 446,
+   "ms_per_call": 585.9
+  },
+  "buoy_detect": {
+   "total_s": 770.77,
+   "calls": 600,
+   "ms_per_call": 1284.6
+  },
+  "course_logic": {
+   "total_s": 0.02,
+   "calls": 1,
+   "ms_per_call": 19.1
+  }
+ },
+ "row": {
+  "video": "ItalyPro_HeadToHead__Allie_Nicholson_6at38",
+  "official": "6",
+  "slots": "",
+  "gates": "-",
+  "ski_found": "58/446",
+  "frames": 600,
+  "ms_per_frame": 2147,
+  "s_per_video_s": 63.5,
+  "ms_scene_cut": 0,
+  "ms_skier_detect_track": 327,
+  "ms_camera_pan": 23,
+  "ms_pose": 77,
+  "ms_ski": 436,
+  "ms_buoy_detect": 1285,
+  "ms_course_logic": 0
+ },
+ "events": []
+}

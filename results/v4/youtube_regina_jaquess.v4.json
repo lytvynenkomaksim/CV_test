@@ -16,6 +16,7 @@
    "skier_x": 635.7300109863281,
    "n_obs": 6,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": -929.087937156243,
    "skier_X": -337.90466002611606,
    "amp": 1350.533203125
@@ -36,6 +37,7 @@
    "skier_x": 1109.0364990234375,
    "n_obs": 5,
    "predicted": true,
+   "alt_of_weak_pair": false,
    "buoy_X": 481.9591901939075,
    "skier_X": 234.69250299722307,
    "amp": 1672.469970703125
@@ -56,10 +58,11 @@
    "skier_x": 682.2149963378906,
    "n_obs": 4,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": -601.9243173486057,
    "skier_X": -808.0849139823715,
    "amp": 928.4571533203125,
-   "slot": 1
+   "slot": 4
   },
   {
    "frame": 480,
@@ -77,6 +80,7 @@
    "skier_x": 914.4450073242188,
    "n_obs": 3,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 1534.819726982742,
    "skier_X": 674.4385013968044,
    "amp": 1020.3896484375
@@ -97,11 +101,12 @@
    "skier_x": 1305.8500366210938,
    "n_obs": 3,
    "predicted": true,
+   "alt_of_weak_pair": false,
    "buoy_X": 4089.564326224304,
    "skier_X": 4433.620384041795,
    "amp": 820.3222045898438,
    "alternation_ok": false,
-   "slot": 2
+   "slot": 5
   },
   {
    "frame": 561,
@@ -111,13 +116,14 @@
    "gate_with": 20,
    "through_gate": null,
    "between": false,
+   "weak": true,
    "buoy_x": 342.054898490926,
    "skier_x": 1091.75,
    "n_obs": 5,
    "predicted": true,
    "buoy_X": 2397.1008899567632,
    "skier_X": 3146.7959914658372,
-   "role": "guide"
+   "role": "entry"
   },
   {
    "frame": 660,
@@ -127,35 +133,14 @@
    "gate_with": 24,
    "through_gate": null,
    "between": false,
+   "weak": true,
    "buoy_x": -38.17328975553255,
    "skier_x": 1056.3349609375,
    "n_obs": 4,
    "predicted": true,
    "buoy_X": 1988.625938884259,
    "skier_X": 3083.1341895772916,
-   "role": "guide"
-  },
-  {
-   "frame": 663,
-   "t": 22.12,
-   "track": 24,
-   "kind": "turn",
-   "side": "right",
-   "skier_side": "left",
-   "outside": true,
-   "verdict": "ok",
-   "margin_h": 2.78,
-   "margin_px": 695.6,
-   "n_close": 1,
-   "buoy_x": -80.39471012166086,
-   "skier_x": 1060.4149780273438,
-   "n_obs": 4,
-   "predicted": true,
-   "buoy_X": 2173.393646243763,
-   "skier_X": 3314.203334392768,
-   "amp": 1502.1194458007812,
-   "alternation_ok": false,
-   "slot": 4
+   "role": "entry"
   },
   {
    "frame": 748,
@@ -173,10 +158,11 @@
    "skier_x": 763.0399780273438,
    "n_obs": 5,
    "predicted": true,
+   "alt_of_weak_pair": false,
    "buoy_X": 2810.949781604241,
    "skier_X": 2807.7638357406468,
    "amp": 1431.3438720703125,
-   "slot": 5
+   "slot": 1
   },
   {
    "frame": 758,
@@ -184,8 +170,9 @@
    "track": 29,
    "kind": "gate",
    "gate_with": 26,
-   "through_gate": true,
+   "through_gate": null,
    "between": true,
+   "weak": true,
    "buoy_x": 650.4452371341474,
    "skier_x": 906.0149841308594,
    "n_obs": 3,
@@ -210,6 +197,7 @@
    "skier_x": 1108.1099853515625,
    "n_obs": 3,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 5783.022262514497,
    "skier_X": 5094.050094545747,
    "amp": 1417.206298828125,
@@ -231,6 +219,7 @@
    "skier_x": 1255.6900024414062,
    "n_obs": 4,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 6904.157704700117,
    "skier_X": 7104.644124799699,
    "amp": 999.328125,
@@ -252,6 +241,7 @@
    "skier_x": 1004.1549987792969,
    "n_obs": 8,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 6157.486981493743,
    "skier_X": 5288.541943651946,
    "amp": 1522.0556030273438,
@@ -265,6 +255,7 @@
    "gate_with": 50,
    "through_gate": null,
    "between": false,
+   "weak": false,
    "buoy_x": 1824.1453857421875,
    "skier_x": 961.4249877929688,
    "n_obs": 8,
@@ -289,6 +280,7 @@
    "skier_x": 1195.9750366210938,
    "n_obs": 7,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 6365.605224045043,
    "skier_X": 6614.948028000121,
    "amp": 946.613525390625,
@@ -310,6 +302,7 @@
    "skier_x": 747.9649963378906,
    "n_obs": 5,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 2195.522317256687,
    "skier_X": 2833.562596645115,
    "amp": 1506.3870849609375,
@@ -331,6 +324,7 @@
    "skier_x": 748.9849853515625,
    "n_obs": 5,
    "predicted": true,
+   "alt_of_weak_pair": false,
    "buoy_X": 4766.924885347427,
    "skier_X": 5547.517440878659,
    "amp": 1337.4755859375,
@@ -352,6 +346,7 @@
    "skier_x": 878.1799926757812,
    "n_obs": 4,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 6228.896849248983,
    "skier_X": 5318.171324346639,
    "amp": 1116.8746948242188,
@@ -364,8 +359,9 @@
    "track": 90,
    "kind": "gate",
    "gate_with": 87,
-   "through_gate": false,
+   "through_gate": null,
    "between": false,
+   "weak": true,
    "buoy_x": 973.2225952148438,
    "skier_x": 727.3899841308594,
    "n_obs": 8,
@@ -390,6 +386,7 @@
    "skier_x": 1095.8399658203125,
    "n_obs": 3,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 10456.905813008396,
    "skier_X": 9663.337270527927,
    "amp": 1515.697998046875,
@@ -401,8 +398,9 @@
    "track": 111,
    "kind": "gate",
    "gate_with": 109,
-   "through_gate": false,
+   "through_gate": null,
    "between": false,
+   "weak": true,
    "buoy_x": 1542.0962350604132,
    "skier_x": 862.5449829101562,
    "n_obs": 3,
@@ -427,6 +425,7 @@
    "skier_x": 1261.7650146484375,
    "n_obs": 4,
    "predicted": false,
+   "alt_of_weak_pair": false,
    "buoy_X": 10671.217586452693,
    "skier_X": 10952.518947536677,
    "amp": 1020.9649658203125,
@@ -448,6 +447,7 @@
    "skier_x": 731.9200134277344,
    "n_obs": 3,
    "predicted": true,
+   "alt_of_weak_pair": false,
    "buoy_X": 8338.562415230701,
    "skier_X": 8317.342956956405,
    "amp": 2087.909912109375,
@@ -469,6 +469,7 @@
    "skier_x": 1186.68359375,
    "n_obs": 5,
    "predicted": true,
+   "alt_of_weak_pair": false,
    "buoy_X": 6956.1664252984365,
    "skier_X": 6473.097490663079,
    "amp": 562.177001953125,
@@ -477,10 +478,36 @@
  ],
  "courses": [
   {
-   "period_s": 2.25,
+   "period_s": 2.08,
    "slots": [
     {
      "slot": 1,
+     "t": 9.14,
+     "side": "right",
+     "status": "conflict",
+     "event": null,
+     "rejected": [
+      5
+     ]
+    },
+    {
+     "slot": 2,
+     "t": 11.22,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 13.3,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
      "t": 15.37,
      "side": "left",
      "status": "ok",
@@ -500,18 +527,17 @@
       "skier_x": 682.2149963378906,
       "n_obs": 4,
       "predicted": false,
+      "alt_of_weak_pair": false,
       "buoy_X": -601.9243173486057,
       "skier_X": -808.0849139823715,
       "amp": 928.4571533203125,
-      "slot": 1
+      "slot": 4
      },
-     "rejected": [
-      16
-     ]
+     "rejected": []
     },
     {
-     "slot": 2,
-     "t": 17.62,
+     "slot": 5,
+     "t": 17.45,
      "side": "right",
      "status": "ok",
      "event": {
@@ -530,54 +556,31 @@
       "skier_x": 1305.8500366210938,
       "n_obs": 3,
       "predicted": true,
+      "alt_of_weak_pair": false,
       "buoy_X": 4089.564326224304,
       "skier_X": 4433.620384041795,
       "amp": 820.3222045898438,
       "alternation_ok": false,
-      "slot": 2
+      "slot": 5
      },
      "rejected": []
     },
     {
-     "slot": 3,
-     "t": 19.87,
+     "slot": 6,
+     "t": 19.53,
      "side": "left",
      "status": "unseen",
      "event": null,
      "rejected": []
-    },
+    }
+   ]
+  },
+  {
+   "period_s": 2.5,
+   "slots": [
     {
-     "slot": 4,
-     "t": 22.12,
-     "side": "right",
-     "status": "ok",
-     "event": {
-      "frame": 663,
-      "t": 22.12,
-      "track": 24,
-      "kind": "turn",
-      "side": "right",
-      "skier_side": "left",
-      "outside": true,
-      "verdict": "ok",
-      "margin_h": 2.78,
-      "margin_px": 695.6,
-      "n_close": 1,
-      "buoy_x": -80.39471012166086,
-      "skier_x": 1060.4149780273438,
-      "n_obs": 4,
-      "predicted": true,
-      "buoy_X": 2173.393646243763,
-      "skier_X": 3314.203334392768,
-      "amp": 1502.1194458007812,
-      "alternation_ok": false,
-      "slot": 4
-     },
-     "rejected": []
-    },
-    {
-     "slot": 5,
-     "t": 24.37,
+     "slot": 1,
+     "t": 24.96,
      "side": "left",
      "status": "ok",
      "event": {
@@ -596,16 +599,49 @@
       "skier_x": 763.0399780273438,
       "n_obs": 5,
       "predicted": true,
+      "alt_of_weak_pair": false,
       "buoy_X": 2810.949781604241,
       "skier_X": 2807.7638357406468,
       "amp": 1431.3438720703125,
-      "slot": 5
+      "slot": 1
      },
      "rejected": []
     },
     {
+     "slot": 2,
+     "t": 27.46,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 3,
+     "t": 29.96,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 4,
+     "t": 32.46,
+     "side": "right",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
+     "slot": 5,
+     "t": 34.96,
+     "side": "left",
+     "status": "unseen",
+     "event": null,
+     "rejected": []
+    },
+    {
      "slot": 6,
-     "t": 26.63,
+     "t": 37.46,
      "side": "right",
      "status": "unseen",
      "event": null,
@@ -637,6 +673,7 @@
       "skier_x": 1108.1099853515625,
       "n_obs": 3,
       "predicted": false,
+      "alt_of_weak_pair": false,
       "buoy_X": 5783.022262514497,
       "skier_X": 5094.050094545747,
       "amp": 1417.206298828125,
@@ -710,6 +747,7 @@
       "skier_x": 1004.1549987792969,
       "n_obs": 8,
       "predicted": false,
+      "alt_of_weak_pair": false,
       "buoy_X": 6157.486981493743,
       "skier_X": 5288.541943651946,
       "amp": 1522.0556030273438,
@@ -783,6 +821,7 @@
       "skier_x": 747.9649963378906,
       "n_obs": 5,
       "predicted": false,
+      "alt_of_weak_pair": false,
       "buoy_X": 2195.522317256687,
       "skier_X": 2833.562596645115,
       "amp": 1506.3870849609375,
@@ -856,6 +895,7 @@
       "skier_x": 748.9849853515625,
       "n_obs": 5,
       "predicted": true,
+      "alt_of_weak_pair": false,
       "buoy_X": 4766.924885347427,
       "skier_X": 5547.517440878659,
       "amp": 1337.4755859375,
@@ -892,6 +932,7 @@
       "skier_x": 878.1799926757812,
       "n_obs": 4,
       "predicted": false,
+      "alt_of_weak_pair": false,
       "buoy_X": 6228.896849248983,
       "skier_X": 5318.171324346639,
       "amp": 1116.8746948242188,
@@ -950,6 +991,7 @@
       "skier_x": 1095.8399658203125,
       "n_obs": 3,
       "predicted": false,
+      "alt_of_weak_pair": false,
       "buoy_X": 10456.905813008396,
       "skier_X": 9663.337270527927,
       "amp": 1515.697998046875,
@@ -1023,6 +1065,7 @@
       "skier_x": 1261.7650146484375,
       "n_obs": 4,
       "predicted": false,
+      "alt_of_weak_pair": false,
       "buoy_X": 10671.217586452693,
       "skier_X": 10952.518947536677,
       "amp": 1020.9649658203125,
@@ -1051,6 +1094,7 @@
       "skier_x": 731.9200134277344,
       "n_obs": 3,
       "predicted": true,
+      "alt_of_weak_pair": false,
       "buoy_X": 8338.562415230701,
       "skier_X": 8317.342956956405,
       "amp": 2087.909912109375,
@@ -1116,6 +1160,7 @@
       "skier_x": 1186.68359375,
       "n_obs": 5,
       "predicted": true,
+      "alt_of_weak_pair": false,
       "buoy_X": 6956.1664252984365,
       "skier_X": 6473.097490663079,
       "amp": 562.177001953125,

@@ -1,0 +1,97 @@
+{
+ "meta": {
+  "video": "data/videos/drive_extra/ItalyPro_HeadToHead__Beatrice_Ianni_4at38.mp4",
+  "fps": 29.74202353140955,
+  "frames": 794,
+  "width": 1896,
+  "height": 1076,
+  "shots": [
+   0,
+   100
+  ],
+  "wall_s": 1432.62
+ },
+ "models": {
+  "skier": "yolo11s + ByteTrack",
+  "pose": "yolo11s-pose",
+  "buoy": "YOLOE-26L 'buoy' (no training, zone only)",
+  "ski": "ski: YOLOE-26L 'water ski' at the feet (no training)"
+ },
+ "timings": {
+  "scene_cut": {
+   "total_s": 0.31,
+   "calls": 794,
+   "ms_per_call": 0.4
+  },
+  "skier_detect_track": {
+   "total_s": 172.27,
+   "calls": 794,
+   "ms_per_call": 217.0
+  },
+  "camera_pan": {
+   "total_s": 15.13,
+   "calls": 794,
+   "ms_per_call": 19.1
+  },
+  "pose": {
+   "total_s": 39.68,
+   "calls": 687,
+   "ms_per_call": 57.8
+  },
+  "ski": {
+   "total_s": 259.42,
+   "calls": 687,
+   "ms_per_call": 377.6
+  },
+  "buoy_detect": {
+   "total_s": 942.6,
+   "calls": 794,
+   "ms_per_call": 1187.2
+  },
+  "course_logic": {
+   "total_s": 0.05,
+   "calls": 1,
+   "ms_per_call": 49.1
+  }
+ },
+ "row": {
+  "video": "ItalyPro_HeadToHead__Beatrice_Ianni_4at38",
+  "official": "4",
+  "slots": "Lx R? L? R? L? R?",
+  "gates": "-",
+  "ski_found": "74/687",
+  "frames": 794,
+  "ms_per_frame": 1800,
+  "s_per_video_s": 53.5,
+  "ms_scene_cut": 0,
+  "ms_skier_detect_track": 217,
+  "ms_camera_pan": 19,
+  "ms_pose": 50,
+  "ms_ski": 327,
+  "ms_buoy_detect": 1187,
+  "ms_course_logic": 0
+ },
+ "events": [
+  {
+   "frame": 153,
+   "t": 5.14,
+   "track": 1,
+   "kind": "turn",
+   "side": "left",
+   "skier_side": "right",
+   "outside": false,
+   "verdict": "miss",
+   "margin_h": -1.86,
+   "margin_px": -605.2,
+   "n_close": 2,
+   "buoy_x": 375.4130859375,
+   "skier_x": 990.1399841308594,
+   "n_obs": 6,
+   "predicted": false,
+   "buoy_X": -2431.9300738610873,
+   "skier_X": -1817.203175667728,
+   "amp": 1953.4129028320312,
+   "slot": 1
+  }
+ ]
+}

@@ -149,7 +149,7 @@ def analyse(video, buoy_det, pose_est, skier, buoy_every=1, max_frames=None, tim
                 rec["ski"] = ski_det(frame, rec)
         if buoy_det is not None and hasattr(buoy_det, "feed"):  # multi-frame detector: decides after the video
             with timer("buoy_detect"):
-                buoy_det.feed(f, frame, pan, best[0] if best else None, persons)
+                buoy_det.feed(f, frame, pan, best[0] if best else None, persons, kpts=rec.get("kpts"))
         elif buoy_det is not None and f % buoy_every == 0:
             if hasattr(buoy_det, "skier_box"):
                 buoy_det.skier_box = best[0] if best else None

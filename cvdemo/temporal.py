@@ -56,6 +56,7 @@ class Track:
         self.v = np.zeros(2)             # own drift in the image, px / frame (pan removed)
         self.miss = 0
         self.tpl = self._patch(img, box)
+        self.rope = {}                   # frame -> lies on the tow-rope line
 
     @staticmethod
     def _patch(img, b, pad=0.6):
@@ -71,18 +72,21 @@ class Track:
 
 
 class TemporalBuoys:
-    def __init__(self, detectors, global_every=2, min_hits=4, min_best=0.35, search=2.5, max_miss=12,
+    def __init__(self, detectors, global_every=2, min_hits=4, min_best=0.35, strong=0.85, search=2.5, max_miss=12,
                  ncc_min=0.55):
         """detectors: list of callables (frame, persons) -> [(x0, y0, x1, y1, score)], each with optional
         .skier_box attribute (zone). Scores should be comparable (0..1)."""
         self.dets, self.global_every = detectors, global_every
         self.min_hits, self.min_best, self.search, self.max_miss, self.ncc_min = (
             min_hits, min_best, search, max_miss, ncc_min)
+        self.strong = strong
         self.tracks, self.dead = [], []
         self.prev_pan = None
 
     # ------------------------------------------------------------------ per frame
-    def update(self, f, img, pan, skier_box=None, persons=()):
+    def update(self, f, img, pan, skier_box=None, persons=(), reject=None):
+        """reject: optional callable(box) -> True for places that cannot be a buoy (e.g. on the tow rope)."""
+        top = skier_box[3] - 2.0 * (skier_box[3] - skier_box[1]) if skier_box is not None else -1e9
         dpan = 0.0 if self.prev_pan is None else pan - self.prev_pan
         self.prev_pan = pan
         H, W = img.shape[:2]
@@ -93,12 +97,15 @@ class TemporalBuoys:
             dx, dy = -dpan * k + t.v[0] * k, t.v[1] * k
             pb = [b[0] + dx, b[1] + dy, b[2] + dx, b[3] + dy]
             hit = self._local(img, t, pb)
+            if hit is not None and (hit[0][1] + hit[0][3]) / 2 < top:
+                hit = None  # drifted out of the water zone (pylon, sky)
             if hit is not None:
                 nb, ncc = hit
                 c_old = np.array([(b[0] + b[2]) / 2 - dpan * k, (b[1] + b[3]) / 2])  # pan removed
                 c_new = np.array([(nb[0] + nb[2]) / 2, (nb[1] + nb[3]) / 2])
                 t.v = 0.7 * t.v + 0.3 * (c_new - c_old) / max(1, k)
                 t.boxes[f], t.how[f], t.miss = nb, "local", 0
+                t.rope[f] = bool(reject and reject(nb))
                 if ncc > 0.8:
                     t.tpl = Track._patch(img, nb)
             else:
@@ -111,7 +118,7 @@ class TemporalBuoys:
                 if hasattr(d, "skier_box"):
                     d.skier_box = skier_box
                 for b in d(img, persons):
-                    self._associate(f, img, list(b[:4]), float(b[4]))
+                    self._associate(f, img, list(b[:4]), float(b[4]), bool(reject and reject(b)))
 
     def _local(self, img, t, pb):
         if t.tpl is None or t.tpl.size == 0:
@@ -135,7 +142,7 @@ class TemporalBuoys:
             return None
         return nb, ncc
 
-    def _associate(self, f, img, b, s):
+    def _associate(self, f, img, b, s, on_rope=False):
         cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2
         best, bd = None, 1e9
         for t in self.tracks:
@@ -148,11 +155,14 @@ class TemporalBuoys:
                 best, bd = t, d
         if best is not None:
             best.boxes[f], best.how[f], best.miss = b, "det", 0
+            best.rope[f] = on_rope
             best.best = max(best.best, s)
             best.scores.append(s)
             best.tpl = Track._patch(img, b)
         else:
-            self.tracks.append(Track(f, b, s, img))
+            t = Track(f, b, s, img)
+            t.rope[f] = on_rope
+            self.tracks.append(t)
 
     # ------------------------------------------------------------------ offline result
     def result(self, max_gap=6):
@@ -161,7 +171,10 @@ class TemporalBuoys:
         for t in self.tracks + self.dead:
             n = len(t.boxes)
             n_det = sum(1 for h in t.how.values() if h == "det")
-            if n < self.min_hits or t.best < self.min_best or n_det < 2:
+            if t.rope and sum(t.rope.values()) >= 0.6 * len(t.rope):
+                continue  # stays on the tow-rope line: a red / pink rope section, not a buoy that crosses it
+            strong = t.best >= self.strong and n >= 2  # a buoy seen only briefly (spray / skier hides it)
+            if not strong and (n < self.min_hits or t.best < self.min_best or n_det < 2):
                 continue
             fs = sorted(t.boxes)
             conf = min(1.0, 0.5 * t.best + 0.5 * float(np.mean(sorted(t.scores)[-3:])))
@@ -207,8 +220,36 @@ class VideoBuoys:
         self.tb = TemporalBuoys([ScaledDetector(B.YoloEZoneBuoy(conf=0.03, imgsz=1920), 3.0), self.cb],
                                 global_every=global_every)
 
-    def feed(self, f, frame, pan, skier_box, persons):
-        self.tb.update(f, frame, pan, skier_box=skier_box, persons=persons)
+    def feed(self, f, frame, pan, skier_box, persons, kpts=None):
+        self.tb.update(f, frame, pan, skier_box=skier_box, persons=persons,
+                       reject=on_rope(frame, skier_box, kpts))
 
     def finish(self):
         return self.tb.result()
+
+
+def on_rope(frame, skier_box, kpts=None, tol_px=14):
+    """The tow rope has red / pink sections that look like small buoys and move with the boat (so they pass
+    the multi-frame check). Find the rope line (cvdemo.rope); returns a callable(box) -> True if the box lies
+    on it (between the skier's hands and the boat), or None when no rope is found. Tracks that stay on the
+    line most of the time are dropped; a buoy only crosses it for a moment."""
+    if skier_box is None:
+        return None
+    from .rope import detect_rope
+    rec = dict(skier=list(skier_box) + [1.0, 0], kpts=kpts)
+    r = detect_rope(frame, rec)
+    if r is None:
+        return None
+    hx, hy = r["hands"]
+    ex, ey = r["exit_x"], frame.shape[0]
+    dx, dy = ex - hx, ey - hy
+    L2 = dx * dx + dy * dy
+
+    def rej(b):
+        cx, cy = (b[0] + b[2]) / 2, (b[1] + b[3]) / 2
+        t = ((cx - hx) * dx + (cy - hy) * dy) / max(L2, 1e-6)
+        if not (0.02 < t <= 1.0):
+            return False
+        d = abs(dx * (cy - hy) - dy * (cx - hx)) / max(np.sqrt(L2), 1e-6)
+        return d <= tol_px + 0.5 * max(b[2] - b[0], b[3] - b[1])
+    return rej
